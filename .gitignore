@@ -11,6 +11,12 @@
 # testing
 /coverage
 
+# promptfoo
+/.promptfoo
+
+# eval conversation results
+/eval-conversation/results/*.md
+
 # next.js
 /.next/
 /out/
