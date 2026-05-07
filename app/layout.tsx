@@ -1,33 +1,38 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geom, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const geom = Geom({ variable: "--font-geom" })
 
 const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+    subsets: ["latin"],
+    variable: "--font-mono",
 })
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode
+    children: React.ReactNode
 }>) {
-  return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
-      <SpeedInsights/>
-    </html>
-  )
+    return (
+        <html
+            lang="en"
+            suppressHydrationWarning
+            className={cn(
+                "antialiased",
+                geom.variable,
+                fontMono.variable,
+                "font-sans"
+            )}
+        >
+            <body>
+                <ThemeProvider>{children}</ThemeProvider>
+            </body>
+            <SpeedInsights />
+        </html>
+    )
 }
