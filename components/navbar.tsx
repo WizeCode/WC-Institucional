@@ -9,6 +9,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { ShineBorder } from "@/components/ui/shine-border"
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -35,6 +36,11 @@ interface MenuItem {
     items?: MenuItem[]
 }
 
+interface CtaButton {
+    title: string
+    url: string
+}
+
 interface NavbarProps {
     className?: string
     logo?: {
@@ -45,10 +51,8 @@ interface NavbarProps {
         className?: string
     }
     menu?: MenuItem[]
-    cta?: {
-        title: string
-        url: string
-    }
+    wizCta?: CtaButton
+    contactCta?: CtaButton
 }
 
 const Navbar = ({
@@ -108,10 +112,8 @@ const Navbar = ({
             url: "/trabalhe-conosco",
         },
     ],
-    cta = {
-        title: "Entre em contato",
-        url: "#",
-    },
+    wizCta = { title: "Converse com o Wiz", url: "#" },
+    contactCta = { title: "Entre em contato", url: "#" },
     className,
 }: NavbarProps) => {
     return (
@@ -149,8 +151,17 @@ const Navbar = ({
                         </div>
                     </div>
                     <div className="flex gap-2">
+                        <div className="group relative rounded-lg">
+                            <ShineBorder
+                                shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                                className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            />
+                            <Button asChild size="lg" variant="outline">
+                                <a href={wizCta.url}>{wizCta.title}</a>
+                            </Button>
+                        </div>
                         <Button asChild size="lg">
-                            <a href={cta.url}>{cta.title}</a>
+                            <a href={contactCta.url}>{contactCta.title}</a>
                         </Button>
                     </div>
                 </nav>
@@ -203,8 +214,11 @@ const Navbar = ({
                                     </Accordion>
 
                                     <div className="flex flex-col gap-3">
+                                        <Button asChild size="sm" variant="outline">
+                                            <a href={wizCta.url}>{wizCta.title}</a>
+                                        </Button>
                                         <Button asChild size="sm">
-                                            <a href={cta.url}>{cta.title}</a>
+                                            <a href={contactCta.url}>{contactCta.title}</a>
                                         </Button>
                                     </div>
                                 </div>
@@ -241,7 +255,7 @@ const renderMenuItem = (item: MenuItem) => {
         <NavigationMenuItem key={item.title}>
             <NavigationMenuLink
                 href={item.url}
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
             >
                 {item.title}
             </NavigationMenuLink>
@@ -279,7 +293,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
     return (
         <a
-            className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
+            className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted"
             href={item.url}
         >
             <div className="text-foreground">{item.icon}</div>

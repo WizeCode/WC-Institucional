@@ -1,16 +1,14 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { Geom, Geist_Mono } from "next/font/google"
+import { Geom } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
-const geom = Geom({ variable: "--font-geom" })
-
-const fontMono = Geist_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono",
+const geom = Geom({
+    variable: "--font-geom",
+    fallback: ["system-ui", "sans-serif"],
 })
 
 export default function RootLayout({
@@ -22,12 +20,7 @@ export default function RootLayout({
         <html
             lang="en"
             suppressHydrationWarning
-            className={cn(
-                "antialiased",
-                geom.variable,
-                fontMono.variable,
-                "font-sans"
-            )}
+            className={cn("antialiased", geom.variable)}
         >
             <body>
                 <ThemeProvider>{children}</ThemeProvider>
