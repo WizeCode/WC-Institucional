@@ -23,7 +23,8 @@ interface FooterSection {
 
 interface FooterLogo {
     url: string;
-    src: string;
+    srcLight: string;
+    srcDark: string;
     alt: string;
     title: string | React.ReactNode;
 };
@@ -35,7 +36,7 @@ interface FooterSocial {
 };
 
 interface FooterProps {
-    logo: FooterLogo;
+    logo?: FooterLogo;
     email?: string;
     whatsapp?: string;
     socials?: FooterSocial[];
@@ -48,7 +49,8 @@ interface FooterProps {
 const defaultProps: FooterProps = {
     logo: {
         url: "/",
-        src: "/logos/logo_colored.svg",
+        srcLight: "/logos/logo_dark.svg",
+        srcDark: "/logos/logo_light.svg",
         alt: "Logo WizeCode",
         title: (
             <>Wize<span className="text-brand">Code</span></>
@@ -111,17 +113,26 @@ const Footer = (props: FooterProps) => {
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
                     <div className="col-span-1 flex flex-col justify-between gap-6 mb-4 lg:col-span-3 lg:mb-0">
-                        <Link href={logo.url} className="flex justify-center items-center gap-2 lg:justify-start">
-                            <Image className="dark:invert"
-                                src={logo.src}                                
-                                alt={logo.alt}
-                                width={48}
-                                height={48}
-                            />
-                            <h1 className="hidden text-[18px] font-semibold tracking-tighter lg:inline">
-                                {logo.title}
-                            </h1>
-                        </Link>
+                        {logo && (
+                            <Link href={logo.url} className="flex justify-center items-center gap-2 lg:justify-start">
+                                <Image className="block dark:hidden"
+                                    src={logo.srcLight}
+                                    alt={logo.alt}
+                                    width={48}
+                                    height={48}
+                                />
+                                <Image className="hidden dark:block"
+                                    src={logo.srcDark}
+                                    alt={logo.alt}
+                                    width={48}
+                                    height={48}
+                                />
+
+                                <h1 className="hidden text-[18px] font-semibold tracking-tighter lg:inline">
+                                    {logo.title}
+                                </h1>
+                            </Link>
+                        )}
 
                         <div className="flex flex-col items-center gap-2 text-muted-foreground text-[14px] lg:items-start">
                             {email && (

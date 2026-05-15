@@ -136,7 +136,7 @@
 
 @layer base {
     * {
-        @apply border-border outline-ring/50;
+        @apply border-border;
     }
     body {
         @apply bg-background text-foreground;
@@ -147,4 +147,14 @@
     html {
         @apply font-sans;
     }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 100ms;
+    animation-timing-function: ease-in-out;
+}
+
+::view-transition-image-pair(root) {
+    isolation: auto;
 }

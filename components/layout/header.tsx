@@ -9,6 +9,8 @@ import {
     Smartphone, 
     Workflow,
     Menu,
+    Sun,
+    Moon,
 } from "lucide-react";
 import {
     Accordion,
@@ -38,6 +40,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { useThemeToggle } from "@/components/theme-provider";
 
 interface MenuItem {
     title: string;
@@ -56,7 +59,8 @@ interface NavbarProps {
     className?: string;
     logo?: {
         url: string;
-        src: string;
+        srcLight: string;
+        srcDark: string;
         alt: string;
         title: string | React.ReactNode;
         className?: string;
@@ -69,8 +73,9 @@ interface NavbarProps {
 const Header = ({
     logo = {
         url: "/",
-        src: "/logos/logo_colored.svg",
-        alt: "logo",
+        srcLight: "/logos/logo_dark.svg",
+        srcDark: "/logos/logo_light.svg",
+        alt: "Logo WizeCode",
         title: (
             <>Wize<span className="text-brand">Code</span></>
         ),
@@ -162,12 +167,19 @@ const Header = ({
                 <nav className="hidden justify-between items-center lg:flex">
                     <div className="flex items-center gap-8">
                         <Link className="flex items-center gap-2" href={logo.url}>
-                            <Image className="dark:invert"
-                                src={logo.src}
+                            <Image className="block dark:hidden"
+                                src={logo.srcLight}
                                 alt={logo.alt}
                                 width={48}
                                 height={48}
                             />
+                            <Image className="hidden dark:block"
+                                src={logo.srcDark}
+                                alt={logo.alt}
+                                width={48}
+                                height={48}
+                            />
+
                             <h1 className="text-[18px] font-semibold tracking-tighter">
                                 {logo.title}
                             </h1>
@@ -182,7 +194,7 @@ const Header = ({
                         </div>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex items-center gap-2">
                         <div className="group relative rounded-lg">
                             <ShineBorder className="opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                                 shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
@@ -199,6 +211,8 @@ const Header = ({
                                 {ctaContact.title}
                             </Link>
                         </Button>
+
+                        <ThemeToggle />
                     </div>
                 </nav>
 
@@ -206,64 +220,80 @@ const Header = ({
                 <div className="block lg:hidden">
                     <div className="flex justify-between items-center">
                         <Link href={logo.url} className="flex items-center gap-2">
-                            <Image className="dark:invert"
-                                src={logo.src}
+                            <Image className="block dark:hidden"
+                                src={logo.srcLight}
+                                alt={logo.alt}
+                                width={48}
+                                height={48}
+                            />
+                            <Image className="hidden dark:block"
+                                src={logo.srcDark}
                                 alt={logo.alt}
                                 width={48}
                                 height={48}
                             />
                         </Link>
 
-                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                            <SheetTrigger asChild>
-                                <Menu size={20} className="cursor-pointer" />
-                            </SheetTrigger>
+                        <div className="flex items-center gap-4">
+                            <ThemeToggle />
 
-                            <SheetContent className="overflow-y-auto">
-                                <SheetHeader>
-                                    <SheetTitle>
-                                        <Link href={logo.url} className="flex items-center gap-2">
-                                            <Image className="dark:invert"
-                                                src={logo.src}
-                                                alt={logo.alt}
-                                                width={40}
-                                                height={40}
-                                            />
-                                        </Link>
-                                    </SheetTitle>
-                                </SheetHeader>
-                                
-                                <div className="flex flex-col gap-8 p-4 pt-0">
-                                    <Accordion className="flex flex-col gap-4 w-full"
-                                        type="single"
-                                        collapsible
-                                    >
-                                        {menu.map((item) =>
-                                            renderMobileMenuItem(item)
-                                        )}
-                                    </Accordion>
+                            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                                <SheetTrigger asChild>
+                                    <Menu size={20} className="cursor-pointer" />
+                                </SheetTrigger>
 
-                                    <div className="flex flex-col gap-2">
-                                        <div className="group relative rounded-lg">
-                                            <ShineBorder className="transition-opacity duration-200 opacity-100"
-                                                shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-                                            />
-                                            <Button className="w-full" asChild size="lg" variant="outline">
-                                                <Link href={ctaWiz.url}>
-                                                    {ctaWiz.title}
+                                <SheetContent className="overflow-y-auto">
+                                    <SheetHeader>
+                                        <SheetTitle>
+                                            <Link href={logo.url} className="flex items-center gap-2">
+                                                <Image className="block dark:hidden"
+                                                    src={logo.srcLight}
+                                                    alt={logo.alt}
+                                                    width={48}
+                                                    height={48}
+                                                />
+                                                <Image className="hidden dark:block"
+                                                    src={logo.srcDark}
+                                                    alt={logo.alt}
+                                                    width={48}
+                                                    height={48}
+                                                />
+                                            </Link>
+                                        </SheetTitle>
+                                    </SheetHeader>
+                                    
+                                    <div className="flex flex-col gap-8 p-4 pt-0">
+                                        <Accordion className="flex flex-col gap-4 w-full"
+                                            type="single"
+                                            collapsible
+                                        >
+                                            {menu.map((item) =>
+                                                renderMobileMenuItem(item)
+                                            )}
+                                        </Accordion>
+
+                                        <div className="flex flex-col gap-2">
+                                            <div className="group relative rounded-lg">
+                                                <ShineBorder className="transition-opacity duration-200 opacity-100"
+                                                    shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                                                />
+                                                <Button className="w-full" asChild size="lg" variant="outline">
+                                                    <Link href={ctaWiz.url}>
+                                                        {ctaWiz.title}
+                                                    </Link>
+                                                </Button>
+                                            </div>
+
+                                            <Button asChild size="lg">
+                                                <Link href={ctaContact.url}>
+                                                    {ctaContact.title}
                                                 </Link>
                                             </Button>
                                         </div>
-
-                                        <Button asChild size="lg">
-                                            <Link href={ctaContact.url}>
-                                                {ctaContact.title}
-                                            </Link>
-                                        </Button>
                                     </div>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
+                                </SheetContent>
+                            </Sheet>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -345,6 +375,22 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
                 )}
             </div>
         </Link>
+    );
+};
+
+const ThemeToggle = () => {
+    const { resolvedTheme, toggle } = useThemeToggle();
+
+    return (
+        <Button className="shrink-0"
+            size="icon"
+            variant="ghost"
+            onClick={toggle}
+        >
+            <Sun className="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Alternar tema</span>
+        </Button>
     );
 };
 
