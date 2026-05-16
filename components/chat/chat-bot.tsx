@@ -31,12 +31,20 @@ import { sendBriefing, verifyTurnstile } from "@/lib/chat/actions"
 import { Turnstile } from "@marsidev/react-turnstile"
 
 const BRIEFING_REGEX = /<briefing>([\s\S]*?)<\/briefing>/
+const ABORT_REGEX = /<abort\s*\/?>/
 
-function stripBriefing(text: string) {
+function stripTags(text: string) {
     text = text.replace(BRIEFING_REGEX, "").trim()
-    const partialStart = text.indexOf("<briefing>")
-    if (partialStart !== -1) {
-        text = text.slice(0, partialStart).trim()
+    text = text.replace(ABORT_REGEX, "").trim()
+    // Strip markdown images to prevent pixel-tracking injection attacks
+    text = text.replace(/!\[[^\]]*\]\([^)]*\)/g, "").trim()
+    const partialBriefing = text.indexOf("<briefing>")
+    if (partialBriefing !== -1) {
+        text = text.slice(0, partialBriefing).trim()
+    }
+    const partialAbort = text.indexOf("<abort")
+    if (partialAbort !== -1) {
+        text = text.slice(0, partialAbort).trim()
     }
     return text
 }
@@ -52,6 +60,8 @@ export function ChatBot() {
     const [briefingDone, setBriefingDone] = useState(false)
     const [briefingData, setBriefingData] = useState<BriefingData | null>(null)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const [aborted, setAborted] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     useEffect(() => {
         if (!localStorage.getItem("wize-onboarding-seen")) {
@@ -78,8 +88,41 @@ export function ChatBot() {
         setDialogOpen(true)
         setBriefingDone(true)
 
-        sendBriefing(match[1].trim()).catch(console.error)
+        const conversation = messages
+            .map((m) => ({
+                role: m.role,
+                content: stripTags(
+                    m.parts
+                        .filter((p) => p.type === "text")
+                        .map((p) => p.text)
+                        .join("")
+                ),
+            }))
+            .filter((m) => m.content)
+
+        sendBriefing(match[1].trim(), turnstileToken ?? "", conversation).catch(
+            console.error
+        )
     }, [messages, status, briefingDone])
+
+    useEffect(() => {
+        if (status === "ready") setIsSubmitting(false)
+    }, [status])
+
+    useEffect(() => {
+        if (aborted || status !== "ready") return
+
+        const lastAssistant = messages.findLast((m) => m.role === "assistant")
+        if (!lastAssistant) return
+
+        const text = lastAssistant.parts
+            .filter((p) => p.type === "text")
+            .map((p) => p.text)
+            .join("")
+
+        if (!ABORT_REGEX.test(text)) return
+        setAborted(true)
+    }, [messages, status, aborted])
 
     return (
         <div className="flex h-full w-full flex-col">
@@ -103,7 +146,7 @@ export function ChatBot() {
                             .map((p) => p.text)
                             .join("")
 
-                        const text = stripBriefing(rawText)
+                        const text = stripTags(rawText)
                         if (!text) return null
 
                         const isLastAssistant =
@@ -148,12 +191,19 @@ export function ChatBot() {
                 )}
                 <PromptInput
                     onSubmit={async ({ text }) => {
-                        if (!text.trim() || briefingDone) return
+                        if (!text.trim() || briefingDone || aborted || isSubmitting) return
+                        setIsSubmitting(true)
                         if (!turnstileVerified) {
                             if (process.env.NODE_ENV !== "development") {
-                                if (!turnstileToken) return
+                                if (!turnstileToken) {
+                                    setIsSubmitting(false)
+                                    return
+                                }
                                 const ok = await verifyTurnstile(turnstileToken)
-                                if (!ok) return
+                                if (!ok) {
+                                    setIsSubmitting(false)
+                                    return
+                                }
                             }
                             setTurnstileVerified(true)
                         }
@@ -162,11 +212,14 @@ export function ChatBot() {
                 >
                     <PromptInputTextarea
                         placeholder={
-                            briefingDone
-                                ? "Conversa encerrada."
-                                : "Digite sua mensagem..."
+                            aborted
+                                ? "Conversa encerrada — tópico fora do escopo."
+                                : briefingDone
+                                  ? "Conversa encerrada."
+                                  : "Digite sua mensagem..."
                         }
-                        disabled={briefingDone}
+                        disabled={briefingDone || aborted || isSubmitting || status === "streaming"}
+                        maxLength={1000}
                     />
                     <InputGroupAddon
                         align="inline-end"
@@ -175,7 +228,7 @@ export function ChatBot() {
                         <PromptInputSubmit
                             status={status}
                             onStop={stop}
-                            disabled={briefingDone}
+                            disabled={briefingDone || aborted || isSubmitting}
                         />
                     </InputGroupAddon>
                 </PromptInput>

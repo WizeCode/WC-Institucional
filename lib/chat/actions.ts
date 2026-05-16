@@ -1,13 +1,23 @@
 "use server";
 
-export async function sendBriefing(data: string) {
+export async function sendBriefing(
+  data: string,
+  token: string,
+  conversation: { role: string; content: string }[]
+) {
+  const ok = await verifyTurnstile(token);
+  if (!ok) return;
+
   const webhookUrl = process.env.N8N_WEBHOOK_URL;
   if (!webhookUrl) return;
 
   await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: data,
+    body: JSON.stringify({
+      briefing: JSON.parse(data),
+      conversa: conversation,
+    }),
   });
 }
 
