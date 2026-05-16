@@ -146,7 +146,7 @@ async function callModel(
   messages: Message[],
   sessionId: string
 ): Promise<string> {
-  const apiKey = "OPENROUTER_API_KEY_REMOVED";
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) throw new Error("OPENROUTER_API_KEY não está definida");
 
   const res = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
