@@ -16,8 +16,8 @@ import { systemPrompt } from "../lib/chat/system-prompt";
 // ── Config ────────────────────────────────────────────────────────────────────
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
-const WIZE_MODEL = "openrouter/owl-alpha";
-const CLIENT_MODEL = "openrouter/owl-alpha";
+const WIZE_MODEL = "google/gemini-2.0-flash-lite-001";
+const CLIENT_MODEL = "google/gemini-2.0-flash-lite-001";
 const MAX_TURNS = 25;
 const RESULTS_DIR = join(process.cwd(), "eval-conversation", "results");
 
@@ -146,7 +146,7 @@ async function callModel(
   messages: Message[],
   sessionId: string
 ): Promise<string> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = "OPENROUTER_API_KEY_REMOVED";
   if (!apiKey) throw new Error("OPENROUTER_API_KEY não está definida");
 
   const res = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
