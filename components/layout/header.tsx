@@ -48,7 +48,6 @@ interface MenuItem {
     description?: string;
     icon?: React.ReactNode;
     items?: MenuItem[];
-    // Label e descrição exibidos no cabeçalho do dropdown (estilo Marketing 5)
     dropdownLabel?: string;
     dropdownDescription?: string;
 };
@@ -410,7 +409,7 @@ const MobileSubItem = ({ item }: { item: MenuItem }) => {
     return (
         <Link
             href={item.url}
-            className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-muted no-underline"
+            className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-muted no-underline!"
         >
             {item.icon && (
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">

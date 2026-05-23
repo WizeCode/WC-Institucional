@@ -109,7 +109,7 @@ const Footer = (props: FooterProps) => {
     };
 
     return (
-        <footer className={cn("bg-muted flex px-6 py-8 mx-4 rounded-md", className)}>
+        <footer className={cn("bg-muted flex px-6 py-8 m-4 rounded-md", className)}>
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
                     <div className="col-span-1 flex flex-col justify-between gap-6 mb-4 lg:col-span-3 lg:mb-0">
