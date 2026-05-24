@@ -10,6 +10,7 @@ import {
     ContextMenuItem,
     ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import Image from "next/image";
 
 interface LogoProps extends React.HTMLAttributes<HTMLAnchorElement> {
     url: string;
@@ -17,7 +18,7 @@ interface LogoProps extends React.HTMLAttributes<HTMLAnchorElement> {
     children: React.ReactNode;
 }
 
-interface LogoImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface LogoImageProps {
     src: string;
     alt: string;
     className?: string;
@@ -95,30 +96,39 @@ const Logo = ({ url, className, children, ...props }: LogoProps) => {
     );
 };
 
-const LogoImage = ({ src, alt, className, ...props }: LogoImageProps) => (
-    <img src={src} alt={alt} className={cn("block h-8", className)} {...props} />
-);
-
-const LogoImageMobile = ({ src, alt, className, ...props }: LogoImageProps) => (
-    <img
+const LogoImage = ({ src, alt, className }: LogoImageProps) => (
+    <Image
         src={src}
         alt={alt}
-        className={cn("flex h-8 md:hidden", className)}
-        {...props}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: "auto" }}
+        className={cn("block h-8", className)}
     />
 );
 
-const LogoImageDesktop = ({
-    src,
-    alt,
-    className,
-    ...props
-}: LogoImageProps) => (
-    <img
+const LogoImageMobile = ({ src, alt, className }: LogoImageProps) => (
+    <Image
         src={src}
         alt={alt}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: "auto" }}
+        className={cn("flex h-8 md:hidden", className)}
+    />
+);
+
+const LogoImageDesktop = ({ src, alt, className }: LogoImageProps) => (
+    <Image
+        src={src}
+        alt={alt}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: "auto" }}
         className={cn("hidden h-8 md:flex", className)}
-        {...props}
     />
 );
 

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
     LayoutTemplate,
@@ -422,7 +422,7 @@ const MobileSubItem = ({ item }: { item: MenuItem }) => {
 };
 
 const ThemeToggle = () => {
-    const { resolvedTheme, toggle } = useThemeToggle();
+    const { toggle } = useThemeToggle();
 
     return (
         <Button
