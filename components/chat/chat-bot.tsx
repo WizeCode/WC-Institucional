@@ -3,7 +3,6 @@
 import {
     Conversation,
     ConversationContent,
-    ConversationEmptyState,
     ConversationScrollButton,
 } from "@/components/ai-elements/conversation"
 import {
@@ -21,7 +20,7 @@ import { Button } from "@/components/ui/button"
 import { AuroraText } from "@/components/ui/aurora-text"
 import { TextStreamChatTransport } from "ai"
 import { useChat } from "@ai-sdk/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, startTransition } from "react"
 import {
     BriefingDialog,
     type BriefingData,
@@ -54,7 +53,10 @@ export function ChatBot() {
         transport: new TextStreamChatTransport({ api: "/api/chat" }),
     })
 
-    const [onboardingOpen, setOnboardingOpen] = useState(false)
+    const [onboardingOpen, setOnboardingOpen] = useState(() => {
+        if (typeof window === "undefined") return false
+        return !localStorage.getItem("wize-onboarding-seen")
+    })
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
     const [turnstileVerified, setTurnstileVerified] = useState(false)
     const [briefingDone, setBriefingDone] = useState(false)
@@ -62,12 +64,6 @@ export function ChatBot() {
     const [dialogOpen, setDialogOpen] = useState(false)
     const [aborted, setAborted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
-
-    useEffect(() => {
-        if (!localStorage.getItem("wize-onboarding-seen")) {
-            setOnboardingOpen(true)
-        }
-    }, [])
 
     useEffect(() => {
         if (briefingDone || status !== "ready") return
@@ -84,9 +80,11 @@ export function ChatBot() {
         if (!match) return
 
         const parsed = JSON.parse(match[1].trim())
-        setBriefingData(parsed)
-        setDialogOpen(true)
-        setBriefingDone(true)
+        startTransition(() => {
+            setBriefingData(parsed)
+            setDialogOpen(true)
+            setBriefingDone(true)
+        })
 
         const conversation = messages
             .map((m) => ({
@@ -103,10 +101,10 @@ export function ChatBot() {
         sendBriefing(match[1].trim(), turnstileToken ?? "", conversation).catch(
             console.error
         )
-    }, [messages, status, briefingDone])
+    }, [messages, status, briefingDone, turnstileToken])
 
     useEffect(() => {
-        if (status === "ready") setIsSubmitting(false)
+        if (status === "ready") startTransition(() => setIsSubmitting(false))
     }, [status])
 
     useEffect(() => {
@@ -121,62 +119,63 @@ export function ChatBot() {
             .join("")
 
         if (!ABORT_REGEX.test(text)) return
-        setAborted(true)
+        startTransition(() => setAborted(true))
     }, [messages, status, aborted])
 
     return (
-        <div className="flex h-full w-full flex-col">
-            <Conversation>
-                <ConversationContent>
-                    {messages.length === 0 && (
-                        <ConversationEmptyState>
-                            <div className="space-y-1 text-center">
-                                <h3 className="text-sm font-medium">
-                                    Olá! Sou a <AuroraText>Wizard</AuroraText>
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                    Conte-me sobre o seu projeto.
-                                </p>
-                            </div>
-                        </ConversationEmptyState>
-                    )}
-                    {messages.map((message, index) => {
-                        const rawText = message.parts
-                            .filter((p) => p.type === "text")
-                            .map((p) => p.text)
-                            .join("")
+        <div className="flex flex-1 min-h-0 w-full flex-col">
+            {messages.length === 0 ? (
+                <div className="flex flex-1 items-center justify-center">
+                    <div className="space-y-1 text-center">
+                        <h3 className="text-sm font-medium">
+                            Olá! Sou a <AuroraText>Wizard</AuroraText>
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                            Conte-me sobre o seu projeto.
+                        </p>
+                    </div>
+                </div>
+            ) : (
+                <Conversation>
+                    <ConversationContent>
+                        {messages.map((message, index) => {
+                            const rawText = message.parts
+                                .filter((p) => p.type === "text")
+                                .map((p) => p.text)
+                                .join("")
 
-                        const text = stripTags(rawText)
-                        if (!text) return null
+                            const text = stripTags(rawText)
+                            if (!text) return null
 
-                        const isLastAssistant =
-                            index === messages.length - 1 &&
-                            message.role === "assistant"
+                            const isLastAssistant =
+                                index === messages.length - 1 &&
+                                message.role === "assistant"
 
-                        return (
-                            <Message key={message.id} from={message.role}>
-                                <MessageContent>
-                                    {message.role === "assistant" ? (
-                                        isLastAssistant &&
-                                        status === "streaming" ? (
-                                            <span className="whitespace-pre-wrap">
-                                                {text}
-                                            </span>
+                            return (
+                                <Message key={message.id} from={message.role}>
+                                    <MessageContent>
+                                        {message.role === "assistant" ? (
+                                            isLastAssistant &&
+                                            status === "streaming" ? (
+                                                <span className="whitespace-pre-wrap">
+                                                    {text}
+                                                </span>
+                                            ) : (
+                                                <MessageResponse>
+                                                    {text}
+                                                </MessageResponse>
+                                            )
                                         ) : (
-                                            <MessageResponse>
-                                                {text}
-                                            </MessageResponse>
-                                        )
-                                    ) : (
-                                        text
-                                    )}
-                                </MessageContent>
-                            </Message>
-                        )
-                    })}
-                </ConversationContent>
-                <ConversationScrollButton />
-            </Conversation>
+                                            text
+                                        )}
+                                    </MessageContent>
+                                </Message>
+                            )
+                        })}
+                    </ConversationContent>
+                    <ConversationScrollButton />
+                </Conversation>
+            )}
 
             <div className="space-y-2 border-t p-4">
                 {briefingDone && (

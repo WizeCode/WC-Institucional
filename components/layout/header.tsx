@@ -147,7 +147,7 @@ const Header = ({
             url: "/trabalhe-conosco",
         },
     ],
-    ctaWiz = { title: "Converse com Wizard", url: "#" },
+    ctaWiz = { title: "Converse com Wizard", url: "/chat" },
     ctaContact = { title: "Entre em contato", url: "#" },
     className,
 }: NavbarProps) => {
