@@ -1,28 +1,28 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "radix-nova",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "app/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "iconLibrary": "lucide",
-  "rtl": false,
-  "menuColor": "inverted",
-  "menuAccent": "bold",
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "registries": {
-    "@shadcnblocks": "https://shadcnblocks.com/r/{name}.json",
-    "@magicui": "https://magicui.design/r/{name}"
-  }
+    "$schema": "https://ui.shadcn.com/schema.json",
+    "style": "radix-nova",
+    "rsc": true,
+    "tsx": true,
+    "tailwind": {
+        "config": "",
+        "css": "app/globals.css",
+        "baseColor": "neutral",
+        "cssVariables": true,
+        "prefix": ""
+    },
+    "iconLibrary": "lucide",
+    "rtl": false,
+    "menuColor": "inverted",
+    "menuAccent": "bold",
+    "aliases": {
+        "components": "@/components",
+        "utils": "@/lib/utils",
+        "ui": "@/components/ui",
+        "lib": "@/lib",
+        "hooks": "@/hooks"
+    },
+    "registries": {
+        "@shadcnblocks": "https://shadcnblocks.com/r/{name}.json",
+        "@magicui": "https://magicui.design/r/{name}"
+    }
 }
