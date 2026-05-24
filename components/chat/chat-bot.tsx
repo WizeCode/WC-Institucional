@@ -1,0 +1,261 @@
+"use client"
+
+import {
+    Conversation,
+    ConversationContent,
+    ConversationScrollButton,
+} from "@/components/ai-elements/conversation"
+import {
+    Message,
+    MessageContent,
+    MessageResponse,
+} from "@/components/ai-elements/message"
+import {
+    PromptInput,
+    PromptInputSubmit,
+    PromptInputTextarea,
+} from "@/components/ai-elements/prompt-input"
+import { InputGroupAddon } from "@/components/ui/input-group"
+import { Button } from "@/components/ui/button"
+import { AuroraText } from "@/components/ui/aurora-text"
+import { TextStreamChatTransport } from "ai"
+import { useChat } from "@ai-sdk/react"
+import { useEffect, useState, startTransition } from "react"
+import {
+    BriefingDialog,
+    type BriefingData,
+} from "@/components/chat/briefing-dialog"
+import { OnboardingDialog } from "@/components/chat/onboarding-dialog"
+import { sendBriefing, verifyTurnstile } from "@/lib/chat/actions"
+import { Turnstile } from "@marsidev/react-turnstile"
+
+const BRIEFING_REGEX = /<briefing>([\s\S]*?)<\/briefing>/
+const ABORT_REGEX = /<abort\s*\/?>/
+
+function stripTags(text: string) {
+    text = text.replace(BRIEFING_REGEX, "").trim()
+    text = text.replace(ABORT_REGEX, "").trim()
+    // Strip markdown images to prevent pixel-tracking injection attacks
+    text = text.replace(/!\[[^\]]*\]\([^)]*\)/g, "").trim()
+    const partialBriefing = text.indexOf("<briefing>")
+    if (partialBriefing !== -1) {
+        text = text.slice(0, partialBriefing).trim()
+    }
+    const partialAbort = text.indexOf("<abort")
+    if (partialAbort !== -1) {
+        text = text.slice(0, partialAbort).trim()
+    }
+    return text
+}
+
+export function ChatBot() {
+    const { messages, status, stop, sendMessage } = useChat({
+        transport: new TextStreamChatTransport({ api: "/api/chat" }),
+    })
+
+    const [onboardingOpen, setOnboardingOpen] = useState(() => {
+        if (typeof window === "undefined") return false
+        return !localStorage.getItem("wize-onboarding-seen")
+    })
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+    const [turnstileVerified, setTurnstileVerified] = useState(false)
+    const [briefingDone, setBriefingDone] = useState(false)
+    const [briefingData, setBriefingData] = useState<BriefingData | null>(null)
+    const [dialogOpen, setDialogOpen] = useState(false)
+    const [aborted, setAborted] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    useEffect(() => {
+        if (briefingDone || status !== "ready") return
+
+        const lastAssistant = messages.findLast((m) => m.role === "assistant")
+        if (!lastAssistant) return
+
+        const text = lastAssistant.parts
+            .filter((p) => p.type === "text")
+            .map((p) => p.text)
+            .join("")
+
+        const match = text.match(BRIEFING_REGEX)
+        if (!match) return
+
+        const parsed = JSON.parse(match[1].trim())
+        startTransition(() => {
+            setBriefingData(parsed)
+            setDialogOpen(true)
+            setBriefingDone(true)
+        })
+
+        const conversation = messages
+            .map((m) => ({
+                role: m.role,
+                content: stripTags(
+                    m.parts
+                        .filter((p) => p.type === "text")
+                        .map((p) => p.text)
+                        .join("")
+                ),
+            }))
+            .filter((m) => m.content)
+
+        sendBriefing(match[1].trim(), turnstileToken ?? "", conversation).catch(
+            console.error
+        )
+    }, [messages, status, briefingDone, turnstileToken])
+
+    useEffect(() => {
+        if (status === "ready") startTransition(() => setIsSubmitting(false))
+    }, [status])
+
+    useEffect(() => {
+        if (aborted || status !== "ready") return
+
+        const lastAssistant = messages.findLast((m) => m.role === "assistant")
+        if (!lastAssistant) return
+
+        const text = lastAssistant.parts
+            .filter((p) => p.type === "text")
+            .map((p) => p.text)
+            .join("")
+
+        if (!ABORT_REGEX.test(text)) return
+        startTransition(() => setAborted(true))
+    }, [messages, status, aborted])
+
+    return (
+        <div className="flex flex-1 min-h-0 w-full flex-col">
+            {messages.length === 0 ? (
+                <div className="flex flex-1 items-center justify-center">
+                    <div className="space-y-1 text-center">
+                        <h3 className="text-sm font-medium">
+                            Olá! Sou a <AuroraText>Wizard</AuroraText>
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                            Conte-me sobre o seu projeto.
+                        </p>
+                    </div>
+                </div>
+            ) : (
+                <Conversation>
+                    <ConversationContent>
+                        {messages.map((message, index) => {
+                            const rawText = message.parts
+                                .filter((p) => p.type === "text")
+                                .map((p) => p.text)
+                                .join("")
+
+                            const text = stripTags(rawText)
+                            if (!text) return null
+
+                            const isLastAssistant =
+                                index === messages.length - 1 &&
+                                message.role === "assistant"
+
+                            return (
+                                <Message key={message.id} from={message.role}>
+                                    <MessageContent>
+                                        {message.role === "assistant" ? (
+                                            isLastAssistant &&
+                                            status === "streaming" ? (
+                                                <span className="whitespace-pre-wrap">
+                                                    {text}
+                                                </span>
+                                            ) : (
+                                                <MessageResponse>
+                                                    {text}
+                                                </MessageResponse>
+                                            )
+                                        ) : (
+                                            text
+                                        )}
+                                    </MessageContent>
+                                </Message>
+                            )
+                        })}
+                    </ConversationContent>
+                    <ConversationScrollButton />
+                </Conversation>
+            )}
+
+            <div className="space-y-2 border-t p-4">
+                {briefingDone && (
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                        onClick={() => setDialogOpen(true)}
+                    >
+                        Ver resumo do projeto
+                    </Button>
+                )}
+                <PromptInput
+                    onSubmit={async ({ text }) => {
+                        if (!text.trim() || briefingDone || aborted || isSubmitting) return
+                        setIsSubmitting(true)
+                        if (!turnstileVerified) {
+                            if (process.env.NODE_ENV !== "development") {
+                                if (!turnstileToken) {
+                                    setIsSubmitting(false)
+                                    return
+                                }
+                                const ok = await verifyTurnstile(turnstileToken)
+                                if (!ok) {
+                                    setIsSubmitting(false)
+                                    return
+                                }
+                            }
+                            setTurnstileVerified(true)
+                        }
+                        sendMessage({ text })
+                    }}
+                >
+                    <PromptInputTextarea
+                        placeholder={
+                            aborted
+                                ? "Conversa encerrada — tópico fora do escopo."
+                                : briefingDone
+                                  ? "Conversa encerrada."
+                                  : "Digite sua mensagem..."
+                        }
+                        disabled={briefingDone || aborted || isSubmitting || status === "streaming"}
+                        maxLength={1000}
+                    />
+                    <InputGroupAddon
+                        align="inline-end"
+                        className="items-end pb-1.5"
+                    >
+                        <PromptInputSubmit
+                            status={status}
+                            onStop={stop}
+                            disabled={briefingDone || aborted || isSubmitting}
+                        />
+                    </InputGroupAddon>
+                </PromptInput>
+            </div>
+
+            {briefingData && (
+                <BriefingDialog
+                    open={dialogOpen}
+                    onOpenChange={setDialogOpen}
+                    briefing={briefingData}
+                />
+            )}
+
+            <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                options={{ size: "invisible" }}
+                onSuccess={setTurnstileToken}
+            />
+
+            <OnboardingDialog
+                open={onboardingOpen}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        localStorage.setItem("wize-onboarding-seen", "1")
+                        setOnboardingOpen(false)
+                    }
+                }}
+            />
+        </div>
+    )
+}
