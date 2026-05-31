@@ -1,4 +1,5 @@
 import { Hero } from "@/components/layout/home/hero";
+import { Contato } from "@/components/layout/home/contato";
 import { Servicos } from "@/components/layout/home/servicos";
 import { Portfolio } from "@/components/layout/home/portfolio";
 import { Parceiros } from "@/components/layout/home/parceiros";
@@ -12,6 +13,7 @@ export default function Page() {
             <Portfolio/>
             <Parceiros/>
             <Faq/>
+            <Contato/>
         </>
     );
 }
