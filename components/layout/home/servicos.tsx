@@ -90,8 +90,8 @@ const Servicos = ({
     const activeService = services.find((s) => s.id === activeId)
 
     return (
-        <section className="flex justify-center mx-4 my-12">
-            <div className="flex flex-col gap-6 px-4 py-8 rounded-md bg-accent/10">
+        <section className="rounded-md bg-accent/10 mx-8 my-8 px-4 sm:px-8">
+            <div className="container flex flex-col gap-6 mx-auto py-8">
                 <div className="flex flex-col gap-3 items-center text-center">
                     <Badge className="mb-4" variant="default">{badgeText}</Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">

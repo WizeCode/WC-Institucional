@@ -103,11 +103,11 @@ const Portifolio = ({
     projects = defaultProjects,
 }: PortifolioProps) => {
     return (
-        <section className="my-12 ml-4 flex justify-center">
-            <div className="w-full px-4 py-8">
-                <div className="flex flex-col sm:flex-row items-start justify-between mb-16 gap-10">
+        <section className="px-8 my-8">
+            <div className="container mx-auto w-full py-8 ">
+                <div className="flex flex-col md:flex-row md:items-end md:text-start items-center text-center justify-between mb-16 gap-10">
                     <div className="flex flex-col gap-2">
-                        <Badge className="mb-4" variant="outline">{badgeText}</Badge>
+                        <Badge className="mb-4 mx-auto md:mx-0" variant="outline">{badgeText}</Badge>
                         <h1 className="text-2xl font-medium tracking-tight lg:text-3xl xl:text-4xl">
                             {heading}
                         </h1>
@@ -116,14 +116,14 @@ const Portifolio = ({
                         </p>
                     </div>
                     <div>
-                        <Button variant="default">
+                        <Button variant="default" size="lg">
                             {buttonText}
                         </Button>
                     </div>
                 </div>
 
                 <div className="relative w-full">
-                    <div className="b-0 pointer-events-none absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-background to-transparent sm:w-64" />
+                    <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-32 bg-linear-to-l from-background to-transparent sm:w-64" />
                     <Carousel opts={{ align: "start" }} className="w-full">
                         <CarouselContent className="-ml-4 pr-8">
                             {projects.map((project) => (
