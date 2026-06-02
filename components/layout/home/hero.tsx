@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/terminal"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import React from "react"
 
 interface HeroProps {
