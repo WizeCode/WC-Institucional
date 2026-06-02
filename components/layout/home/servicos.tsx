@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { motion } from "motion/react"
+import Image from "next/image"
 
 interface ServiceItem {
     id: string
@@ -53,7 +54,7 @@ const Servicos = ({
                 "Do institucional ao e-commerce, desenvolvemos websites que representam sua marca e geram resultados reais.",
             color: "#0f101f",
             href: "/servicos/websites",
-            image: { src: "https://placehold.co/1200x800", alt: "Websites" },
+            image: { src: "https://placehold.co/2160x1080", alt: "Websites" },
         },
         {
             id: "aplicativos",
@@ -62,7 +63,7 @@ const Servicos = ({
                 "A lógica do seu negócio em um aplicativo funcional, intuitivo e escalável – para web, iOS ou Android.",
             color: "#37175a",
             href: "/servicos/aplicativos",
-            image: { src: "https://placehold.co/1200x800", alt: "Aplicativos" },
+            image: { src: "https://placehold.co/2160x1080", alt: "Aplicativos" },
         },
         {
             id: "automacoes",
@@ -71,7 +72,7 @@ const Servicos = ({
                 "Elimine tarefas repetitivas e manuais com automações inteligentes que economizam tempo e reduzem erros.",
             color: "#7849cb",
             href: "/servicos/automacoes",
-            image: { src: "https://placehold.co/1200x800", alt: "Automações" },
+            image: { src: "https://placehold.co/2160x1080", alt: "Automações" },
         },
         {
             id: "saas",
@@ -80,7 +81,7 @@ const Servicos = ({
                 "Tire seu software do papel e entregue valor contínuo a seus clientes com escalabilidade e segurança.",
             color: "#a67de0",
             href: "/servicos/saas",
-            image: { src: "https://placehold.co/1200x800", alt: "SaaS" },
+            image: { src: "https://placehold.co/2160x1080", alt: "SaaS" },
         },
     ],
 }: ServicosProps) => {
@@ -89,24 +90,27 @@ const Servicos = ({
 
     return (
         <section className="flex justify-center px-4 py-8">
-            <div className="container flex flex-col gap-6 p-4">
-                <div>
-                    <Badge variant="outline">{badge}</Badge>
-                    <h2 className="mt-4 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
+            <div className="flex flex-col gap-6 px-4 py-8 rounded-md bg-accent/10">
+                <div className="flex flex-col gap-3 items-center text-center">
+                    <Badge className="mb-4" variant="default">{badge}</Badge>
+                    <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                         {heading}
                     </h2>
-                    <p className="mt-3 max-w-xl text-muted-foreground lg:text-xl">
+                    <p className="mb-4 max-w-xl text-muted-foreground lg:text-xl">
                         {description}
                     </p>
                 </div>
-                <div className="grid gap-4 lg:grid-cols-2 lg:gap-6 rounded-md bg-accent/40 p-4">
+                <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
                     {activeService && (
-                        <div className="hidden overflow-hidden rounded-lg lg:block">
-                            <img
+                        <div className="justify-center hidden overflow-hidden rounded-lg lg:flex">
+                            <Image
                                 key={activeService.id}
                                 src={activeService.image.src}
                                 alt={activeService.image.alt}
-                                className="h-full w-full animate-in object-cover duration-300 fade-in"
+                                width={2160}
+                                height={1080}
+                                unoptimized
+                                className="aspect-[2/1] animate-in object-cover duration-300 fade-in"
                             />
                         </div>
                     )}
@@ -117,12 +121,12 @@ const Servicos = ({
                                 href={service.href}
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.1, ease: "easeInOut" }}
-                                className="block"
+                                className="block flex-1"
                                 onMouseEnter={() => setActiveId(service.id)}
                             >
                                 <Item
                                     style={{ backgroundColor: service.color }}
-                                    className="text-white"
+                                    className="text-white border-0 h-full"
                                     variant="outline"
                                 >
                                     <ItemContent>
@@ -135,7 +139,7 @@ const Servicos = ({
                                     </ItemContent>
                                     <ItemActions>
                                         <Button
-                                            className="size-8 rounded-full p-0"
+                                            className="size-8 rounded-full p-0 dark:bg-white border-0"
                                             variant="outline"
                                         >
                                             <ChevronRight
