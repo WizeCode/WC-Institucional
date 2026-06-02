@@ -111,7 +111,7 @@ const Servicos = ({
                                 width={2160}
                                 height={1080}
                                 unoptimized
-                                className="aspect-[2/1] animate-in object-cover duration-300 fade-in"
+                                className="aspect-2/1 animate-in object-cover duration-300 fade-in"
                             />
                         </div>
                     )}
