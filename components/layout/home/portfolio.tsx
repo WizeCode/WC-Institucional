@@ -24,7 +24,7 @@ interface Project {
     href?: string
 }
 
-interface PortifolioProps {
+interface PortfolioProps {
     heading?: string
     description?: string
     projects?: Project[]
@@ -95,13 +95,13 @@ const defaultProjects: Project[] = [
     },
 ]
 
-const Portifolio = ({
+const Portfolio = ({
     heading = "Nosso Portfólio",
     description = "Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto.",
     buttonText = "Ver todos os cases",
     badgeText = "/ Portfólio",
     projects = defaultProjects,
-}: PortifolioProps) => {
+}: PortfolioProps) => {
     return (
         <section className="px-8 my-8">
             <div className="container mx-auto w-full py-8 ">
@@ -131,7 +131,7 @@ const Portifolio = ({
                                     key={project.id}
                                     className="basis-auto pl-4"
                                 >
-                                    <div className="w-[calc(100vw-6rem)] sm:w-[350px] md:w-[450px]">
+                                    <div className="w-[calc(100vw-6rem)] sm:w-87.5 md:w-112.5">
                                         <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm">
                                             <div className="aspect-square overflow-hidden">
                                                 <Image
@@ -208,4 +208,4 @@ const Portifolio = ({
     )
 }
 
-export { Portifolio }
+export { Portfolio }
