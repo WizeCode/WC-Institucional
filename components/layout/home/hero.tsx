@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/terminal"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import React from "react"
 
 interface HeroProps {
@@ -86,9 +85,9 @@ const Hero = ({
     }, [rotationStarted])
 
     return (
-        <section className={"flex justify-center px-4 py-24"}>
-            <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20 p-4">
-                <div className="mx-auto flex flex-col items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
+        <section className="px-8 py-32">
+            <div className="container mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
+                <div className="mx-auto flex flex-col flex-1 items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
                     {badgeText && <Badge variant="outline">{badgeText}</Badge>}
                     <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                         {heading}
@@ -113,7 +112,7 @@ const Hero = ({
                         )}
                     </div>
                 </div>
-                <div className="flex justify-center lg:justify-end">
+                <div className="flex justify-center w-full flex-1 lg:justify-end">
                     <Terminal
                         className="max-h-120 max-w-xl"
                         startOnView={false}

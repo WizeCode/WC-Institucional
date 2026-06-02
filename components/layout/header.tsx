@@ -165,8 +165,8 @@ const Header = ({
     }, [isOpen]);
 
     return (
-        <header className={cn("flex justify-center p-4 shadow-sm", className)}>
-            <div className="container">
+        <header className={cn("py-6 px-4 shadow-sm", className)}>
+            <div className="container mx-auto">
                 <nav className="hidden justify-between items-center lg:flex">
                     <div className="flex items-center gap-8">
                         <Link className="flex items-center gap-2" href={logo.url}>
