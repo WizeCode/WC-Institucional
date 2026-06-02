@@ -9,7 +9,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Calendar, Code, Dot, MapPin, Tag, Target } from "lucide-react"
+import { Calendar } from "lucide-react"
 import Image from "next/image"
 import { ServiceCategory, ServiceIcons } from "@/types/services"
 
@@ -41,7 +41,7 @@ const defaultProjects: Project[] = [
         year: "2025",
         description:
             "Site institucional desenvolvido em WordPress para uma empresa de educação, com foco em apresentação de cursos, captação de leads e identidade visual alinhada ao posicionamento da marca.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
     {
         id: "2",
@@ -51,7 +51,7 @@ const defaultProjects: Project[] = [
         year: "2023",
         description:
             "Stunning aerial perspective of terraced rice fields showcasing intricate geometric patterns and vibrant green landscapes carved into the hillsides.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
     {
         id: "3",
@@ -61,7 +61,7 @@ const defaultProjects: Project[] = [
         year: "2022",
         description:
             "Dramatic aerial view of layered sandstone formations revealing millions of years of geological history through deep canyons and weathered rock strata.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
     {
         id: "4",
@@ -71,7 +71,7 @@ const defaultProjects: Project[] = [
         year: "2022",
         description:
             "Mesmerizing aerial view of golden terraced agricultural fields displaying intricate contour patterns carved into the mountainous landscape during harvest season.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
     {
         id: "5",
@@ -81,7 +81,7 @@ const defaultProjects: Project[] = [
         year: "2023",
         description:
             "Mesmerizing aerial view of flowing water patterns carved into dark volcanic sand, creating organic sculptural forms shaped by tidal forces.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
     {
         id: "6",
@@ -91,7 +91,7 @@ const defaultProjects: Project[] = [
         year: "2022",
         description:
             "Breathtaking aerial view of red sandstone canyon formations displaying deep gorges, weathered rock layers, and intricate geological patterns carved over millennia.",
-        image: "https://placehold.co/450x450",
+        image: "https://placehold.co/1080x1080",
     },
 ]
 
