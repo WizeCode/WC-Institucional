@@ -28,6 +28,8 @@ interface PortifolioProps {
     heading?: string
     description?: string
     projects?: Project[]
+    buttonText?: string
+    badgeText?: string
 }
 
 const defaultProjects: Project[] = [
@@ -96,21 +98,32 @@ const defaultProjects: Project[] = [
 const Portifolio = ({
     heading = "Nosso Portfólio",
     description = "Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto.",
+    buttonText = "Ver todos os cases",
+    badgeText = "/ Portfólio",
     projects = defaultProjects,
 }: PortifolioProps) => {
     return (
         <section className="my-12 ml-4 flex justify-center">
             <div className="w-full px-4 py-8">
-                <div className="mb-16">
-                    <h1 className="mb-4 text-2xl font-medium tracking-tight lg:text-3xl xl:text-4xl">
-                        {heading}
-                    </h1>
-                    <p className="text-lg text-muted-foreground lg:text-xl">
-                        {description}
-                    </p>
+                <div className="flex flex-col sm:flex-row items-start justify-between mb-16 gap-10">
+                    <div className="flex flex-col gap-2">
+                        <Badge className="mb-4" variant="outline">{badgeText}</Badge>
+                        <h1 className="text-2xl font-medium tracking-tight lg:text-3xl xl:text-4xl">
+                            {heading}
+                        </h1>
+                        <p className="text-lg text-muted-foreground lg:text-xl">
+                            {description}
+                        </p>
+                    </div>
+                    <div>
+                        <Button variant="default">
+                            {buttonText}
+                        </Button>
+                    </div>
                 </div>
+
                 <div className="relative w-full">
-                    <div className="pointer-events-none absolute b-0 top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-background to-transparent sm:w-64" />
+                    <div className="b-0 pointer-events-none absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-background to-transparent sm:w-64" />
                     <Carousel opts={{ align: "start" }} className="w-full">
                         <CarouselContent className="-ml-4 pr-8">
                             {projects.map((project) => (

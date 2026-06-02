@@ -28,14 +28,14 @@ interface ServiceItem {
 }
 
 interface ServicosProps {
-    badge?: string
+    badgeText?: string
     heading?: string | React.ReactNode
     description?: React.ReactNode
     services?: ServiceItem[]
 }
 
 const Servicos = ({
-    badge = "/ Serviços",
+    badgeText = "/ Serviços",
     heading = (
         <>
             O que a <span className="text-accent">WizeCode</span> entrega
@@ -93,7 +93,7 @@ const Servicos = ({
         <section className="flex justify-center mx-4 my-12">
             <div className="flex flex-col gap-6 px-4 py-8 rounded-md bg-accent/10">
                 <div className="flex flex-col gap-3 items-center text-center">
-                    <Badge className="mb-4" variant="default">{badge}</Badge>
+                    <Badge className="mb-4" variant="default">{badgeText}</Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                         {heading}
                     </h2>
