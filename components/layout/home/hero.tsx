@@ -86,7 +86,7 @@ const Hero = ({
     }, [rotationStarted])
 
     return (
-        <section className={"flex justify-center px-4 py-24"}>
+        <section className="flex justify-center mx-4 my-24">
             <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20 p-4">
                 <div className="mx-auto flex flex-col items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
                     {badgeText && <Badge variant="outline">{badgeText}</Badge>}

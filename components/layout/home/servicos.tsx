@@ -13,10 +13,11 @@ import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
+import { ServiceCategory } from "@/types/services"
 
 interface ServiceItem {
     id: string
-    title: string
+    title: ServiceCategory
     description: string
     color?: string
     href?: string
@@ -89,7 +90,7 @@ const Servicos = ({
     const activeService = services.find((s) => s.id === activeId)
 
     return (
-        <section className="flex justify-center px-4 py-8">
+        <section className="flex justify-center mx-4 my-12">
             <div className="flex flex-col gap-6 px-4 py-8 rounded-md bg-accent/10">
                 <div className="flex flex-col gap-3 items-center text-center">
                     <Badge className="mb-4" variant="default">{badge}</Badge>
