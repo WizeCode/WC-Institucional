@@ -31,14 +31,14 @@ const Faq = ({
     ),
     description = (
         <>
-            Ainda tem dúvidas? Entre em contato{" "}
+            Ainda tem dúvidas?{" "}
             <Link
                 href={`https://wa.me/5534984392633?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a WizeCode.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-primary"
             >
-                conosco.
+                Entre em contato conosco.
             </Link>
         </>
     ),

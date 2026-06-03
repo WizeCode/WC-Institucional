@@ -148,7 +148,7 @@ const Header = ({
         },
     ],
     ctaWiz = { title: "Converse com Wizard", url: "/chat" },
-    ctaContact = { title: "Entre em contato", url: "#" },
+    ctaContact = { title: "Entre em contato", url: "/contato" },
     className,
 }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false);
