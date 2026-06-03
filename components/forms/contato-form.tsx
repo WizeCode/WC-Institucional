@@ -190,7 +190,7 @@ export function ContatoForm() {
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="mx-auto w-full sm:w-auto sm:self-end"
+                className="mx-auto w-full sm:self-end"
             >
                 {isSubmitting ? "Enviando..." : "Enviar mensagem"}
             </Button>
