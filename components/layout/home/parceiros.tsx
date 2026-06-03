@@ -38,7 +38,7 @@ const Parceiros = ({
 }: ParceirosProps) => {
     return (
         <section className="px-8 my-8">
-            <div className="container mx-auto py-16">
+            <div className="container mx-auto py-8 sm:py-16">
                 <div className="flex flex-col gap-2 text-center">
                     <Badge className="mb-4 mx-auto" variant="outline">{badgeText}</Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">

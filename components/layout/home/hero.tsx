@@ -86,7 +86,7 @@ const Hero = ({
 
     return (
         <section className="px-8">
-            <div className="container py-32 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
+            <div className="container py-12 sm:py-32 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
                 <div className="mx-auto flex flex-col flex-1 items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
                     {badgeText && <Badge variant="outline">{badgeText}</Badge>}
                     <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
