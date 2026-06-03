@@ -68,10 +68,7 @@ const ContatoPage = ({
                         {infoCards.map((card) => {
                             const Icon = card.icon
                             const content = (
-                                <div
-                                    key={card.label}
-                                    className="flex items-center"
-                                >
+                                <div className="flex items-center">
                                     <div className="flex h-10 w-10 shrink-0 items-center justify-center">
                                         <Icon className="h-5 w-5 text-foreground" />
                                     </div>
@@ -84,6 +81,7 @@ const ContatoPage = ({
                             )
                             return card.href ? (
                                 <Link
+                                    key={card.label}
                                     href={card.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -92,12 +90,12 @@ const ContatoPage = ({
                                     {content}
                                 </Link>
                             ) : (
-                                content
+                                <div key={card.label}>{content}</div>
                             )
                         })}
                     </div>
                 </div>
-                <div className="flex-1 rounded-lg shadow-lg bg-muted">
+                <div className="flex-1 rounded-lg shadow-lg dark:bg-muted">
                     <ContatoForm />
                 </div>
             </div>
