@@ -2,7 +2,11 @@
 
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { contatoSchema, servicoOptions, type ContatoFormData } from "@/lib/contato/schema"
+import {
+    contatoSchema,
+    servicoOptions,
+    type ContatoFormData,
+} from "@/lib/contato/schema"
 import { enviarContato } from "@/lib/contato/actions"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -42,9 +46,12 @@ export function ContatoForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 justify-between h-full w-full px-6 py-10">
-            <div className="flex flex-col xl:flex-row gap-4">
-                <div className="space-y-1.5 flex-1">
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex h-full w-full flex-col justify-between gap-4 px-6 py-10"
+        >
+            <div className="flex flex-col gap-4 xl:flex-row">
+                <div className="flex-1 space-y-1.5">
                     <Label htmlFor="nome">Nome completo</Label>
                     <Input
                         id="nome"
@@ -53,14 +60,18 @@ export function ContatoForm() {
                         {...register("nome")}
                     />
                     {errors.nome && (
-                        <p className="text-xs text-destructive">{errors.nome.message}</p>
+                        <p className="text-xs text-destructive">
+                            {errors.nome.message}
+                        </p>
                     )}
                 </div>
 
-                <div className="space-y-1.5 flex-1">
+                <div className="flex-1 space-y-1.5">
                     <Label htmlFor="empresa">
                         Empresa{" "}
-                        <span className="text-muted-foreground">(opcional)</span>
+                        <span className="text-muted-foreground">
+                            (opcional)
+                        </span>
                     </Label>
                     <Input
                         id="empresa"
@@ -69,13 +80,15 @@ export function ContatoForm() {
                         {...register("empresa")}
                     />
                     {errors.empresa && (
-                        <p className="text-xs text-destructive">{errors.empresa.message}</p>
+                        <p className="text-xs text-destructive">
+                            {errors.empresa.message}
+                        </p>
                     )}
                 </div>
             </div>
 
-            <div className="flex flex-col xl:flex-row gap-4">
-                <div className="space-y-1.5 flex-1">
+            <div className="flex flex-col gap-4 xl:flex-row">
+                <div className="flex-1 space-y-1.5">
                     <Label htmlFor="email">E-mail</Label>
                     <Input
                         id="email"
@@ -85,11 +98,13 @@ export function ContatoForm() {
                         {...register("email")}
                     />
                     {errors.email && (
-                        <p className="text-xs text-destructive">{errors.email.message}</p>
+                        <p className="text-xs text-destructive">
+                            {errors.email.message}
+                        </p>
                     )}
                 </div>
 
-                <div className="space-y-1.5 flex-1">
+                <div className="flex-1 space-y-1.5">
                     <Label htmlFor="telefone">Telefone / WhatsApp</Label>
                     <Input
                         id="telefone"
@@ -99,7 +114,9 @@ export function ContatoForm() {
                         {...register("telefone")}
                     />
                     {errors.telefone && (
-                        <p className="text-xs text-destructive">{errors.telefone.message}</p>
+                        <p className="text-xs text-destructive">
+                            {errors.telefone.message}
+                        </p>
                     )}
                 </div>
             </div>
@@ -110,7 +127,10 @@ export function ContatoForm() {
                     name="servico"
                     control={control}
                     render={({ field }) => (
-                        <Select onValueChange={field.onChange} value={field.value}>
+                        <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                        >
                             <SelectTrigger
                                 id="servico"
                                 className="w-full"
@@ -120,7 +140,10 @@ export function ContatoForm() {
                             </SelectTrigger>
                             <SelectContent>
                                 {servicoOptions.map((option) => (
-                                    <SelectItem key={option.value} value={option.value}>
+                                    <SelectItem
+                                        key={option.value}
+                                        value={option.value}
+                                    >
                                         {option.label}
                                     </SelectItem>
                                 ))}
@@ -130,7 +153,8 @@ export function ContatoForm() {
                 />
                 {errors.servico && (
                     <p className="text-xs text-destructive">
-                        {errors.servico.message ?? "Selecione um tipo de serviço"}
+                        {errors.servico.message ??
+                            "Selecione um tipo de serviço"}
                     </p>
                 )}
             </div>
@@ -141,25 +165,32 @@ export function ContatoForm() {
                     id="descricao"
                     placeholder="Descreva o que você precisa, seu objetivo e qualquer detalhe relevante..."
                     aria-invalid={!!errors.descricao}
+                    className="field-sizing-fixed min-h-32 resize-y"
                     {...register("descricao")}
                 />
                 {errors.descricao && (
-                    <p className="text-xs text-destructive">{errors.descricao.message}</p>
+                    <p className="text-xs text-destructive">
+                        {errors.descricao.message}
+                    </p>
                 )}
             </div>
 
             {errors.root && (
-                <p className="text-sm text-destructive">{errors.root.message}</p>
+                <p className="text-sm text-destructive">
+                    {errors.root.message}
+                </p>
             )}
 
             {isSubmitSuccessful && (
-                <p className="text-sm text-green-600">Mensagem enviada com sucesso!</p>
+                <p className="text-sm text-green-600">
+                    Mensagem enviada com sucesso!
+                </p>
             )}
 
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto sm:self-end mx-auto"
+                className="mx-auto w-full sm:w-auto sm:self-end"
             >
                 {isSubmitting ? "Enviando..." : "Enviar mensagem"}
             </Button>

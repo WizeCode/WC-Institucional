@@ -40,13 +40,13 @@ const defaultInfoCards: InfoCard[] = [
         icon: FaInstagram,
         label: "Instagram",
         value: "@wizecode",
-        href: "https://instagram.com/wizecode",
+        href: "https://instagram.com/wize.code",
     },
     {
         icon: FaLinkedin,
         label: "LinkedIn",
         value: "WizeCode",
-        href: "https://linkedin.com/company/wizecode",
+        href: "https://www.linkedin.com/company/wizecode-tech",
     },
 ]
 
