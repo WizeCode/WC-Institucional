@@ -35,7 +35,7 @@ interface PortfolioProps {
 const defaultProjects: Project[] = [
     {
         id: "1",
-        title: "Porpagandista de Primeira",
+        title: "Propagandista de Primeira",
         category: "Educação",
         service: "Websites",
         year: "2025",
@@ -103,11 +103,16 @@ const Portfolio = ({
     projects = defaultProjects,
 }: PortfolioProps) => {
     return (
-        <section className="px-8 my-8">
-            <div className="container mx-auto w-full py-8 ">
-                <div className="flex flex-col md:flex-row md:items-end md:text-start items-center text-center justify-between mb-16 gap-10">
+        <section className="my-8 px-8">
+            <div className="container mx-auto w-full py-8">
+                <div className="mb-16 flex flex-col items-center justify-between gap-10 text-center md:flex-row md:items-end md:text-start">
                     <div className="flex flex-col gap-2">
-                        <Badge className="mb-4 mx-auto md:mx-0" variant="outline">{badgeText}</Badge>
+                        <Badge
+                            className="mx-auto mb-4 md:mx-0"
+                            variant="outline"
+                        >
+                            {badgeText}
+                        </Badge>
                         <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                             {heading}
                         </h2>
@@ -125,14 +130,14 @@ const Portfolio = ({
                 <div className="relative w-full">
                     <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-32 bg-linear-to-l from-background to-transparent sm:w-64" />
                     <Carousel opts={{ align: "start" }} className="w-full">
-                        <CarouselContent className="-ml-4 pr-8">
+                        <CarouselContent className="-ml-4 items-stretch pr-8">
                             {projects.map((project) => (
                                 <CarouselItem
                                     key={project.id}
-                                    className="basis-auto pl-4"
+                                    className="h-auto basis-auto pl-4"
                                 >
-                                    <div className="w-[calc(100vw-6rem)] sm:w-87.5 md:w-112.5">
-                                        <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm">
+                                    <div className="h-full w-[calc(100vw-6rem)] sm:w-87.5 md:w-112.5">
+                                        <div className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm">
                                             <div className="aspect-square overflow-hidden">
                                                 <Image
                                                     src={project.image}
@@ -143,8 +148,8 @@ const Portfolio = ({
                                                     className="aspect-square h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                                                 />
                                             </div>
-                                            <div className="space-y-4 p-6">
-                                                <div className="space-y-3">
+                                            <div className="flex flex-1 flex-col justify-between space-y-4 p-6">
+                                                <div className="space-y-2">
                                                     <div className="flex items-start justify-between gap-3">
                                                         <h2 className="text-xl leading-tight font-semibold">
                                                             {project.title}
@@ -156,6 +161,7 @@ const Portfolio = ({
                                                             {project.category}
                                                         </Badge>
                                                     </div>
+
                                                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                                         <div className="flex items-center gap-1">
                                                             {(() => {
@@ -179,10 +185,11 @@ const Portfolio = ({
                                                             {project.year}
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <p className="text-sm leading-relaxed text-muted-foreground">
+                                                    <p className="text-sm leading-relaxed text-muted-foreground mt-4">
                                                     {project.description}
                                                 </p>
+                                                </div>
+                                                
                                                 <div className="pt-2">
                                                     <Button
                                                         size="sm"

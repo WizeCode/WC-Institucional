@@ -42,9 +42,9 @@ export function ContatoForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 justify-between h-full w-full px-6 py-10">
+            <div className="flex flex-col xl:flex-row gap-4">
+                <div className="space-y-1.5 flex-1">
                     <Label htmlFor="nome">Nome completo</Label>
                     <Input
                         id="nome"
@@ -57,7 +57,7 @@ export function ContatoForm() {
                     )}
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 flex-1">
                     <Label htmlFor="empresa">
                         Empresa{" "}
                         <span className="text-muted-foreground">(opcional)</span>
@@ -74,8 +74,8 @@ export function ContatoForm() {
                 </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
+            <div className="flex flex-col xl:flex-row gap-4">
+                <div className="space-y-1.5 flex-1">
                     <Label htmlFor="email">E-mail</Label>
                     <Input
                         id="email"
@@ -89,7 +89,7 @@ export function ContatoForm() {
                     )}
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 flex-1">
                     <Label htmlFor="telefone">Telefone / WhatsApp</Label>
                     <Input
                         id="telefone"
@@ -159,7 +159,7 @@ export function ContatoForm() {
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto sm:self-end"
+                className="w-full sm:w-auto sm:self-end mx-auto"
             >
                 {isSubmitting ? "Enviando..." : "Enviar mensagem"}
             </Button>

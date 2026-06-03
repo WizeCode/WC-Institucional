@@ -84,7 +84,7 @@ const Faq = ({
     return (
         <section className="my-8 px-8">
             <div className="container mx-auto py-16 flex flex-col lg:flex-row lg:gap-12">
-                <div className="flex-1">
+                <div className="flex-2">
                     <Badge className="mb-4 mx-auto" variant="default">{badgeText}</Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl mb-4">
                         {heading}
@@ -93,7 +93,7 @@ const Faq = ({
                         {description}
                     </p>
                 </div>
-                <div className="flex-1">
+                <div className="flex-3">
                     <Accordion type="single" collapsible>
                         {items.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
