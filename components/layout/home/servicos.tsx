@@ -38,7 +38,7 @@ const Servicos = ({
     badgeText = "/ Serviços",
     heading = (
         <>
-            O que a <span className="text-accent">WizeCode</span> entrega
+            O que a WizeCode <span className="text-accent">entrega</span> 
         </>
     ),
     description = (
