@@ -151,9 +151,9 @@ const Portfolio = ({
                                             <div className="flex flex-1 flex-col justify-between space-y-4 p-6">
                                                 <div className="space-y-2">
                                                     <div className="flex items-start justify-between gap-3">
-                                                        <h2 className="text-xl leading-tight font-semibold">
+                                                        <h3 className="text-xl leading-tight font-semibold">
                                                             {project.title}
-                                                        </h2>
+                                                        </h3>
                                                         <Badge
                                                             variant="outline"
                                                             className="shrink-0"

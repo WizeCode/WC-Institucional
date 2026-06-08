@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import { ChatBot } from "@/components/chat/chat-bot";
+
+export const metadata: Metadata = {
+    title: "Wizard Chat - Converse com nosso assistente virtual",
+    description:
+        "Seu projeto ainda está meio confuso? Fale com a Wizard, nossa assistente virtual. Ela coleta tudo que precisamos para criar uma proposta sob medida — sem formulários, sem fricção.",
+    alternates: {
+        canonical: "/chat",
+    },
+};
 import { MessageSquare, FileText, Rocket } from "lucide-react";
 
 const steps = [

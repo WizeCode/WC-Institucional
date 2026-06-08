@@ -183,9 +183,9 @@ const Header = ({
                                 height={48}
                             />
 
-                            <h1 className="text-[18px] font-semibold tracking-tighter">
+                            <span className="text-[18px] font-semibold tracking-tighter">
                                 {logo.title}
-                            </h1>
+                            </span>
                         </Link>
 
                         <div className="flex items-center">
