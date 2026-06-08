@@ -2,9 +2,9 @@
 
 import { Badge } from "@/components/ui/badge"
 import { Pointer } from "@/components/ui/pointer"
-import { cn } from "@/lib/utils"
 import { Brain, HeartHandshake, Layers, Sparkles } from "lucide-react"
-import React, { useState } from "react"
+import { motion } from "motion/react"
+import React, { useSyncExternalStore } from "react"
 
 interface Diferencial {
     letter: string
@@ -48,38 +48,21 @@ const defaultItems: Diferencial[] = [
 ]
 
 const DiferencialCard = ({ letter, title, description, pointerIcon }: Diferencial) => {
-    const [revealed, setRevealed] = useState(false)
-    const [hasPointer] = useState(() =>
-        typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches
+    const hasPointer = useSyncExternalStore(
+        () => () => {},
+        () => window.matchMedia("(pointer: fine)").matches,
+        () => false,
     )
 
     return (
-        <div
-            className="group/card relative flex h-52 cursor-pointer overflow-hidden rounded-lg border bg-background"
-            onClick={() => setRevealed((r) => !r)}
-        >
+        <div className="relative flex h-full flex-col gap-4 rounded-lg border bg-background p-6">
             {hasPointer && <Pointer>{pointerIcon}</Pointer>}
-            <div
-                className={cn(
-                    "absolute inset-0 flex items-center justify-center",
-                    "text-7xl font-bold tracking-tight text-muted-foreground/50",
-                    "transition duration-300 group-hover/card:-translate-y-4 group-hover/card:opacity-0",
-                    revealed && "-translate-y-4 opacity-0",
-                )}
-            >
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-xl font-bold text-accent ">
                 {letter}
             </div>
-            <div
-                className={cn(
-                    "absolute inset-0 flex translate-y-2 flex-col justify-between p-6 opacity-0",
-                    "transition duration-300 group-hover/card:translate-y-0 group-hover/card:opacity-100",
-                    revealed && "translate-y-0 opacity-100",
-                )}
-            >
-                <div className="flex flex-col gap-2">
-                    <p className="font-semibold leading-snug">{title}</p>
-                    <p className="text-sm text-muted-foreground">{description}</p>
-                </div>
+            <div className="flex flex-col gap-2">
+                <p className="font-semibold leading-snug mx-auto">{title}</p>
+                <p className="text-sm text-muted-foreground">{description}</p>
             </div>
         </div>
     )
@@ -112,9 +95,14 @@ const Diferenciais = ({
                 </div>
                 <div className="flex flex-1 flex-wrap gap-4">
                     {items.map((item) => (
-                        <div key={item.letter} className="w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]">
+                        <motion.div
+                            key={item.letter}
+                            className="flex w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
+                            whileHover={{ y: -6 }}
+                            transition={{ duration: 0.1, ease: "easeInOut" }}
+                        >
                             <DiferencialCard {...item} />
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
