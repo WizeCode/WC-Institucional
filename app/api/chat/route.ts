@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         }
 
         const result = streamText({
-            model: openrouter("google/gemini-2.0-flash-lite-001"),
+            model: openrouter(process.env.OPENROUTER_MODEL ?? "deepseek/deepseek-v4-flash"),
             system: systemPrompt,
             messages: await convertToModelMessages(messages),
             maxOutputTokens: MAX_TOKENS_PER_RESPONSE,
