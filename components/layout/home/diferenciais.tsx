@@ -3,8 +3,8 @@
 import { Badge } from "@/components/ui/badge"
 import { Pointer } from "@/components/ui/pointer"
 import { cn } from "@/lib/utils"
-import { Brain, Code2, HeartHandshake, Layers, Sparkles } from "lucide-react"
-import React, { useEffect, useState } from "react"
+import { Brain, HeartHandshake, Layers, Sparkles } from "lucide-react"
+import React, { useState } from "react"
 
 interface Diferencial {
     letter: string
@@ -49,11 +49,9 @@ const defaultItems: Diferencial[] = [
 
 const DiferencialCard = ({ letter, title, description, pointerIcon }: Diferencial) => {
     const [revealed, setRevealed] = useState(false)
-    const [hasPointer, setHasPointer] = useState(false)
-
-    useEffect(() => {
-        setHasPointer(window.matchMedia("(pointer: fine)").matches)
-    }, [])
+    const [hasPointer] = useState(() =>
+        typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches
+    )
 
     return (
         <div

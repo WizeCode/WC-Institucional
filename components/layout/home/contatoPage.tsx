@@ -1,11 +1,8 @@
 "use client"
 
 import { ContatoForm } from "@/components/forms/contato-form"
-import { Badge } from "@/components/ui/badge"
-import { Particles } from "@/components/ui/particles"
 import { LucideIcon, Mail } from "lucide-react"
 import Link from "next/link"
-import { motion } from "motion/react"
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import { IconType } from "react-icons"
 
