@@ -40,6 +40,7 @@ import { useThemeToggle } from "@/components/theme-provider";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { ShineBorder } from "@/components/ui/shine-border";
 
 interface MenuItem {
@@ -152,6 +153,7 @@ const Header = ({
     className,
 }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const posthog = usePostHog();
 
     useEffect(() => {
         const handleResize = () => {
@@ -202,14 +204,14 @@ const Header = ({
                             <ShineBorder className="opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                                 shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                             />
-                            <Button asChild size="lg" variant="outline">
+                            <Button asChild size="lg" variant="outline" onClick={() => posthog.capture("cta_wiz_clicked", { source: "header" })}>
                                 <Link href={ctaWiz.url}>
                                     {ctaWiz.title}
                                 </Link>
                             </Button>
                         </div>
 
-                        <Button asChild size="lg">
+                        <Button asChild size="lg" onClick={() => posthog.capture("cta_contact_clicked", { source: "header" })}>
                             <Link href={ctaContact.url}>
                                 {ctaContact.title}
                             </Link>
@@ -279,14 +281,14 @@ const Header = ({
                                                 <ShineBorder className="transition-opacity duration-200 opacity-100"
                                                     shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                                                 />
-                                                <Button className="w-full" asChild size="lg" variant="outline">
+                                                <Button className="w-full" asChild size="lg" variant="outline" onClick={() => posthog.capture("cta_wiz_clicked", { source: "header_mobile" })}>
                                                     <Link href={ctaWiz.url}>
                                                         {ctaWiz.title}
                                                     </Link>
                                                 </Button>
                                             </div>
 
-                                            <Button asChild size="lg">
+                                            <Button asChild size="lg" onClick={() => posthog.capture("cta_contact_clicked", { source: "header_mobile" })}>
                                                 <Link href={ctaContact.url}>
                                                     {ctaContact.title}
                                                 </Link>

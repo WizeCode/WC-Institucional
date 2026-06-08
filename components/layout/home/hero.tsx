@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePostHog } from "posthog-js/react"
 import { AnimatePresence, motion } from "motion/react"
 import {
     AnimatedSpan,
@@ -67,6 +68,7 @@ const Hero = ({
 }: HeroProps) => {
     const [projectIndex, setProjectIndex] = useState(0)
     const [rotationStarted, setRotationStarted] = useState(false)
+    const posthog = usePostHog()
 
     useEffect(() => {
         const startTimer = setTimeout(
@@ -104,7 +106,7 @@ const Hero = ({
                             </Button>
                         )}
                         {buttons.secondary && (
-                            <Button asChild variant="outline">
+                            <Button asChild variant="outline" onClick={() => posthog.capture("cta_contact_clicked", { source: "hero" })}>
                                 <a href={buttons.secondary.url}>
                                     {buttons.secondary.text}
                                 </a>

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge"
 import React, { useState } from "react"
+import { usePostHog } from "posthog-js/react"
 import {
     Item,
     ItemActions,
@@ -87,6 +88,7 @@ const Servicos = ({
     ],
 }: ServicosProps) => {
     const [activeId, setActiveId] = useState(services[0].id)
+    const posthog = usePostHog()
     const activeService = services.find((s) => s.id === activeId)
 
     return (
@@ -124,6 +126,7 @@ const Servicos = ({
                                 transition={{ duration: 0.1, ease: "easeInOut" }}
                                 className="block flex-1"
                                 onMouseEnter={() => setActiveId(service.id)}
+                                onClick={() => posthog.capture("service_clicked", { service: service.title, service_id: service.id })}
                             >
                                 <Item
                                     style={{ backgroundColor: service.color }}

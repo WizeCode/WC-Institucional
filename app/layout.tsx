@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 
 // Import Components
 import { ThemeProvider } from "@/components/theme-provider";
+import { PostHogProvider } from "@/components/providers/posthog-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -96,13 +97,15 @@ export default function RootLayout({
     return (
         <html lang="pt-BR" className={cn("antialiased", geom.variable)} suppressHydrationWarning>
             <body cz-shortcut-listen="true">
-                <ThemeProvider>
-                    <Header />
+                <PostHogProvider>
+                    <ThemeProvider>
+                        <Header />
 
-                    <main>{children}</main>
+                        <main>{children}</main>
 
-                    <Footer />
-                </ThemeProvider>
+                        <Footer />
+                    </ThemeProvider>
+                </PostHogProvider>
 
                 <JsonLd schema={[organizationSchema, websiteSchema]} />
                 <SpeedInsights />
