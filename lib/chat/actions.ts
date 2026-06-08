@@ -3,22 +3,35 @@
 export async function sendBriefing(
   data: string,
   token: string,
-  conversation: { role: string; content: string }[]
+  conversation: { role: string; content: string }[],
+  contact: { nome: string; email: string; whatsapp: string }
 ) {
   const ok = await verifyTurnstile(token);
-  if (!ok) return;
+  if (!ok) return { success: false };
 
-  const webhookUrl = process.env.N8N_WEBHOOK_URL;
-  if (!webhookUrl) return;
+  const webhookBase = process.env.N8N_WEBHOOK_URL;
+  if (!webhookBase) return { success: false };
 
-  await fetch(webhookUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      briefing: JSON.parse(data),
-      conversa: conversation,
-    }),
-  });
+  const secret = process.env.N8N_WEBHOOK_SECRET;
+  if (!secret) return { success: false };
+
+  try {
+    await fetch(`${webhookBase}/briefing`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-webhook-secret": secret,
+      },
+      body: JSON.stringify({
+        briefing: JSON.parse(data),
+        conversa: conversation,
+        contato: contact,
+      }),
+    });
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
 }
 
 export async function verifyTurnstile(token: string): Promise<boolean> {

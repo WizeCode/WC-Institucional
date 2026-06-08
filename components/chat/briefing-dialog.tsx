@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { sendBriefing } from "@/lib/chat/actions";
 
 export interface BriefingData {
   empresa: string;
@@ -30,12 +31,42 @@ interface BriefingDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   briefing: BriefingData;
+  briefingRaw: string;
+  conversation: { role: string; content: string }[];
+  turnstileToken: string;
 }
 
-export function BriefingDialog({ open, onOpenChange, briefing }: BriefingDialogProps) {
+export function BriefingDialog({
+  open,
+  onOpenChange,
+  briefing,
+  briefingRaw,
+  conversation,
+  turnstileToken,
+}: BriefingDialogProps) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function handleSubmit() {
+    if (!nome.trim() || !email.trim() || !whatsapp.trim()) return;
+    setLoading(true);
+    setError(false);
+    const result = await sendBriefing(briefingRaw, turnstileToken, conversation, {
+      nome,
+      email,
+      whatsapp,
+    });
+    setLoading(false);
+    if (result?.success) {
+      setSent(true);
+    } else {
+      setError(true);
+    }
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -47,7 +78,6 @@ export function BriefingDialog({ open, onOpenChange, briefing }: BriefingDialogP
           </DialogDescription>
         </DialogHeader>
 
-        {/* Resumo do briefing */}
         <div className="rounded-lg bg-muted/50 p-4 space-y-3 text-sm">
           <div className="flex gap-2">
             <span className="text-muted-foreground w-20 shrink-0">Empresa</span>
@@ -88,50 +118,69 @@ export function BriefingDialog({ open, onOpenChange, briefing }: BriefingDialogP
 
         <Separator />
 
-        {/* Formulário de contato */}
-        <div className="space-y-4">
-          <p className="text-sm font-medium">Seus dados de contato</p>
+        {sent ? (
+          <p className="text-sm text-center text-muted-foreground py-2">
+            Proposta enviada! Nossa equipe entrará em contato em breve.
+          </p>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-sm font-medium">Seus dados de contato</p>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="nome">Nome completo</Label>
-            <Input
-              id="nome"
-              placeholder="João da Silva"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-          </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="nome">Nome completo</Label>
+              <Input
+                id="nome"
+                placeholder="João da Silva"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                disabled={loading}
+              />
+            </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="email">E-mail</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="joao@empresa.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="email">E-mail</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="joao@empresa.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+              />
+            </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="whatsapp">WhatsApp</Label>
-            <Input
-              id="whatsapp"
-              type="tel"
-              placeholder="(11) 99999-9999"
-              value={whatsapp}
-              onChange={(e) => setWhatsapp(e.target.value)}
-            />
+            <div className="space-y-1.5">
+              <Label htmlFor="whatsapp">WhatsApp</Label>
+              <Input
+                id="whatsapp"
+                type="tel"
+                placeholder="(11) 99999-9999"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                disabled={loading}
+              />
+            </div>
+
+            {error && (
+              <p className="text-sm text-destructive">
+                Erro ao enviar. Tente novamente.
+              </p>
+            )}
           </div>
-        </div>
+        )}
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Fechar
           </Button>
-          <Button type="button">
-            Enviar proposta
-          </Button>
+          {!sent && (
+            <Button
+              onClick={handleSubmit}
+              disabled={loading || !nome.trim() || !email.trim() || !whatsapp.trim()}
+            >
+              {loading ? "Enviando..." : "Enviar proposta"}
+            </Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
