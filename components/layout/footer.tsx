@@ -130,9 +130,9 @@ const Footer = (props: FooterProps) => {
                                     height={48}
                                 />
 
-                                <h1 className="hidden text-[18px] font-semibold tracking-tighter lg:inline">
+                                <span className="hidden text-[18px] font-semibold tracking-tighter lg:inline">
                                     {logo.title}
-                                </h1>
+                                </span>
                             </Link>
                         )}
 
