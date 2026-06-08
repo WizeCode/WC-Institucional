@@ -26,7 +26,7 @@ import {
     type BriefingData,
 } from "@/components/chat/briefing-dialog"
 import { OnboardingDialog } from "@/components/chat/onboarding-dialog"
-import { sendBriefing, verifyTurnstile } from "@/lib/chat/actions"
+import { verifyTurnstile } from "@/lib/chat/actions"
 import { Turnstile } from "@marsidev/react-turnstile"
 
 const BRIEFING_REGEX = /<briefing>([\s\S]*?)<\/briefing>/
@@ -61,6 +61,8 @@ export function ChatBot() {
     const [turnstileVerified, setTurnstileVerified] = useState(false)
     const [briefingDone, setBriefingDone] = useState(false)
     const [briefingData, setBriefingData] = useState<BriefingData | null>(null)
+    const [briefingRaw, setBriefingRaw] = useState<string>("")
+    const [conversation, setConversation] = useState<{ role: string; content: string }[]>([])
     const [dialogOpen, setDialogOpen] = useState(false)
     const [aborted, setAborted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -80,13 +82,7 @@ export function ChatBot() {
         if (!match) return
 
         const parsed = JSON.parse(match[1].trim())
-        startTransition(() => {
-            setBriefingData(parsed)
-            setDialogOpen(true)
-            setBriefingDone(true)
-        })
-
-        const conversation = messages
+        const conv = messages
             .map((m) => ({
                 role: m.role,
                 content: stripTags(
@@ -98,9 +94,13 @@ export function ChatBot() {
             }))
             .filter((m) => m.content)
 
-        sendBriefing(match[1].trim(), turnstileToken ?? "", conversation).catch(
-            console.error
-        )
+        startTransition(() => {
+            setBriefingData(parsed)
+            setBriefingRaw(match[1].trim())
+            setConversation(conv)
+            setDialogOpen(true)
+            setBriefingDone(true)
+        })
     }, [messages, status, briefingDone, turnstileToken])
 
     useEffect(() => {
@@ -238,6 +238,9 @@ export function ChatBot() {
                     open={dialogOpen}
                     onOpenChange={setDialogOpen}
                     briefing={briefingData}
+                    briefingRaw={briefingRaw}
+                    conversation={conversation}
+                    turnstileToken={turnstileToken ?? ""}
                 />
             )}
 
