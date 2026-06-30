@@ -9,6 +9,7 @@ import {
     FaWhatsapp,
 } from "react-icons/fa";
 import { cn } from "@/lib/utils"
+import { services } from "@/types/services";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -69,15 +70,10 @@ const defaultProps: FooterProps = {
     sections: [
         {
             title: "Serviços",
-            links: [
-                { name: "Website Institucional", href: "/servicos/web/institucional" },
-                { name: "Landing Page", href: "/servicos/web/landing-page" },
-                { name: "Plataforma", href: "/servicos/web/plataforma" },
-                { name: "E-commerce", href: "/servicos/web/e-commerce" },
-                { name: "Web App", href: "/servicos/web/web-app" },
-                { name: "Mobile", href: "/servicos/mobile" },
-                { name: "Automação", href: "/servicos/automacao" },
-            ],
+            links: Object.values(services).map((service) => ({
+                name: service.label,
+                href: service.href,
+            })),
         },
         {
             title: "Empresa",

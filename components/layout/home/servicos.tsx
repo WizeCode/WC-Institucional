@@ -10,11 +10,10 @@ import {
     ItemDescription,
     ItemTitle,
 } from "@/components/ui/item"
-import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
-import { ServiceCategory } from "@/types/services"
+import { ServiceCategory, services as serviceCatalog } from "@/types/services"
 
 interface ServiceItem {
     id: string
@@ -50,40 +49,36 @@ const Servicos = ({
     ),
     services = [
         {
-            id: "websites",
-            title: "Websites",
-            description:
-                "Do institucional ao e-commerce, desenvolvemos websites que representam sua marca e geram resultados reais.",
+            id: "Institucional",
+            title: "Institucional",
+            description: serviceCatalog["Institucional"].shortDescription,
             color: "#0f101f",
-            href: "/servicos/websites",
-            image: { src: "https://placehold.co/2160x1080", alt: "Websites" },
+            href: serviceCatalog["Institucional"].href,
+            image: { src: "/images/home/websites.svg", alt: "Website Institucional" },
         },
         {
-            id: "aplicativos",
-            title: "Aplicativos",
-            description:
-                "A lógica do seu negócio em um aplicativo funcional, intuitivo e escalável – para web, iOS ou Android.",
+            id: "Landing Page",
+            title: "Landing Page",
+            description: serviceCatalog["Landing Page"].shortDescription,
             color: "#37175a",
-            href: "/servicos/aplicativos",
-            image: { src: "https://placehold.co/2160x1080", alt: "Aplicativos" },
+            href: serviceCatalog["Landing Page"].href,
+            image: { src: "/images/home/landing page.svg", alt: "Landing Page" },
         },
         {
-            id: "automacoes",
-            title: "Automações",
-            description:
-                "Elimine tarefas repetitivas e manuais com automações inteligentes que economizam tempo e reduzem erros.",
+            id: "Sistemas",
+            title: "Sistemas",
+            description: serviceCatalog["Sistemas"].shortDescription,
             color: "#7849cb",
-            href: "/servicos/automacoes",
-            image: { src: "https://placehold.co/2160x1080", alt: "Automações" },
+            href: serviceCatalog["Sistemas"].href,
+            image: { src: "/images/home/sistemas2.svg", alt: "Sistemas" },
         },
         {
-            id: "saas",
-            title: "SaaS",
-            description:
-                "Tire seu software do papel e entregue valor contínuo a seus clientes com escalabilidade e segurança.",
+            id: "Automações",
+            title: "Automações",
+            description: serviceCatalog["Automações"].shortDescription,
             color: "#a67de0",
-            href: "/servicos/saas",
-            image: { src: "https://placehold.co/2160x1080", alt: "SaaS" },
+            href: serviceCatalog["Automações"].href,
+            image: { src: "/images/home/automacoes2.png", alt: "Automações" },
         },
     ],
 }: ServicosProps) => {
@@ -142,16 +137,13 @@ const Servicos = ({
                                         </ItemDescription>
                                     </ItemContent>
                                     <ItemActions>
-                                        <Button
-                                            className="size-8 rounded-full p-0 dark:bg-white border-0"
-                                            variant="outline"
-                                        >
+                                        <span className="flex size-8 items-center justify-center rounded-full bg-white">
                                             <ChevronRight
                                                 className="size-4"
                                                 strokeWidth={3}
                                                 style={{ color: service.color }}
                                             />
-                                        </Button>
+                                        </span>
                                     </ItemActions>
                                 </Item>
                             </motion.a>
