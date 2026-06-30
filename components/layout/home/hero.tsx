@@ -56,11 +56,11 @@ const Hero = ({
     ),
     badgeText = "/ Hero",
     buttons = {
+        // primary: {
+        //     text: "Conheça nossas soluções",
+        //     url: "/servicos",
+        // },
         primary: {
-            text: "Conheça nossas soluções",
-            url: "/servicos",
-        },
-        secondary: {
             text: "Fale com nossa equipe",
             url: "/contato",
         },

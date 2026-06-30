@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Página não encontrada",
@@ -19,7 +20,7 @@ export default function NotFound() {
                     Que tal voltar para a página inicial?
                 </p>
                 <Button asChild>
-                    <a href="/">Voltar para o início</a>
+                    <Link href={'/'}>Voltar para o início</Link>
                 </Button>
             </div>
         </section>
