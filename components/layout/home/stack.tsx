@@ -56,7 +56,7 @@ const defaultTechRowThree: Technology[] = [
 ]
 
 const TechMarqueeItem = ({ tech }: { tech: Technology }) => (
-    <MarqueeItem className="mx-8 flex aspect-3/1 w-28 items-center justify-center sm:w-32 lg:mx-10">
+    <MarqueeItem className="mx-8 flex aspect-3/1 w-32 items-center justify-center sm:w-40 lg:mx-10">
         <Image
             src={tech.logo}
             alt={tech.name}
@@ -64,7 +64,7 @@ const TechMarqueeItem = ({ tech }: { tech: Technology }) => (
             height={720}
             unoptimized
             className={cn(
-                "h-auto max-h-8 w-auto object-contain",
+                "h-auto max-h-8 sm:max-h-10 w-auto object-contain",
                 tech.blackInLight && "brightness-0 dark:invert"
             )}
         />
