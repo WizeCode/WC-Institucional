@@ -28,7 +28,7 @@ interface PortfolioProps {
     heading?: string
     description?: string
     projects?: Project[]
-    buttonText?: string
+    button?: { url: string; text: string }
     badgeText?: string
 }
 
@@ -37,68 +37,52 @@ const defaultProjects: Project[] = [
         id: "1",
         title: "Propagandista de Primeira",
         category: "Educação",
-        service: "Websites",
+        service: "Institucional",
         year: "2025",
         description:
             "Site institucional desenvolvido em WordPress para uma empresa de educação, com foco em apresentação de cursos, captação de leads e identidade visual alinhada ao posicionamento da marca.",
-        image: "https://placehold.co/1080x1080",
+        image: "/images/cases/propagandista.svg",
+        href: "https://www.propagandistadeprimeira.com.br",
     },
     {
         id: "2",
-        title: "Aerial View of Rice Terraces",
-        category: "Agriculture",
-        service: "Websites",
-        year: "2023",
+        title: "Derivada Serviços Elétricos",
+        category: "Engenharia",
+        service: "Institucional",
+        year: "2026",
         description:
-            "Stunning aerial perspective of terraced rice fields showcasing intricate geometric patterns and vibrant green landscapes carved into the hillsides.",
-        image: "https://placehold.co/1080x1080",
+            "Site institucional desenvolvido em WordPress para uma empresa de engenharia, com foco em apresentação de serviços, portfólio de projetos e otimização para SEO e performance.",
+        image: "/images/cases/derivada.svg",
+        href: "https://www.derivadaengenharia.com",
     },
     {
         id: "3",
-        title: "Desert Canyon Formations",
-        category: "Landscape",
-        service: "Websites",
-        year: "2022",
+        title: "Produtora Colmeia",
+        category: "Audiovisual",
+        service: "Institucional",
+        year: "2026",
         description:
-            "Dramatic aerial view of layered sandstone formations revealing millions of years of geological history through deep canyons and weathered rock strata.",
-        image: "https://placehold.co/1080x1080",
+            "Site institucional desenvolvido em WordPress para uma produtora audiovisual, com foco em apresentação de portfólio, serviços e integração com redes sociais.",
+        image: "/images/cases/colmeia.svg",
+        href: "https://www.produtoracolmeia.com.br",
     },
     {
         id: "4",
-        title: "Golden Terraced Fields",
-        category: "Agriculture",
-        service: "Websites",
-        year: "2022",
+        title: "Jadevine",
+        category: "Semijoias",
+        service: "Institucional",
+        year: "2024",
         description:
-            "Mesmerizing aerial view of golden terraced agricultural fields displaying intricate contour patterns carved into the mountainous landscape during harvest season.",
-        image: "https://placehold.co/1080x1080",
-    },
-    {
-        id: "5",
-        title: "Tidal Sand Patterns",
-        category: "Landscape",
-        service: "Websites",
-        year: "2023",
-        description:
-            "Mesmerizing aerial view of flowing water patterns carved into dark volcanic sand, creating organic sculptural forms shaped by tidal forces.",
-        image: "https://placehold.co/1080x1080",
-    },
-    {
-        id: "6",
-        title: "Red Rock Canyon Labyrinth",
-        category: "Landscape",
-        service: "Websites",
-        year: "2022",
-        description:
-            "Breathtaking aerial view of red sandstone canyon formations displaying deep gorges, weathered rock layers, and intricate geological patterns carved over millennia.",
-        image: "https://placehold.co/1080x1080",
+            "Site institucional desenvolvido em WordPress para uma marca de semijoias, com foco em apresentação de produtos, catálogo editável, otimização para SEO e performance.",
+        image: "/images/cases/jadevine.svg",
+        href: "https://www.jadevine.com.br",
     },
 ]
 
 const Portfolio = ({
     heading = "Nosso Portfólio",
     description = "Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto.",
-    buttonText = "Ver todos os cases",
+    button = { url: "/cases", text: "Ver todos os cases" },
     badgeText = "/ Portfólio",
     projects = defaultProjects,
 }: PortfolioProps) => {
@@ -120,11 +104,15 @@ const Portfolio = ({
                             {description}
                         </p>
                     </div>
-                    <div>
-                        <Button variant="default" size="lg">
-                            {buttonText}
-                        </Button>
-                    </div>
+                    {button && (
+                        <div>
+                            <a href={button.url}>
+                                <Button variant="default" size="lg">
+                                    {button.text}
+                                </Button>
+                            </a>
+                        </div>
+                    )}
                 </div>
 
                 <div className="relative w-full">
@@ -185,18 +173,23 @@ const Portfolio = ({
                                                             {project.year}
                                                         </div>
                                                     </div>
-                                                    <p className="text-sm leading-relaxed text-muted-foreground mt-4">
-                                                    {project.description}
-                                                </p>
+                                                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                                                        {project.description}
+                                                    </p>
                                                 </div>
-                                                
+
                                                 <div className="pt-2">
-                                                    <Button
-                                                        size="sm"
-                                                        className="w-full"
+                                                    <a
+                                                        href={project.href}
+                                                        target="_blank"
                                                     >
-                                                        Ver case
-                                                    </Button>
+                                                        <Button
+                                                            size="sm"
+                                                            className="w-full"
+                                                        >
+                                                            Acessar site
+                                                        </Button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

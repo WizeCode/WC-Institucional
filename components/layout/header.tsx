@@ -1,13 +1,6 @@
 "use client"
 
 import {
-    LayoutTemplate,
-    MousePointerClick,
-    Layers,
-    Store,
-    AppWindow,
-    Smartphone,
-    Workflow,
     Menu,
     Sun,
     Moon,
@@ -36,6 +29,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { useThemeToggle } from "@/components/theme-provider";
+import { services } from "@/types/services";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -73,6 +67,16 @@ interface NavbarProps {
     ctaContact?: CtaButton;
 };
 
+const serviceMenuItems: MenuItem[] = Object.values(services).map((service) => {
+    const Icon = service.icon;
+    return {
+        title: service.label,
+        description: service.shortDescription,
+        icon: <Icon className="size-6 shrink-0" />,
+        url: service.href,
+    };
+});
+
 const Header = ({
     logo = {
         url: "/",
@@ -93,50 +97,7 @@ const Header = ({
             url: "#",
             dropdownLabel: "SOLUÇÕES DIGITAIS",
             dropdownDescription: "Tudo que o seu negócio precisa para crescer no digital.",
-            items: [
-                {
-                    title: "Website Institucional",
-                    description: "Sua marca no digital com credibilidade e presença profissional.",
-                    icon: <LayoutTemplate className="size-6 shrink-0" />,
-                    url: "/servicos/web/institucional",
-                },
-                {
-                    title: "Landing Page",
-                    description: "Páginas focadas em conversão para transformar visitas em leads.",
-                    icon: <MousePointerClick className="size-6 shrink-0" />,
-                    url: "/servicos/web/landing-page",
-                },
-                {
-                    title: "Plataforma",
-                    description: "Sistemas escaláveis para centralizar e automatizar sua operação.",
-                    icon: <Layers className="size-6 shrink-0" />,
-                    url: "/servicos/web/plataforma",
-                },
-                {
-                    title: "E-commerce",
-                    description: "Loja virtual de alta performance para vender mais e melhor.",
-                    icon: <Store className="size-6 shrink-0" />,
-                    url: "/servicos/web/e-commerce",
-                },
-                {
-                    title: "Web App",
-                    description: "Aplicações interativas e sob medida para o seu negócio.",
-                    icon: <AppWindow className="size-6 shrink-0" />,
-                    url: "/servicos/web/web-app",
-                },
-                {
-                    title: "Mobile",
-                    description: "Apps nativos para iOS e Android que fidelizam seu cliente.",
-                    icon: <Smartphone className="size-6 shrink-0" />,
-                    url: "/servicos/mobile",
-                },
-                {
-                    title: "Automação",
-                    description: "Reduza tarefas manuais e ganhe eficiência onde mais importa.",
-                    icon: <Workflow className="size-6 shrink-0" />,
-                    url: "/servicos/automacao",
-                },
-            ],
+            items: serviceMenuItems,
         },
         {
             title: "Cases",

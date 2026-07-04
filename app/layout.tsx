@@ -16,6 +16,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const geom = Geom({
+    subsets: ["latin"],
+    display: "swap",
     variable: "--font-geom",
     fallback: ["system-ui", "sans-serif"],
 });

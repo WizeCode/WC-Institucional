@@ -1,10 +1,10 @@
 import { z } from "zod"
 
 export const servicoOptions = [
-    { value: "website", label: "Website" },
-    { value: "aplicativo", label: "Aplicativo" },
-    { value: "automacao", label: "Automação" },
-    { value: "saas", label: "SaaS" },
+    { value: "institucional", label: "Website Institucional" },
+    { value: "landing-page", label: "Landing Page" },
+    { value: "sistemas", label: "Sistemas" },
+    { value: "automacoes", label: "Automações" },
     { value: "outro", label: "Outro" },
 ] as const
 
@@ -24,7 +24,13 @@ export const contatoSchema = z.object({
         .max(20, "Telefone inválido")
         .regex(/^[\d\s()\-+]+$/, "Telefone inválido"),
 
-    servico: z.enum(["website", "aplicativo", "automacao", "saas", "outro"]),
+    servico: z.enum([
+        "institucional",
+        "landing-page",
+        "sistemas",
+        "automacoes",
+        "outro",
+    ]),
 
     descricao: z
         .string()

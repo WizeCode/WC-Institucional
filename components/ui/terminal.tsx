@@ -118,6 +118,7 @@ interface TypingAnimationProps extends Omit<MotionProps, "children"> {
   delay?: number
   as?: MotionElementType
   startOnView?: boolean
+  prefix?: React.ReactNode
 }
 
 export const TypingAnimation = ({
@@ -125,6 +126,7 @@ export const TypingAnimation = ({
   className,
   duration = 60,
   delay = 0,
+  prefix,
   as: Component = "span",
   startOnView = true,
   ...props
@@ -222,6 +224,7 @@ export const TypingAnimation = ({
       className={cn("text-sm font-normal tracking-tight", className)}
       {...props}
     >
+      {started && prefix}
       {displayedText}
     </MotionComponent>
   )

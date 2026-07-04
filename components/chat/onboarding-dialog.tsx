@@ -47,7 +47,7 @@ function ProcessFlowStep() {
             <Circle ref={ref}>
               <Icon className="size-5 text-foreground" />
             </Circle>
-            <span className="max-w-[56px] text-center text-[11px] leading-tight text-muted-foreground">
+            <span className="max-w-14 text-center text-[11px] leading-tight text-muted-foreground">
               {label}
             </span>
           </div>
@@ -71,7 +71,7 @@ export function OnboardingDialog({ open, onOpenChange }: OnboardingDialogProps) 
   const steps = [
     {
       media: (
-        <div className="flex h-52 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-700">
+        <div className="flex h-52 items-center justify-center rounded-xl bg-linear-to-br from-violet-600 to-indigo-700">
           <Bot className="size-20 text-white/90" strokeWidth={1.5} />
         </div>
       ),
@@ -80,7 +80,7 @@ export function OnboardingDialog({ open, onOpenChange }: OnboardingDialogProps) 
     },
     {
       media: (
-        <div className="flex h-52 flex-col items-center justify-center gap-1 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600">
+        <div className="flex h-52 flex-col items-center justify-center gap-1 rounded-xl bg-linear-to-br from-amber-500 to-orange-600">
           <span className="text-[80px] font-bold leading-none text-white/90">20</span>
           <span className="text-sm font-medium text-white/70">perguntas ou menos</span>
         </div>
@@ -96,7 +96,7 @@ export function OnboardingDialog({ open, onOpenChange }: OnboardingDialogProps) 
     },
     {
       media: (
-        <div className="flex h-52 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600">
+        <div className="flex h-52 items-center justify-center rounded-xl bg-linear-to-br from-emerald-500 to-teal-600">
           <ShieldCheck className="size-20 text-white/90" strokeWidth={1.5} />
         </div>
       ),

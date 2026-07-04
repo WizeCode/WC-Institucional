@@ -3,12 +3,12 @@ import { Hero } from "@/components/layout/home/hero";
 import { Contato } from "@/components/layout/home/contato";
 import { Servicos } from "@/components/layout/home/servicos";
 import { Portfolio } from "@/components/layout/home/portfolio";
-import { Parceiros } from "@/components/layout/home/parceiros";
+import { Stack } from "@/components/layout/home/stack";
 import { Faq } from "@/components/layout/home/faq";
 import { Diferenciais } from "@/components/layout/home/diferenciais";
 
 export const metadata: Metadata = {
-    title: "WizeCode — Tecnologia inteligente, do planejamento à performance",
+    title: "WizeCode",
     description:
         "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
     alternates: {
@@ -23,7 +23,7 @@ export default function Page() {
             <Servicos/>
             <Diferenciais/>
             <Portfolio/>
-            <Parceiros/>
+            <Stack/>
             <Faq/>
             <Contato/>
         </>

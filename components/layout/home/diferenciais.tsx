@@ -57,7 +57,7 @@ const DiferencialCard = ({ letter, title, description, pointerIcon }: Diferencia
     return (
         <div className="relative flex h-full flex-col gap-4 rounded-lg border bg-background p-6">
             {hasPointer && <Pointer>{pointerIcon}</Pointer>}
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-xl font-bold text-accent ">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center text-5xl font-bold text-accent ">
                 {letter}
             </div>
             <div className="flex flex-col gap-2">
