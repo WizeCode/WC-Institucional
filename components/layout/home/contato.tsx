@@ -1,13 +1,38 @@
 "use client"
 
-import { ContatoForm } from "@/components/forms/contato-form"
 import { Badge } from "@/components/ui/badge"
 import { Particles } from "@/components/ui/particles"
 import { LucideIcon, Mail } from "lucide-react"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { motion } from "motion/react"
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import { IconType } from "react-icons"
+
+const ContatoForm = dynamic(
+    () =>
+        import("@/components/forms/contato-form").then(
+            (mod) => mod.ContatoForm
+        ),
+    {
+        ssr: false,
+        loading: () => (
+            <div className="flex h-full w-full flex-col gap-4 px-6 py-10">
+                <div className="flex flex-col gap-4 xl:flex-row">
+                    <div className="h-16 flex-1 animate-pulse rounded-md bg-muted" />
+                    <div className="h-16 flex-1 animate-pulse rounded-md bg-muted" />
+                </div>
+                <div className="flex flex-col gap-4 xl:flex-row">
+                    <div className="h-16 flex-1 animate-pulse rounded-md bg-muted" />
+                    <div className="h-16 flex-1 animate-pulse rounded-md bg-muted" />
+                </div>
+                <div className="h-16 animate-pulse rounded-md bg-muted" />
+                <div className="h-36 animate-pulse rounded-md bg-muted" />
+                <div className="h-10 animate-pulse rounded-md bg-muted sm:self-end sm:w-40" />
+            </div>
+        ),
+    }
+)
 
 interface InfoCard {
     icon: LucideIcon | IconType
