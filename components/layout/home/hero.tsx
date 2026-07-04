@@ -1,8 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { usePostHog } from "posthog-js/react"
-import { AnimatePresence, motion } from "motion/react"
 import {
     AnimatedSpan,
     Terminal,
@@ -28,17 +26,6 @@ interface HeroProps {
         }
     }
 }
-
-const projects = [
-    '"seu e-commerce"',
-    '"sua plataforma"',
-    '"seu app mobile"',
-    '"seu site"',
-]
-
-// tempo estimado para as 3 linhas estáticas animarem (~1.9s)
-const STATIC_DURATION = 2000
-const ROTATION_INTERVAL = 2500
 
 const Hero = ({
     heading = (
@@ -66,29 +53,11 @@ const Hero = ({
         },
     },
 }: HeroProps) => {
-    const [projectIndex, setProjectIndex] = useState(0)
-    const [rotationStarted, setRotationStarted] = useState(false)
     const posthog = usePostHog()
-
-    useEffect(() => {
-        const startTimer = setTimeout(
-            () => setRotationStarted(true),
-            STATIC_DURATION
-        )
-        return () => clearTimeout(startTimer)
-    }, [])
-
-    useEffect(() => {
-        if (!rotationStarted) return
-        const interval = setInterval(() => {
-            setProjectIndex((prev) => (prev + 1) % projects.length)
-        }, ROTATION_INTERVAL)
-        return () => clearInterval(interval)
-    }, [rotationStarted])
 
     return (
         <section className="px-8">
-            <div className="container py-12 sm:py-32 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
+            <div className="container py-8 sm:py-16 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
                 <div className="mx-auto flex flex-col flex-1 items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
                     {badgeText && <Badge variant="outline">{badgeText}</Badge>}
                     <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
@@ -116,25 +85,60 @@ const Hero = ({
                 </div>
                 <div className="flex justify-center w-full flex-1 lg:justify-end">
                     <Terminal
-                        className="max-h-120 max-w-xl"
+                        className="max-h-136 max-w-xl"
                         startOnView={false}
                     >
-                        <TypingAnimation>$ wizecode init</TypingAnimation>
-                        <AnimatedSpan>✔ briefing realizado</AnimatedSpan>
-                        <AnimatedSpan>✔ escopo definido</AnimatedSpan>
-                        <AnimatedSpan className="flex items-center gap-1">
-                            <span>{"> desenvolvendo:"}</span>
-                            <AnimatePresence mode="wait">
-                                <motion.span
-                                    key={projectIndex}
-                                    initial={{ opacity: 0, y: -4 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 4 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    {projects[projectIndex]}
-                                </motion.span>
-                            </AnimatePresence>
+                        <TypingAnimation
+                            className="font-bold"
+                            prefix={<span className="text-accent">$ </span>}
+                        >
+                            {'wizecode scan "seu-negócio"'}
+                        </TypingAnimation>
+                        <AnimatedSpan className="pl-4 text-red-500">
+                            {"⚠︎ processos manuais detectados"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-red-500">
+                            {"⚠︎ ferramentas e sistemas lentos"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-red-500">
+                            {"⚠︎ presença digital desatualizada"}
+                        </AnimatedSpan>
+
+                        <TypingAnimation
+                            className="mt-4 font-bold"
+                            prefix={<span className="text-accent">$ </span>}
+                        >
+                            {'wizecode init "seu-projeto"'}
+                        </TypingAnimation>
+                        <AnimatedSpan className="pl-4 text-foreground">
+                            {"> entrevista inicial realizada"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-foreground">
+                            {"> requisitos funcionais e não-funcionais mapeados"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-foreground">
+                            {"> plano de desenvolvimento elaborado"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-12 text-muted-foreground">
+                            stack definida
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-12 text-muted-foreground">
+                            cronograma definido
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-foreground">
+                            {"> design desenvolvido e aprovado"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-4 text-foreground">
+                            {"> testes de qualidade realizados"}
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-12 text-muted-foreground">
+                            performance: 98/100
+                        </AnimatedSpan>
+                        <AnimatedSpan className="pl-12 text-muted-foreground">
+                            segurança: máxima
+                        </AnimatedSpan>
+                        <AnimatedSpan className="mt-4 pl-4 text-emerald-500 font-bold">
+                            {"✓ projeto publicado e entregue com sucesso!"}
                         </AnimatedSpan>
                     </Terminal>
                 </div>

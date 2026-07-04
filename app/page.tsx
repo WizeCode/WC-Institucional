@@ -8,7 +8,7 @@ import { Faq } from "@/components/layout/home/faq";
 import { Diferenciais } from "@/components/layout/home/diferenciais";
 
 export const metadata: Metadata = {
-    title: "WizeCode — Tecnologia inteligente, do planejamento à performance",
+    title: "WizeCode",
     description:
         "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
     alternates: {
