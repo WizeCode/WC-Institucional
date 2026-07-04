@@ -132,7 +132,6 @@ const Portfolio = ({
                                                     alt={project.title}
                                                     width={450}
                                                     height={450}
-                                                    unoptimized
                                                     className="aspect-square h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                                                 />
                                             </div>

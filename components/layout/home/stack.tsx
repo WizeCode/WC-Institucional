@@ -62,7 +62,6 @@ const TechMarqueeItem = ({ tech }: { tech: Technology }) => (
             alt={tech.name}
             width={720}
             height={720}
-            unoptimized
             className={cn(
                 "h-auto max-h-8 sm:max-h-10 w-auto object-contain",
                 tech.blackInLight && "brightness-0 dark:invert"
