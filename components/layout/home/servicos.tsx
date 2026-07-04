@@ -54,7 +54,7 @@ const Servicos = ({
             description: serviceCatalog["Institucional"].shortDescription,
             color: "#0f101f",
             href: serviceCatalog["Institucional"].href,
-            image: { src: "/images/home/websites.svg", alt: "Website Institucional" },
+            image: { src: "/images/home/websites.webp", alt: "Website Institucional" },
         },
         {
             id: "Landing Page",
@@ -62,7 +62,7 @@ const Servicos = ({
             description: serviceCatalog["Landing Page"].shortDescription,
             color: "#37175a",
             href: serviceCatalog["Landing Page"].href,
-            image: { src: "/images/home/landing page.svg", alt: "Landing Page" },
+            image: { src: "/images/home/landing page.webp", alt: "Landing Page" },
         },
         {
             id: "Sistemas",
@@ -70,7 +70,7 @@ const Servicos = ({
             description: serviceCatalog["Sistemas"].shortDescription,
             color: "#7849cb",
             href: serviceCatalog["Sistemas"].href,
-            image: { src: "/images/home/sistemas2.svg", alt: "Sistemas" },
+            image: { src: "/images/home/sistemas2.webp", alt: "Sistemas" },
         },
         {
             id: "Automações",
@@ -107,6 +107,8 @@ const Servicos = ({
                                 alt={activeService.image.alt}
                                 width={2160}
                                 height={1080}
+                                priority
+                                sizes="(min-width: 1024px) 50vw, 100vw"
                                 className="aspect-2/1 animate-in object-cover duration-300 fade-in"
                             />
                         </div>
