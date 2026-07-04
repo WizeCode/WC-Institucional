@@ -51,7 +51,7 @@ formulários de contato integrados ao CRM.
 npm install
 
 # 2. Configurar variáveis de ambiente
-cp .env .env.local   # e preencha os valores (veja a seção abaixo)
+cp .env.example .env.local   # e preencha os valores (veja a seção abaixo)
 
 # 3. Iniciar o servidor de desenvolvimento
 npm run dev
@@ -71,7 +71,7 @@ Crie um arquivo `.env.local` na raiz do projeto com as seguintes chaves:
 | `OPENROUTER_MODEL`                | Modelo usado pelo chatbot (ex.: `anthropic/claude-...`).|
 | `N8N_WEBHOOK_URL`                 | URL do webhook do n8n (contato/chatbot → CRM).         |
 | `N8N_WEBHOOK_SECRET`              | Segredo para autenticar as chamadas ao webhook.        |
-| `NEXT_PUBLIC_POSTHOG_KEY`         | Chave pública do projeto no PostHog.                   |
+| `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` | Token público do projeto no PostHog.                 |
 | `NEXT_PUBLIC_POSTHOG_HOST`        | Host da instância do PostHog.                          |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`  | Site key do Cloudflare Turnstile (pública).            |
 | `TURNSTILE_SECRET_KEY`            | Secret key do Cloudflare Turnstile (privada).          |
