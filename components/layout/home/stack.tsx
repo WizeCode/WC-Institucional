@@ -56,7 +56,7 @@ const defaultTechRowThree: Technology[] = [
 ]
 
 const TechMarqueeItem = ({ tech }: { tech: Technology }) => (
-    <MarqueeItem className="mx-8 flex aspect-3/1 w-32 items-center justify-center sm:w-40 lg:mx-10">
+    <MarqueeItem className="mx-0.5 sm:mx-8 flex aspect-3/1 w-32 items-center justify-center sm:w-40 lg:mx-10">
         <Image
             src={tech.logo}
             alt={tech.name}

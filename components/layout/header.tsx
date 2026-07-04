@@ -207,7 +207,10 @@ const Header = ({
                                     <Menu size={20} className="cursor-pointer" />
                                 </SheetTrigger>
 
-                                <SheetContent className="overflow-y-auto">
+                                <SheetContent
+                                    className="overflow-y-auto"
+                                    onOpenAutoFocus={(e) => e.preventDefault()}
+                                >
                                     <SheetHeader>
                                         <SheetTitle>
                                             <Link href={logo.url} className="flex items-center gap-2">
@@ -233,7 +236,7 @@ const Header = ({
                                             collapsible
                                         >
                                             {menu.map((item) =>
-                                                renderMobileMenuItem(item)
+                                                renderMobileMenuItem(item, () => setIsOpen(false))
                                             )}
                                         </Accordion>
 
@@ -242,14 +245,14 @@ const Header = ({
                                                 <ShineBorder className="transition-opacity duration-200 opacity-100"
                                                     shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                                                 />
-                                                <Button className="w-full" asChild size="lg" variant="outline" onClick={() => posthog.capture("cta_wiz_clicked", { source: "header_mobile" })}>
+                                                <Button className="w-full" asChild size="lg" variant="outline" onClick={() => { posthog.capture("cta_wiz_clicked", { source: "header_mobile" }); setIsOpen(false); }}>
                                                     <Link href={ctaWiz.url}>
                                                         {ctaWiz.title}
                                                     </Link>
                                                 </Button>
                                             </div>
 
-                                            <Button asChild size="lg" onClick={() => posthog.capture("cta_contact_clicked", { source: "header_mobile" })}>
+                                            <Button asChild size="lg" onClick={() => { posthog.capture("cta_contact_clicked", { source: "header_mobile" }); setIsOpen(false); }}>
                                                 <Link href={ctaContact.url}>
                                                     {ctaContact.title}
                                                 </Link>
@@ -342,7 +345,7 @@ const DropdownCard = ({ item }: { item: MenuItem }) => {
     );
 };
 
-const renderMobileMenuItem = (item: MenuItem) => {
+const renderMobileMenuItem = (item: MenuItem, onNavigate: () => void) => {
     if (item.items) {
         return (
             <AccordionItem className="border-none" key={item.title} value={item.title}>
@@ -353,7 +356,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
                 <AccordionContent className="mt-4">
                     <div className="flex flex-col gap-1">
                         {item.items.map((subItem) => (
-                            <MobileSubItem key={subItem.title} item={subItem} />
+                            <MobileSubItem key={subItem.title} item={subItem} onNavigate={onNavigate} />
                         ))}
                     </div>
                 </AccordionContent>
@@ -362,16 +365,17 @@ const renderMobileMenuItem = (item: MenuItem) => {
     }
 
     return (
-        <Link key={item.title} href={item.url} className="text-[14px] font-semibold">
+        <Link key={item.title} href={item.url} className="text-[14px] font-semibold" onClick={onNavigate}>
             {item.title}
         </Link>
     );
 };
 
-const MobileSubItem = ({ item }: { item: MenuItem }) => {
+const MobileSubItem = ({ item, onNavigate }: { item: MenuItem; onNavigate: () => void }) => {
     return (
         <Link
             href={item.url}
+            onClick={onNavigate}
             className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-muted no-underline!"
         >
             {item.icon && (
