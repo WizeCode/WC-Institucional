@@ -1,19 +1,31 @@
-import { Button } from "@/components/ui/button"
+import type { Metadata } from "next";
+import { Hero } from "@/components/layout/home/hero";
+import { Contato } from "@/components/layout/home/contato";
+import { Servicos } from "@/components/layout/home/servicos";
+import { Portfolio } from "@/components/layout/home/portfolio";
+import { Stack } from "@/components/layout/home/stack";
+import { Faq } from "@/components/layout/home/faq";
+import { Diferenciais } from "@/components/layout/home/diferenciais";
+
+export const metadata: Metadata = {
+    title: "WizeCode",
+    description:
+        "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
+    alternates: {
+        canonical: "/",
+    },
+};
 
 export default function Page() {
-  return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
-  )
+    return (
+        <>
+            <Hero/>
+            <Servicos/>
+            <Diferenciais/>
+            <Portfolio/>
+            <Stack/>
+            <Faq/>
+            <Contato/>
+        </>
+    );
 }
