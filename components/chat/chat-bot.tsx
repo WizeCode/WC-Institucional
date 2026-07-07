@@ -26,7 +26,7 @@ import {
     type BriefingData,
 } from "@/components/chat/briefing-dialog"
 import { OnboardingDialog } from "@/components/chat/onboarding-dialog"
-import { verifyTurnstile } from "@/lib/chat/actions"
+import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { Turnstile } from "@marsidev/react-turnstile"
 
 const BRIEFING_REGEX = /<briefing>([\s\S]*?)<\/briefing>/

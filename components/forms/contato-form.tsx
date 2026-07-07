@@ -1,7 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Turnstile } from "@marsidev/react-turnstile"
 import {
     contatoSchema,
     servicoOptions,
@@ -21,6 +23,8 @@ import {
 } from "@/components/ui/select"
 
 export function ContatoForm() {
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+
     const {
         register,
         handleSubmit,
@@ -39,7 +43,14 @@ export function ContatoForm() {
     })
 
     async function onSubmit(data: ContatoFormData) {
-        const result = await enviarContato(data)
+        if (process.env.NODE_ENV !== "development" && !turnstileToken) {
+            setError("root", {
+                message: "Aguarde a verificação de segurança e tente novamente.",
+            })
+            return
+        }
+
+        const result = await enviarContato(data, turnstileToken ?? "")
         if (!result.success) {
             setError("root", { message: result.error })
         }
@@ -194,6 +205,12 @@ export function ContatoForm() {
             >
                 {isSubmitting ? "Enviando..." : "Enviar mensagem"}
             </Button>
+
+            <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                options={{ size: "invisible" }}
+                onSuccess={setTurnstileToken}
+            />
         </form>
     )
 }
