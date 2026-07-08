@@ -9,7 +9,7 @@ import {
     FaWhatsapp,
 } from "react-icons/fa";
 import { cn } from "@/lib/utils"
-import { services } from "@/types/services";
+import { services } from "@/lib/services";
 
 import Link from "next/link";
 import Image from "next/image";
