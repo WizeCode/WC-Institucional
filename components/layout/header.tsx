@@ -29,7 +29,8 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { useThemeToggle } from "@/components/theme-provider";
-import { services } from "@/types/services";
+import { services } from "@/lib/services";
+import { icons } from "@/lib/icons";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -68,7 +69,7 @@ interface NavbarProps {
 };
 
 const serviceMenuItems: MenuItem[] = Object.values(services).map((service) => {
-    const Icon = service.icon;
+    const Icon = icons[service.icon];
     return {
         title: service.label,
         description: service.shortDescription,
