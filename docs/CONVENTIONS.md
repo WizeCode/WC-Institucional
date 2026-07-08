@@ -200,13 +200,15 @@ uma biblioteca de ícones.
 ```
 components/
   ui/                 ← primitivos (shadcn/ui): Button, Badge, Terminal…
-  layout/
-    section.tsx       ← wrapper de seção (estrutura: <section> + container)
+  layout/             ← estrutura reutilizável (viaja p/ qualquer página)
+    section.tsx       ← wrapper de seção (<section> + container)
     hero.tsx          ← hero unificado (esqueleto, conteúdo via props)
-    home/             ← seções (esqueletos puros, conteúdo via props)
-      servicos.tsx
-      faq.tsx
-      ...
+    form-layout.tsx   ← página de formulário (texto + formulário)
+    header.tsx  footer.tsx  contact-channels.tsx
+  sections/           ← blocos de seção concretos (esqueletos puros, conteúdo via props)
+    servicos.tsx
+    faq.tsx
+    ...
 
 app/
   page.tsx            ← compõe a home
@@ -217,7 +219,12 @@ app/
 ```
 
 - `components/ui/*` — primitivos apresentacionais (já é assim, é o shadcn).
-- `components/layout/*` — componentes de seção/estrutura, **também** apresentacionais.
+- `components/layout/*` — **estrutura reutilizável**: wrappers e chrome que servem
+  qualquer página (Section, Hero, FormLayout, header, footer). Candidatos naturais
+  a virar biblioteca (seção 7).
+- `components/sections/*` — **blocos de seção** concretos do produto (Serviços, FAQ…).
+  São esqueletos puros (conteúdo via props), mas específicos deste site — por isso
+  não moram em `layout/` nem numa pasta de página (o nome não deve amarrá-los a uma rota).
 - `app/**/page.tsx` — a camada de composição: escolhe componentes, injeta conteúdo.
 - `app/**/*.data.ts` — o conteúdo daquela rota.
 
