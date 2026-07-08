@@ -7,12 +7,12 @@ import {
     TypingAnimation,
 } from "@/components/ui/terminal"
 import { Particles } from "@/components/ui/particles"
-import { Contato } from "@/components/layout/home/contato"
-import { Servicos } from "@/components/layout/home/servicos"
-import { Portfolio } from "@/components/layout/home/portfolio"
-import { Stack } from "@/components/layout/home/stack"
-import { Faq } from "@/components/layout/home/faq"
-import { Diferenciais } from "@/components/layout/home/diferenciais"
+import { Contato } from "@/components/sections/contato"
+import { Servicos } from "@/components/sections/servicos"
+import { Portfolio } from "@/components/sections/portfolio"
+import { Stack } from "@/components/sections/stack"
+import { Faq } from "@/components/sections/faq"
+import { Diferenciais } from "@/components/sections/diferenciais"
 import { home } from "./home.data"
 import Link from "next/link"
 

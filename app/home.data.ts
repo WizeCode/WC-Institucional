@@ -1,9 +1,9 @@
 import { services as serviceCatalog } from "@/lib/services"
-import type { ServiceItem } from "@/components/layout/home/servicos"
-import type { Diferencial } from "@/components/layout/home/diferenciais"
-import type { Project } from "@/components/layout/home/portfolio"
-import type { Technology } from "@/components/layout/home/stack"
-import type { FaqItem } from "@/components/layout/home/faq"
+import type { ServiceItem } from "@/components/sections/servicos"
+import type { Diferencial } from "@/components/sections/diferenciais"
+import type { Project } from "@/components/sections/portfolio"
+import type { Technology } from "@/components/sections/stack"
+import type { FaqItem } from "@/components/sections/faq"
 import { siteContact } from "@/lib/social"
 
 const stackIcon = (file: string) => `/images/stack/${file}.svg`
