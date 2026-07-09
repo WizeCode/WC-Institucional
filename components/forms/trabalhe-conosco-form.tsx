@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { usePostHog } from "posthog-js/react"
-import { Turnstile } from "@marsidev/react-turnstile"
 import Link from "next/link"
+import { TurnstileBox } from "@/components/providers/turnstile-box"
 import {
     talentoSchema,
     validarCurriculo,
@@ -66,10 +66,12 @@ export function TrabalheConoscoForm() {
 
     const [curriculo, setCurriculo] = useState<File | null>(null)
     const [curriculoError, setCurriculoError] = useState<string | null>(null)
-    const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
     const [success, setSuccess] = useState(false)
     // Muda a key para remontar (limpar) o input de arquivo após o envio.
     const [curriculoKey, setCurriculoKey] = useState(0)
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+    // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
+    const [turnstileKey, setTurnstileKey] = useState(0)
 
     // UTMs lidas da URL uma única vez (inicializador lazy, sem hydration
     // mismatch pois os valores só entram no payload, nunca são renderizados).
@@ -93,13 +95,6 @@ export function TrabalheConoscoForm() {
         }
         setCurriculoError(null)
 
-        if (process.env.NODE_ENV !== "development" && !turnstileToken) {
-            setError("root", {
-                message: "Aguarde a verificação de segurança e tente novamente.",
-            })
-            return
-        }
-
         const fd = new FormData()
         Object.entries(data).forEach(([key, value]) =>
             fd.append(key, String(value))
@@ -108,9 +103,14 @@ export function TrabalheConoscoForm() {
         fd.append("utm_source", utm.utm_source)
         fd.append("utm_medium", utm.utm_medium)
         fd.append("utm_campaign", utm.utm_campaign)
-        if (turnstileToken) fd.append("turnstileToken", turnstileToken)
+        fd.append("turnstileToken", turnstileToken ?? "")
 
         const result = await enviarCandidatura(fd)
+
+        // O token foi consumido pelo servidor, valendo ou não.
+        setTurnstileToken(null)
+        setTurnstileKey((k) => k + 1)
+
         if (!result.success) {
             setError("root", { message: result.error })
             return
@@ -455,19 +455,15 @@ export function TrabalheConoscoForm() {
                 </p>
             )}
 
+            <TurnstileBox key={turnstileKey} onToken={setTurnstileToken} />
+
             <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !turnstileToken}
                 className="mx-auto w-full sm:self-end"
             >
                 {isSubmitting ? "Enviando..." : "Enviar candidatura"}
             </Button>
-
-            <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                options={{ size: "invisible" }}
-                onSuccess={setTurnstileToken}
-            />
         </form>
     )
 }

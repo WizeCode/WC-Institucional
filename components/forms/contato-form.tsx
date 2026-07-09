@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileBox } from "@/components/providers/turnstile-box"
 import {
     contatoSchema,
     servicoOptions,
@@ -24,6 +24,8 @@ import {
 
 export function ContatoForm() {
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+    // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
+    const [turnstileKey, setTurnstileKey] = useState(0)
 
     const {
         register,
@@ -43,14 +45,12 @@ export function ContatoForm() {
     })
 
     async function onSubmit(data: ContatoFormData) {
-        if (process.env.NODE_ENV !== "development" && !turnstileToken) {
-            setError("root", {
-                message: "Aguarde a verificação de segurança e tente novamente.",
-            })
-            return
-        }
-
         const result = await enviarContato(data, turnstileToken ?? "")
+
+        // O token foi consumido pelo servidor, valendo ou não.
+        setTurnstileToken(null)
+        setTurnstileKey((k) => k + 1)
+
         if (!result.success) {
             setError("root", { message: result.error })
         }
@@ -198,19 +198,15 @@ export function ContatoForm() {
                 </p>
             )}
 
+            <TurnstileBox key={turnstileKey} onToken={setTurnstileToken} />
+
             <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !turnstileToken}
                 className="mx-auto w-full sm:self-end"
             >
                 {isSubmitting ? "Enviando..." : "Enviar mensagem"}
             </Button>
-
-            <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                options={{ size: "invisible" }}
-                onSuccess={setTurnstileToken}
-            />
         </form>
     )
 }

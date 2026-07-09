@@ -8,8 +8,9 @@ export async function sendBriefing(
   conversation: { role: string; content: string }[],
   contact: { nome: string; email: string; whatsapp: string }
 ) {
-  const ok = await verifyTurnstile(token);
-  if (!ok) return { success: false };
+  if (process.env.NODE_ENV !== "development") {
+    if (!token || !(await verifyTurnstile(token))) return { success: false };
+  }
 
   const webhookBase = process.env.N8N_WEBHOOK_URL;
   if (!webhookBase) return { success: false };
