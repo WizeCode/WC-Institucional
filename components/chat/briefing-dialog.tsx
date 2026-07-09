@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { TurnstileBox } from "@/components/providers/turnstile-box";
 import { sendBriefing } from "@/lib/chat/actions";
 
 export interface BriefingData {
@@ -33,7 +34,6 @@ interface BriefingDialogProps {
   briefing: BriefingData;
   briefingRaw: string;
   conversation: { role: string; content: string }[];
-  turnstileToken: string;
 }
 
 export function BriefingDialog({
@@ -42,7 +42,6 @@ export function BriefingDialog({
   briefing,
   briefingRaw,
   conversation,
-  turnstileToken,
 }: BriefingDialogProps) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -50,16 +49,25 @@ export function BriefingDialog({
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
+  const [turnstileKey, setTurnstileKey] = useState(0);
 
   async function handleSubmit() {
     if (!nome.trim() || !email.trim() || !whatsapp.trim()) return;
     setLoading(true);
     setError(false);
-    const result = await sendBriefing(briefingRaw, turnstileToken, conversation, {
+
+    const result = await sendBriefing(briefingRaw, turnstileToken ?? "", conversation, {
       nome,
       email,
       whatsapp,
     });
+
+    // O token foi consumido pelo servidor, valendo ou não.
+    setTurnstileToken(null);
+    setTurnstileKey((k) => k + 1);
+
     setLoading(false);
     if (result?.success) {
       setSent(true);
@@ -166,6 +174,8 @@ export function BriefingDialog({
                 Erro ao enviar. Tente novamente.
               </p>
             )}
+
+            <TurnstileBox key={turnstileKey} onToken={setTurnstileToken} />
           </div>
         )}
 
@@ -176,7 +186,13 @@ export function BriefingDialog({
           {!sent && (
             <Button
               onClick={handleSubmit}
-              disabled={loading || !nome.trim() || !email.trim() || !whatsapp.trim()}
+              disabled={
+                loading ||
+                !turnstileToken ||
+                !nome.trim() ||
+                !email.trim() ||
+                !whatsapp.trim()
+              }
             >
               {loading ? "Enviando..." : "Enviar proposta"}
             </Button>

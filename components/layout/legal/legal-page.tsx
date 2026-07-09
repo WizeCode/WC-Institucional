@@ -5,16 +5,6 @@ interface LegalPageProps {
     titulo: string
     children: ReactNode
 }
-
-/**
- * Wrapper de tipografia para páginas de conteúdo textual longo
- * (Termos de Uso, Política de Privacidade, etc.).
- *
- * Renderiza um título padrão e aplica a tipografia do design system
- * (família "Geom", espaçamento e cores por token) para headings,
- * parágrafos, listas, links, ênfases e blockquotes escritos como
- * JSX semântico simples pelos filhos.
- */
 const LegalPage = ({ titulo, children }: LegalPageProps) => {
     return (
         <section className="px-6 sm:px-8">
