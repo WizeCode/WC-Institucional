@@ -75,7 +75,7 @@ export function OnboardingDialog({ open, onOpenChange }: OnboardingDialogProps) 
           <Bot className="size-20 text-white/90" strokeWidth={1.5} />
         </div>
       ),
-      title: "Conheça a Wizard",
+      title: "Conheça o Wizard",
       description: "O assistente da WizeCode que transforma sua ideia em uma proposta personalizada.",
     },
     {
@@ -86,7 +86,7 @@ export function OnboardingDialog({ open, onOpenChange }: OnboardingDialogProps) 
         </div>
       ),
       title: "Briefing em menos de 20 perguntas",
-      description: "Sem formulários chatos. A Wizard conduz a conversa e coleta o que nossa equipe precisa.",
+      description: "Sem formulários chatos. O Wizard conduz a conversa e coleta o que nossa equipe precisa.",
     },
     {
       media: <ProcessFlowStep />,

@@ -4,7 +4,7 @@ import { ChatBot } from "@/components/chat/chat-bot";
 export const metadata: Metadata = {
     title: "Wizard Chat - Converse com nosso assistente virtual",
     description:
-        "Seu projeto ainda está meio confuso? Fale com a Wizard, nossa assistente virtual. Ela coleta tudo que precisamos para criar uma proposta sob medida — sem formulários, sem fricção.",
+        "Seu projeto ainda está meio confuso? Fale com o Wizard, nosso assistente virtual. Ele coleta tudo que precisamos para criar uma proposta sob medida — sem formulários, sem fricção.",
     alternates: {
         canonical: "/chat",
     },
@@ -15,12 +15,12 @@ const steps = [
     {
         icon: MessageSquare,
         title: "Descreva seu projeto",
-        description: "Converse com a Wizard como você faria com qualquer pessoa. Sem formulários, sem tecnicismo.",
+        description: "Converse com o Wizard como você faria com qualquer pessoa. Sem formulários, sem tecnicismo.",
     },
     {
         icon: FileText,
         title: "Wizard organiza tudo",
-        description: "Ela estrutura as informações e gera um briefing completo — objetivos, escopo, contexto.",
+        description: "Ele estrutura as informações e gera um briefing completo — objetivos, escopo, contexto.",
     },
     {
         icon: Rocket,
@@ -46,7 +46,7 @@ export default function Page() {
                         <span className="text-primary">uma boa conversa.</span>
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                        A Wizard coleta tudo que precisamos para criar uma proposta
+                        O Wizard coleta tudo que precisamos para criar uma proposta
                         sob medida — sem formulários, sem fricção.
                     </p>
                 </div>
