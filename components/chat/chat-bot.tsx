@@ -28,6 +28,11 @@ import {
 import { OnboardingDialog } from "@/components/chat/onboarding-dialog"
 import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { TurnstileBox } from "@/components/providers/turnstile-box"
+import {
+    MENSAGENS_INICIAIS,
+    NOME_ASSISTENTE,
+    TEXTO_ABERTURA,
+} from "@/lib/chat/mensagem-inicial"
 
 const BRIEFING_REGEX = /<briefing>([\s\S]*?)<\/briefing>/
 const ABORT_REGEX = /<abort\s*\/?>/
@@ -48,9 +53,48 @@ function stripTags(text: string) {
     return text
 }
 
+// Realça o nome do assistente na abertura centralizada. Se o nome não estiver
+// no parágrafo, devolve o texto puro.
+function realcarNome(paragrafo: string) {
+    const corte = paragrafo.indexOf(NOME_ASSISTENTE)
+    if (corte === -1) return paragrafo
+
+    return (
+        <>
+            {paragrafo.slice(0, corte)}
+            <AuroraText>{NOME_ASSISTENTE}</AuroraText>
+            {paragrafo.slice(corte + NOME_ASSISTENTE.length)}
+        </>
+    )
+}
+
+// Enquanto a abertura é a única mensagem, ela ocupa o centro do painel. Quando o
+// usuário responde, o mesmo texto reflui pro topo como balão de assistente.
+function AberturaCentralizada() {
+    return (
+        <div className="flex flex-1 items-center justify-center p-6">
+            <div className="max-w-sm space-y-3 text-center">
+                {TEXTO_ABERTURA.split("\n\n").map((paragrafo, index) => (
+                    <p
+                        key={index}
+                        className={
+                            index === 0
+                                ? "text-sm font-medium"
+                                : "text-sm text-muted-foreground"
+                        }
+                    >
+                        {realcarNome(paragrafo)}
+                    </p>
+                ))}
+            </div>
+        </div>
+    )
+}
+
 export function ChatBot() {
     const { messages, status, stop, sendMessage } = useChat({
         transport: new TextStreamChatTransport({ api: "/api/chat" }),
+        messages: MENSAGENS_INICIAIS,
     })
 
     const [onboardingOpen, setOnboardingOpen] = useState(() => {
@@ -127,17 +171,8 @@ export function ChatBot() {
 
     return (
         <div className="flex min-h-0 w-full flex-1 flex-col">
-            {messages.length === 0 ? (
-                <div className="flex flex-1 items-center justify-center">
-                    <div className="space-y-1 text-center">
-                        <h3 className="text-sm font-medium">
-                            Olá! Sou a <AuroraText>Wizard</AuroraText>
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                            Conte-me sobre o seu projeto.
-                        </p>
-                    </div>
-                </div>
+            {messages.length === 1 ? (
+                <AberturaCentralizada />
             ) : (
                 <Conversation>
                     <ConversationContent>
