@@ -1,7 +1,9 @@
 "use server";
 
+import { lerEnv } from "@/lib/env";
+
 export async function verifyTurnstile(token: string): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
+  const secret = lerEnv("TURNSTILE_SECRET_KEY", "turnstile");
   if (!secret) return false;
 
   const res = await fetch(
