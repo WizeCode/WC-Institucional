@@ -2,6 +2,7 @@
 
 import { talentoSchema, validarCurriculo } from "@/lib/talentos/schema"
 import { verifyTurnstile } from "@/lib/turnstile/actions"
+import { lerEnv } from "@/lib/env"
 
 export async function enviarCandidatura(formData: FormData) {
     if (process.env.NODE_ENV !== "development") {
@@ -31,10 +32,10 @@ export async function enviarCandidatura(formData: FormData) {
         return { success: false, error: "Currículo inválido." }
     }
 
-    const webhookBase = process.env.N8N_WEBHOOK_URL
+    const webhookBase = lerEnv("N8N_WEBHOOK_URL", "talentos")
     if (!webhookBase) return { success: false, error: "Serviço indisponível." }
 
-    const secret = process.env.N8N_WEBHOOK_SECRET
+    const secret = lerEnv("N8N_WEBHOOK_SECRET", "talentos")
     if (!secret) return { success: false, error: "Serviço indisponível." }
 
     const payload = new FormData()

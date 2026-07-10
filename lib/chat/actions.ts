@@ -1,6 +1,7 @@
 "use server";
 
 import { verifyTurnstile } from "@/lib/turnstile/actions";
+import { lerEnv } from "@/lib/env";
 
 export async function sendBriefing(
   data: string,
@@ -12,14 +13,14 @@ export async function sendBriefing(
     if (!token || !(await verifyTurnstile(token))) return { success: false };
   }
 
-  const webhookBase = process.env.N8N_WEBHOOK_URL;
+  const webhookBase = lerEnv("N8N_WEBHOOK_URL", "briefing");
   if (!webhookBase) return { success: false };
 
-  const secret = process.env.N8N_WEBHOOK_SECRET;
+  const secret = lerEnv("N8N_WEBHOOK_SECRET", "briefing");
   if (!secret) return { success: false };
 
   try {
-    await fetch(`${webhookBase}/briefing`, {
+    const res = await fetch(`${webhookBase}/briefing`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,8 +32,14 @@ export async function sendBriefing(
         contato: contact,
       }),
     });
+    if (!res.ok) {
+      const detalhe = await res.text().catch(() => "");
+      console.error(`[briefing] webhook n8n respondeu ${res.status}: ${detalhe}`);
+      return { success: false };
+    }
     return { success: true };
-  } catch {
+  } catch (err) {
+    console.error("[briefing] falha ao chamar webhook n8n:", err);
     return { success: false };
   }
 }
