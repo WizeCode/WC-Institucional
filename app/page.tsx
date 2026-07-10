@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            <Section className="my-0 sm:py-16">
+            <Section className="my-0">
                 <Hero
                     badge="/ Hero"
                     title={
@@ -119,10 +119,10 @@ export default function Page() {
                 </Hero>
             </Section>
 
-            <Section variant="soft">
+            <Section variant="soft" className="sm:py-8">
                 <Servicos
-                    badgeText="/ Serviços"
-                    heading={
+                    badge="/ Serviços"
+                    title={
                         <>
                             O que a WizeCode{" "}
                             <span className="text-accent">entrega</span>
@@ -138,10 +138,10 @@ export default function Page() {
                 />
             </Section>
 
-            <Section className="sm:py-16">
+            <Section>
                 <Diferenciais
-                    badgeText="/ Diferenciais"
-                    heading={
+                    badge="/ Diferenciais"
+                    title={
                         <>
                             Mas o que a WizeCode tem de{" "}
                             <span className="text-accent">diferente</span>?
@@ -152,20 +152,20 @@ export default function Page() {
                 />
             </Section>
 
-            <Section>
+            <Section className="sm:py-8">
                 <Portfolio
-                    badgeText="/ Portfólio"
-                    heading="Nosso Portfólio"
+                    badge="/ Portfólio"
+                    title="Nosso Portfólio"
                     description="Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto."
                     button={{ url: "/cases", text: "Ver todos os cases" }}
                     projects={home.portfolio.projects}
                 />
             </Section>
 
-            <Section className="sm:py-16">
+            <Section>
                 <Stack
-                    badgeText="/ Stack"
-                    heading="Técnologias confiáveis"
+                    badge="/ Stack"
+                    title="Técnologias confiáveis"
                     description="Stack sólida e confiável, com tecnologias modernas, garantindo a qualidade e performance dos nossos projetos."
                     techRowOne={home.stack.techRowOne}
                     techRowTwo={home.stack.techRowTwo}
@@ -175,8 +175,8 @@ export default function Page() {
 
             <Section className="py-16">
                 <Faq
-                    badgeText="/ FAQ"
-                    heading={
+                    badge="/ FAQ"
+                    title={
                         <>
                             Alguma dúvida? <br />{" "}
                             <span className="font-normal text-muted-foreground">
@@ -203,6 +203,7 @@ export default function Page() {
 
             <Section
                 variant="accent"
+                className="sm:py-8"
                 backdrop={
                     <Particles
                         className="absolute inset-0 z-0"
@@ -214,8 +215,8 @@ export default function Page() {
                 }
             >
                 <Contato
-                    badgeText="/ Contato"
-                    heading="Vamos construir algo incrível juntos?"
+                    badge="/ Contato"
+                    title="Vamos construir algo incrível juntos?"
                     description="Nossa equipe entrará em contato em até 24 horas úteis"
                     infoCards={home.contato.infoCards}
                 />

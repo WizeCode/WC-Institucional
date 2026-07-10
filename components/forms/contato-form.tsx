@@ -22,7 +22,11 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-export function ContatoForm() {
+interface ContatoFormProps {
+    servicoPadrao?: ContatoFormData["servico"]
+}
+
+export function ContatoForm({ servicoPadrao }: ContatoFormProps = {}) {
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
     // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
     const [turnstileKey, setTurnstileKey] = useState(0)
@@ -40,6 +44,7 @@ export function ContatoForm() {
             empresa: "",
             email: "",
             telefone: "",
+            servico: servicoPadrao,
             descricao: "",
         },
     })

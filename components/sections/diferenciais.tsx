@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
 import { Pointer } from "@/components/ui/pointer"
 import { icons, type IconName } from "@/lib/icons"
 import { motion } from "motion/react"
@@ -14,9 +14,10 @@ interface Diferencial {
 }
 
 interface DiferenciaisProps {
-    heading: React.ReactNode
+    title: React.ReactNode
     description: string
-    badgeText: string
+    badge: string
+    badgeVariant?: BadgeVariant
     items: Diferencial[]
 }
 
@@ -47,19 +48,20 @@ const DiferencialCard = ({ letter, title, description, icon }: Diferencial) => {
 }
 
 const Diferenciais = ({
-    heading,
+    title,
     description,
-    badgeText,
+    badge,
+    badgeVariant = "outline",
     items,
 }: DiferenciaisProps) => {
     return (
         <div className="flex flex-col gap-8 lg:gap-16">
             <div className="flex flex-1 flex-col justify-center gap-2 text-center">
-                <Badge className="mx-auto mb-4" variant="outline">
-                    {badgeText}
+                <Badge className="mx-auto mb-4" variant={badgeVariant}>
+                    {badge}
                 </Badge>
                 <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                    {heading}
+                    {title}
                 </h2>
                 <p className="mb-4 text-lg text-muted-foreground lg:text-xl">
                     {description}

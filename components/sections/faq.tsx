@@ -4,7 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
 interface FaqItem {
     id: string
     question: string
@@ -12,21 +12,28 @@ interface FaqItem {
 }
 
 interface FaqProps {
-    heading: React.ReactNode
+    title: React.ReactNode
     description: React.ReactNode
     items: FaqItem[]
-    badgeText: string
+    badge: string
+    badgeVariant?: BadgeVariant
 }
 
-const Faq = ({ heading, description, badgeText, items }: FaqProps) => {
+const Faq = ({
+    title,
+    description,
+    badge,
+    badgeVariant = "default",
+    items,
+}: FaqProps) => {
     return (
         <div className="flex flex-col lg:flex-row lg:gap-12">
             <div className="flex-2">
-                <Badge className="mx-auto mb-4" variant="default">
-                    {badgeText}
+                <Badge className="mx-auto mb-4" variant={badgeVariant}>
+                    {badge}
                 </Badge>
                 <h2 className="mb-4 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                    {heading}
+                    {title}
                 </h2>
                 <p className="mb-8 max-w-xl font-light text-muted-foreground lg:text-xl">
                     {description}

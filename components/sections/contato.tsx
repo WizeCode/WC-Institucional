@@ -1,6 +1,7 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
+import type { ContatoFormData } from "@/lib/contato/schema"
 import { icons, type IconName } from "@/lib/icons"
 import Link from "next/link"
 import dynamic from "next/dynamic"
@@ -39,26 +40,30 @@ interface InfoCard {
 }
 
 interface ContatoProps {
-    heading: string
+    title: string
     description: string
-    badgeText: string
+    badge: string
+    badgeVariant?: BadgeVariant
     infoCards: InfoCard[]
+    servicoPadrao?: ContatoFormData["servico"]
 }
 
 const Contato = ({
-    heading,
+    title,
     description,
-    badgeText,
+    badge,
+    badgeVariant = "default",
     infoCards,
+    servicoPadrao,
 }: ContatoProps) => {
     return (
         <>
             <div className="mb-8 flex flex-col gap-2 text-center">
-                <Badge className="mx-auto mb-4" variant="default">
-                    {badgeText}
+                <Badge className="mx-auto mb-4" variant={badgeVariant}>
+                    {badge}
                 </Badge>
                 <h2 className="text-2xl font-bold text-pretty text-white lg:text-3xl xl:text-4xl">
-                    {heading}
+                    {title}
                 </h2>
                 <p className="mb-4 text-lg text-white lg:text-xl">
                     {description}
@@ -109,8 +114,8 @@ const Contato = ({
                         )
                     })}
                 </div>
-                <div className="relative z-20 flex-1 rounded-lg bg-background shadow-lg">
-                    <ContatoForm />
+                <div className="relative z-20 flex-1 rounded-lg bg-background text-foreground shadow-lg">
+                    <ContatoForm servicoPadrao={servicoPadrao} />
                 </div>
             </div>
         </>

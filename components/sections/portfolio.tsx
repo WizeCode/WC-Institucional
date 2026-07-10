@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
     Carousel,
@@ -26,29 +26,31 @@ interface Project {
 }
 
 interface PortfolioProps {
-    heading: string
+    title: string
     description: string
     projects: Project[]
     button: { url: string; text: string }
-    badgeText: string
+    badge: string
+    badgeVariant?: BadgeVariant
 }
 
 const Portfolio = ({
-    heading,
+    title,
     description,
     button,
-    badgeText,
+    badge,
+    badgeVariant = "outline",
     projects,
 }: PortfolioProps) => {
     return (
         <div className="w-full">
             <div className="mb-16 flex flex-col items-center justify-between gap-10 text-center md:flex-row md:items-end md:text-start">
                 <div className="flex flex-col gap-2">
-                    <Badge className="mx-auto mb-4 md:mx-0" variant="outline">
-                        {badgeText}
+                    <Badge className="mx-auto mb-4 md:mx-0" variant={badgeVariant}>
+                        {badge}
                     </Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                        {heading}
+                        {title}
                     </h2>
                     <p className="text-lg text-muted-foreground lg:text-xl">
                         {description}

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <Section className="py-12 sm:py-16">
+        <Section className="py-12">
             <FormLayout
                 title="Entre em contato"
                 description="Nossa equipe responderá em até 24 horas úteis."

@@ -17,10 +17,10 @@ const Section = ({
 }: SectionProps) => (
     <section
         className={cn(
-            "my-8 px-8 py-8",
+            "my-8 px-8 py-8 sm:py-16",
             variant === "soft" && "mx-4 rounded-md bg-accent/5 px-4 sm:px-8",
             variant === "accent" &&
-                "relative mx-4 rounded-md bg-accent px-4 sm:px-8 dark:bg-accent/10",
+                "relative mx-4 rounded-md bg-accent px-4 sm:px-8 dark:bg-accent/10 text-white",
             className
         )}
     >

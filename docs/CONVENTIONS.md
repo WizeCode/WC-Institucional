@@ -137,7 +137,7 @@ export default function Page() {
         <Section>
             <Servicos
                 badge={servicosContent.hero.badge}
-                heading={servicosContent.hero.title}
+                title={servicosContent.hero.title}
                 services={servicosContent.services}
             />
         </Section>
@@ -228,6 +228,30 @@ app/
 - `app/**/page.tsx` — a camada de composição: escolhe componentes, injeta conteúdo.
 - `app/**/*.data.ts` — o conteúdo daquela rota.
 
+### Componente de composição de página (quando a composição se repete)
+
+Normalmente a composição vive no `page.tsx` (seção 6). Mas quando **várias rotas
+compartilham a mesma composição** — mesma sequência de seções, mudando só o
+conteúdo —, copiar esse `page.tsx` inteiro por rota vira duplicação de layout, o
+avesso do que queremos. Aí a composição sobe para um componente em `layout/` que
+recebe o conteúdo por props, e cada `page.tsx` vira um chamador fino:
+
+```tsx
+// app/servicos/institucional/page.tsx
+export default () => <ServicoPage data={institucional} />
+```
+
+Já temos dois casos: `FormLayout` (páginas de formulário) e `ServicoPage`
+(páginas de serviço). A regra de conteúdo × estrutura (seção 2) continua valendo
+**dentro** do componente: só o que varia entre rotas entra no `data`; o que é
+igual em todas (variantes de `Section`, partículas, cabeçalhos genéricos) fica
+fixo no componente.
+
+Nota sobre título com destaque: para não colocar JSX (`<span>`) nos `*.data.ts`,
+os títulos ficam como texto puro com marcador `*destaque*`, e o helper `accent`
+(`lib/text.tsx`) converte para `text-accent` na renderização. Isso mantém o dado
+CMS-ready (uma string, não um elemento React).
+
 ---
 
 ## 6. Exemplo trabalhado — a home
@@ -286,10 +310,10 @@ import { home } from "./home.data"
 </Section>
 
 <Section variant="soft">
-    <Servicos heading={home.servicos.heading} services={home.servicos.services} />
+    <Servicos title={home.servicos.title} services={home.servicos.services} />
 </Section>
 <Section variant="accent" backdrop={<Particles … />}>
-    <Contato heading={home.contato.heading} infoCards={home.contato.infoCards} />
+    <Contato title={home.contato.title} infoCards={home.contato.infoCards} />
 </Section>
 ```
 

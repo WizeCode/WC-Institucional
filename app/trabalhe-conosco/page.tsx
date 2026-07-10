@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <Section className="py-12 sm:py-16">
+        <Section className="py-12">
             <FormLayout
                 title="Faça parte do nosso banco de talentos"
                 description="Ficamos felizes em saber que você tem interesse em crescer com a WizeCode! Cadastre-se e entraremos em contato quando surgir uma oportunidade com o seu perfil."

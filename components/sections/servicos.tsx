@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
 import React, { useState } from "react"
 import { usePostHog } from "posthog-js/react"
 import {
@@ -26,15 +26,17 @@ interface ServiceItem {
 }
 
 interface ServicosProps {
-    badgeText: string
-    heading: React.ReactNode
+    badge: string
+    badgeVariant?: BadgeVariant
+    title: React.ReactNode
     description: React.ReactNode
     services: ServiceItem[]
 }
 
 const Servicos = ({
-    badgeText,
-    heading,
+    badge,
+    badgeVariant = "default",
+    title,
     description,
     services,
 }: ServicosProps) => {
@@ -45,11 +47,11 @@ const Servicos = ({
     return (
         <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-3 text-center">
-                <Badge className="mb-4" variant="default">
-                    {badgeText}
+                <Badge className="mb-4" variant={badgeVariant}>
+                    {badge}
                 </Badge>
                 <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                    {heading}
+                    {title}
                 </h2>
                 <p className="mb-4 max-w-xl text-muted-foreground lg:text-xl">
                     {description}

@@ -1,11 +1,16 @@
 import {
     Brain,
+    Gauge,
     HeartHandshake,
     LayoutTemplate,
     Layers,
     Mail,
     MousePointerClick,
+    Palette,
+    PencilRuler,
+    Search,
     Sparkles,
+    TrendingUp,
     Zap,
 } from "lucide-react"
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
@@ -33,6 +38,12 @@ export const icons = {
     layoutTemplate: LayoutTemplate,
     mousePointerClick: MousePointerClick,
     zap: Zap,
+    // Capacidades / features
+    palette: Palette,
+    search: Search,
+    gauge: Gauge,
+    pencilRuler: PencilRuler,
+    trendingUp: TrendingUp,
 } as const
 
 export type IconName = keyof typeof icons

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 interface EmConstrucaoProps {
     titulo: string
     descricao?: React.ReactNode
-    badgeText?: string
+    badge?: string
 }
 
 const EmConstrucao = ({
@@ -25,13 +25,13 @@ const EmConstrucao = ({
             <em>ela ficará pronta muito em breve.</em>
         </>
     ),
-    badgeText = "/ Em construção",
+    badge = "/ Em construção",
 }: EmConstrucaoProps) => {
     return (
         <section className="px-8">
             <div className="container py-12 sm:py-32 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
                 <div className="mx-auto flex flex-col flex-1 items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
-                    {badgeText && <Badge variant="outline">{badgeText}</Badge>}
+                    {badge && <Badge variant="outline">{badge}</Badge>}
                     <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                         {titulo} <span className="text-accent">em construção</span>.
                     </h1>
