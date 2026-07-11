@@ -16,6 +16,7 @@ import {
     type TalentoFormData,
 } from "@/lib/talentos/schema"
 import { enviarCandidatura } from "@/lib/talentos/actions"
+import { getStoredUtm } from "@/lib/attribution/utm"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
@@ -73,19 +74,11 @@ export function TrabalheConoscoForm() {
     // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
     const [turnstileKey, setTurnstileKey] = useState(0)
 
-    // UTMs lidas da URL uma única vez (inicializador lazy, sem hydration
-    // mismatch pois os valores só entram no payload, nunca são renderizados).
-    const [utm] = useState(() => {
-        if (typeof window === "undefined") {
-            return { utm_source: "", utm_medium: "", utm_campaign: "" }
-        }
-        const params = new URLSearchParams(window.location.search)
-        return {
-            utm_source: params.get("utm_source") ?? "",
-            utm_medium: params.get("utm_medium") ?? "",
-            utm_campaign: params.get("utm_campaign") ?? "",
-        }
-    })
+    // UTMs lidos da atribuição first-touch salva em sessionStorage pelo
+    // UtmProvider (capturada no layout raiz, sobrevive a navegação entre
+    // páginas). Inicializador lazy: sem hydration mismatch, o valor só entra
+    // no payload, nunca é renderizado.
+    const [utm] = useState(() => getStoredUtm())
 
     async function onSubmit(data: TalentoFormData) {
         const fileError = validarCurriculo(curriculo)
