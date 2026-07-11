@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 // Import Components
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/components/providers/posthog-provider";
+import { UtmProvider } from "@/components/providers/utm-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -100,13 +101,15 @@ export default function RootLayout({
         <html lang="pt-BR" className={cn("antialiased", geom.variable)} suppressHydrationWarning>
             <body cz-shortcut-listen="true">
                 <PostHogProvider>
-                    <ThemeProvider>
-                        <Header />
+                    <UtmProvider>
+                        <ThemeProvider>
+                            <Header />
 
-                        <main>{children}</main>
+                            <main>{children}</main>
 
-                        <Footer />
-                    </ThemeProvider>
+                            <Footer />
+                        </ThemeProvider>
+                    </UtmProvider>
                 </PostHogProvider>
 
                 <JsonLd schema={[organizationSchema, websiteSchema]} />
