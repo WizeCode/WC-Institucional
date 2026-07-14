@@ -14,6 +14,26 @@ const eslintConfig = defineConfig([
             }],
         },
     },
+    {
+        files: ["components/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
+        ignores: ["components/providers/posthog-provider.tsx"],
+        rules: {
+            "no-restricted-imports": ["error", {
+                paths: [
+                    {
+                        name: "posthog-js",
+                        message:
+                            "Não importe o SDK do PostHog na UI. Passe um callback (ex: onCtaClick) e deixe a página decidir o que rastrear. Ver docs/CONVENTIONS.md §11.",
+                    },
+                    {
+                        name: "posthog-js/react",
+                        message:
+                            "Não importe o SDK do PostHog na UI. Passe um callback (ex: onCtaClick) e deixe a página decidir o que rastrear. Ver docs/CONVENTIONS.md §11.",
+                    },
+                ],
+            }],
+        },
+    },
     // Override default ignores of eslint-config-next.
     globalIgnores([
         // Default ignores of eslint-config-next:
