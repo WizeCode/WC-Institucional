@@ -18,7 +18,7 @@ const Dores = ({
     items,
 }: DoresProps) => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
                 {badge && (
                     <Badge className="mx-auto" variant={badgeVariant}>
@@ -32,14 +32,17 @@ const Dores = ({
                     <p className="mb-4 max-w-xl lg:text-xl">{description}</p>
                 )}
             </div>
-            <ul className="mx-auto mt-12 grid w-full max-w-4xl gap-4 sm:grid-cols-2">
+            <ul className="mx-auto flex w-full max-w-5xl flex-wrap gap-x-12 gap-y-4">
                 {items.map((item) => (
-                    <li key={item} className="flex items-center gap-3">
+                    <li
+                        key={item}
+                        className="flex grow basis-full items-center gap-3 md:basis-[45%]"
+                    >
                         <span
                             aria-hidden="true"
-                            className="my-auto flex items-center justify-center text-destructive"
+                            className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-accent dark:text-background"
                         >
-                            <X className="size-4" />
+                            <X className="size-3.5" strokeWidth={3} />
                         </span>
                         <span className="">{item}</span>
                     </li>

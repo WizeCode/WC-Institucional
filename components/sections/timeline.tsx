@@ -31,7 +31,7 @@ const Timeline = ({
     const shouldReduce = useReducedMotion()
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-8">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
                 {badge && (
                     <Badge className="mx-auto" variant={badgeVariant}>
@@ -48,7 +48,7 @@ const Timeline = ({
                 )}
             </div>
 
-            <ol className="mx-auto mt-16 w-full max-w-2xl">
+            <ol className="mx-auto w-full max-w-2xl">
                 {items.map((step, index) => {
                     const Icon = step.icon ? icons[step.icon] : null
                     const isLast = index === items.length - 1
@@ -96,7 +96,7 @@ const Timeline = ({
                             </div>
 
                             {/* Conteúdo */}
-                            <div className={cn("pt-2.5", !isLast && "pb-10")}>
+                            <div className={cn(!isLast && "pb-10")}>
                                 <h3 className="text-xl font-medium">
                                     {step.title}
                                 </h3>

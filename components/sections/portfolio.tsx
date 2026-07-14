@@ -71,7 +71,7 @@ const Portfolio = ({
             </div>
 
             <div className="relative w-full">
-                <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-32 bg-linear-to-l from-background to-transparent sm:w-64" />
+                <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-12 bg-linear-to-l from-background/70 to-transparent sm:w-24" />
                 <Carousel opts={{ align: "start" }} className="w-full">
                     <CarouselContent className="-ml-4 items-stretch pr-8">
                         {projects.map((project) => (
@@ -140,7 +140,7 @@ const Portfolio = ({
                                                     target="_blank"
                                                 >
                                                     <Button
-                                                        size="sm"
+                                                        size="lg"
                                                         className="w-full"
                                                     >
                                                         Acessar website
