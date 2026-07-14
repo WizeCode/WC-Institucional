@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { ServicoPage } from "@/components/layout/servico-page"
+import { ServicoPage } from "@/components/templates/servico-page"
 import { institucional } from "./institucional.data"
 
 export const metadata: Metadata = {

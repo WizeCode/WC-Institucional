@@ -1,4 +1,4 @@
-import type { ServicoData } from "@/components/layout/servico-page"
+import type { ServicoData } from "@/components/templates/servico-page"
 import { cases } from "@/lib/cases"
 
 export const institucional: ServicoData = {

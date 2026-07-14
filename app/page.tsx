@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
-import { Hero } from "@/components/layout/hero"
+import { Hero } from "@/components/sections/hero"
 import {
     AnimatedSpan,
     Terminal,

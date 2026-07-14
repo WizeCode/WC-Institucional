@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { LegalPage } from "@/components/layout/legal/legal-page"
+import { LegalPage } from "@/components/templates/legal-page"
 
 export const metadata: Metadata = {
     title: "Termos de Uso",

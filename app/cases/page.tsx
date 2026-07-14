@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { EmConstrucao } from "@/components/layout/em-construcao"
+import { EmConstrucao } from "@/components/templates/em-construcao"
 
 export const metadata: Metadata = {
     title: "Cases",
