@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Turnstile } from "@marsidev/react-turnstile"
-import { usePostHog } from "posthog-js/react"
+import { track } from "@/lib/analytics"
 import { Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 /**
  * Chave de teste da Cloudflare, usada só em desenvolvimento. Troque para
@@ -60,26 +61,23 @@ export function TurnstileBox({
 }: {
     onToken: (token: string | null) => void
 }) {
-    const posthog = usePostHog()
     const [status, setStatus] = useState<Status>({ tipo: "verificando" })
     const [demorando, setDemorando] = useState(false)
+    const [interativo, setInterativo] = useState(false)
 
     const precisouInteragir = useRef(false)
     // Um evento por montagem: expirar e renovar não deve contar como nova tentativa.
     const jaReportou = useRef(false)
 
-    const reportar = useCallback(
-        (resultado: "ok" | Causa, code?: string) => {
-            if (jaReportou.current) return
-            jaReportou.current = true
-            posthog?.capture("turnstile_resultado", {
-                resultado,
-                interativo: precisouInteragir.current,
-                ...(code ? { code } : {}),
-            })
-        },
-        [posthog]
-    )
+    const reportar = useCallback((resultado: "ok" | Causa, code?: string) => {
+        if (jaReportou.current) return
+        jaReportou.current = true
+        track("turnstile_resultado", {
+            resultado,
+            interativo: precisouInteragir.current,
+            ...(code ? { code } : {}),
+        })
+    }, [])
 
     useEffect(() => {
         if (status.tipo !== "verificando") return
@@ -104,8 +102,20 @@ export function TurnstileBox({
         reportar(causa, code)
     }
 
+    // `onBeforeInteractive` dispara antes de a Cloudflare desenhar o checkbox,
+    // então o container já expandiu quando o challenge aparece.
+    const visivel =
+        interativo ||
+        status.tipo === "falhou" ||
+        (status.tipo === "verificando" && demorando)
+
     return (
-        <div className="space-y-1.5">
+        <div
+            className={cn(
+                "space-y-1.5",
+                visivel ? "mb-6" : "h-0 overflow-hidden"
+            )}
+        >
             {status.tipo === "verificando" && demorando && (
                 <p className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Loader2 className="size-3.5 animate-spin" />
@@ -137,6 +147,7 @@ export function TurnstileBox({
                 options={{ appearance: "interaction-only", size: "flexible" }}
                 onBeforeInteractive={() => {
                     precisouInteragir.current = true
+                    setInterativo(true)
                 }}
                 onSuccess={(token) => {
                     setStatus({ tipo: "ok" })
