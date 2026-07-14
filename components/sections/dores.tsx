@@ -29,9 +29,7 @@ const Dores = ({
                     {title}
                 </h2>
                 {description && (
-                    <p className="mb-4 max-w-xl  lg:text-xl">
-                        {description}
-                    </p>
+                    <p className="mb-4 max-w-xl lg:text-xl">{description}</p>
                 )}
             </div>
             <ul className="mx-auto mt-12 grid w-full max-w-4xl gap-4 sm:grid-cols-2">
@@ -39,7 +37,7 @@ const Dores = ({
                     <li key={item} className="flex items-center gap-3">
                         <span
                             aria-hidden="true"
-                            className="flex my-auto items-center justify-center text-destructive"
+                            className="my-auto flex items-center justify-center text-destructive"
                         >
                             <X className="size-4" />
                         </span>

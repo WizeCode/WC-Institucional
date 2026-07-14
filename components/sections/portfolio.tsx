@@ -46,7 +46,10 @@ const Portfolio = ({
         <div className="w-full">
             <div className="mb-16 flex flex-col items-center justify-between gap-10 text-center md:flex-row md:items-end md:text-start">
                 <div className="flex flex-col gap-2">
-                    <Badge className="mx-auto mb-4 md:mx-0" variant={badgeVariant}>
+                    <Badge
+                        className="mx-auto mb-4 md:mx-0"
+                        variant={badgeVariant}
+                    >
                         {badge}
                     </Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">

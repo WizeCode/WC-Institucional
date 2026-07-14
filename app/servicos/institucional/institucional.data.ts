@@ -25,7 +25,7 @@ export const institucional: ServicoData = {
             "Sua empresa é séria, mas sem um site à altura o cliente não percebe isso",
             "Cliente novo só chega por indicação — nada trabalha por você sozinho",
             "Um concorrente menor parece maior e mais confiável, só por ter um bom site",
-            "Pedem \"manda o site de vocês\" e você só tem um link do Instagram pra enviar",
+            'Pedem "manda o site de vocês" e você só tem um link do Instagram pra enviar',
         ],
     },
     capacidades: {
@@ -121,7 +121,9 @@ export const institucional: ServicoData = {
         ],
     },
     portfolio: {
-        projects: cases.filter((project) => project.service === "Institucional"),
+        projects: cases.filter(
+            (project) => project.service === "Institucional"
+        ),
     },
     faq: {
         description:
@@ -131,12 +133,14 @@ export const institucional: ServicoData = {
         items: [
             {
                 id: "faq-1",
-                question: "Quanto tempo leva para meu site institucional ficar no ar?",
+                question:
+                    "Quanto tempo leva para meu site institucional ficar no ar?",
                 answer: "Um site institucional costuma ficar pronto em 3 a 6 semanas, dependendo do número de páginas e da complexidade do conteúdo. No briefing já conseguimos te passar uma estimativa realista, e durante o processo você acompanha cada etapa — sem surpresas de prazo.",
             },
             {
                 id: "faq-2",
-                question: "Vou conseguir atualizar os textos e imagens sozinho depois?",
+                question:
+                    "Vou conseguir atualizar os textos e imagens sozinho depois?",
                 answer: "Depende do plano e do projeto. Em alguns casos entregamos um painel para você mesmo editar o conteúdo sem depender de código; em outros, as alterações passam pela nossa equipe dentro da manutenção. Definimos o formato ideal no briefing, de acordo com a sua rotina e necessidade.",
             },
             {

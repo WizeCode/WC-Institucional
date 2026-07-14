@@ -38,16 +38,12 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
         return (
             <div
                 className={cn(
-                    "flex h-60 flex-col-reverse justify-between gap-2 md:gap-4 rounded-lg bg-muted/70 p-8 transition-transform duration-300 hover:-translate-y-3 lg:grid lg:grid-cols-2",
+                    "flex h-60 flex-col-reverse justify-between gap-2 rounded-lg bg-muted/70 p-8 transition-transform duration-300 hover:-translate-y-3 md:gap-4 lg:grid lg:grid-cols-2",
                     item.className
                 )}
             >
                 <div className="lg:self-end">{textBlock}</div>
-                {Icon && (
-                    <div className="md:hidden">
-                        {iconEl}
-                    </div>
-                )}
+                {Icon && <div className="md:hidden">{iconEl}</div>}
                 <div className="relative hidden h-full min-h-0 md:flex">
                     <Image
                         src={item.image.src}
@@ -74,7 +70,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
                     {iconEl}
                     {textBlock}
                 </div>
-                <div className="relative mx-auto h-full w-full ">
+                <div className="relative mx-auto h-full w-full">
                     <Image
                         src={item.image.src}
                         alt={item.image.alt}
@@ -116,8 +112,12 @@ const BentoGrid = ({
                         {badge}
                     </Badge>
                 )}
-                <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">{title}</h2>
-                <p className="mb-4 max-w-xl text-muted-foreground lg:text-xl">{description}</p>
+                <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
+                    {title}
+                </h2>
+                <p className="mb-4 max-w-xl text-muted-foreground lg:text-xl">
+                    {description}
+                </p>
             </div>
             <div className="mx-auto mt-20 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {items.map((item) => (

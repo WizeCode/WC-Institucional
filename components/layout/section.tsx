@@ -20,7 +20,7 @@ const Section = ({
             "my-8 px-8 py-8 sm:py-16",
             variant === "soft" && "mx-4 rounded-md bg-accent/5 px-4 sm:px-8",
             variant === "accent" &&
-                "relative mx-4 rounded-md bg-accent px-4 sm:px-8 dark:bg-accent/10 text-white",
+                "relative mx-4 rounded-md bg-accent px-4 text-white sm:px-8 dark:bg-accent/10",
             className
         )}
     >

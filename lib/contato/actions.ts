@@ -10,7 +10,10 @@ export async function enviarContato(
 ) {
     if (process.env.NODE_ENV !== "development") {
         if (!turnstileToken || !(await verifyTurnstile(turnstileToken))) {
-            return { success: false, error: "Falha na verificação de segurança." }
+            return {
+                success: false,
+                error: "Falha na verificação de segurança.",
+            }
         }
     }
 

@@ -56,11 +56,16 @@ const Timeline = ({
                         <motion.li
                             key={step.title}
                             className="flex gap-6"
-                            initial={shouldReduce ? false : { opacity: 0, y: 12 }}
+                            initial={
+                                shouldReduce ? false : { opacity: 0, y: 12 }
+                            }
                             whileInView={
                                 shouldReduce ? undefined : { opacity: 1, y: 0 }
                             }
-                            viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+                            viewport={{
+                                once: true,
+                                margin: "0px 0px -80px 0px",
+                            }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
                         >
                             {/* Trilho: nó numerado + linha conectora */}
@@ -74,7 +79,10 @@ const Timeline = ({
                                     )}
                                 >
                                     {Icon ? (
-                                        <Icon className="size-5" aria-hidden="true" />
+                                        <Icon
+                                            className="size-5"
+                                            aria-hidden="true"
+                                        />
                                     ) : (
                                         index + 1
                                     )}
@@ -89,7 +97,9 @@ const Timeline = ({
 
                             {/* Conteúdo */}
                             <div className={cn("pt-2.5", !isLast && "pb-10")}>
-                                <h3 className="text-xl font-medium">{step.title}</h3>
+                                <h3 className="text-xl font-medium">
+                                    {step.title}
+                                </h3>
                                 {step.description && (
                                     <p className="mt-1 text-muted-foreground">
                                         {step.description}
