@@ -7,7 +7,7 @@ export const institucional: ServicoData = {
         badge: "/ Website Institucional",
         title: "A *vitrine* da sua empresa no mundo digital.",
         description:
-            "Um site institucional é a porta de entrada para a sua empresa no mundo digital. Ele transmite credibilidade, apresenta seus produtos e serviços, e fortalece sua marca. Com um design moderno e responsivo, garantimos que seu site seja acessível em qualquer dispositivo, proporcionando uma experiência agradável para os visitantes.",
+            "Um website institucional é a porta de entrada para a sua empresa no mundo digital. Ele transmite credibilidade, apresenta seus produtos e serviços, e fortalece sua marca. Com um design moderno e responsivo, garantimos que seu website seja acessível em qualquer dispositivo, proporcionando uma experiência agradável para os visitantes.",
         image: {
             src: "/images/home/websites.webp",
             alt: "Website institucional",
@@ -15,22 +15,22 @@ export const institucional: ServicoData = {
         cta: { text: "Fale com nossa equipe", url: "/contato" },
     },
     dores: {
-        badge: "/ O problema",
+        badge: "/ Problema",
         title: "Na internet, sua empresa existe de verdade?",
         description:
             "Se algum destes cenários soa familiar, você está perdendo cliente todos os dias — sem nem perceber.",
         items: [
             "Procuram sua empresa no Google e não acham você — só o concorrente",
             "Toda a sua presença mora no Instagram: uma vitrine alugada, que muda de regra e pode sumir",
-            "Sua empresa é séria, mas sem um site à altura o cliente não percebe isso",
+            "Sua empresa é séria, mas sem um website à altura o cliente não percebe isso",
             "Cliente novo só chega por indicação — nada trabalha por você sozinho",
-            "Um concorrente menor parece maior e mais confiável, só por ter um bom site",
-            'Pedem "manda o site de vocês" e você só tem um link do Instagram pra enviar',
+            "Um concorrente menor parece maior e mais confiável, só por ter um bom website",
+            'Pedem "manda o website de vocês" e você só tem um link do Instagram pra enviar',
         ],
     },
     capacidades: {
         badge: "/ O investimento",
-        title: "O que você ganha com um site feito pela *WizeCode*?",
+        title: "O que você ganha com um website feito pela *WizeCode*?",
         description:
             "Muito além de um cartão de visitas: uma ferramenta de credibilidade e conversão.",
         items: [
@@ -110,7 +110,8 @@ export const institucional: ServicoData = {
             },
             {
                 title: "Entrega",
-                description: "Seu site no ar, testado e pronto pra converter.",
+                description:
+                    "Seu website no ar, testado e pronto pra converter.",
             },
             {
                 title: "Manutenção & hospedagem",
@@ -127,15 +128,15 @@ export const institucional: ServicoData = {
     },
     faq: {
         description:
-            "Reunimos as perguntas mais comuns de quem vai criar seu site. Não achou a sua?",
+            "Reunimos as perguntas mais comuns de quem vai criar seu website. Não achou a sua?",
         whatsappMessage:
             "Olá! Tenho uma dúvida sobre o serviço de Website Institucional da WizeCode.",
         items: [
             {
                 id: "faq-1",
                 question:
-                    "Quanto tempo leva para meu site institucional ficar no ar?",
-                answer: "Um site institucional costuma ficar pronto em 3 a 6 semanas, dependendo do número de páginas e da complexidade do conteúdo. No briefing já conseguimos te passar uma estimativa realista, e durante o processo você acompanha cada etapa — sem surpresas de prazo.",
+                    "Quanto tempo leva para meu website institucional ficar no ar?",
+                answer: "Um website institucional costuma ficar pronto em 3 a 6 semanas, dependendo do número de páginas e da complexidade do conteúdo. No briefing já conseguimos te passar uma estimativa realista, e durante o processo você acompanha cada etapa — sem surpresas de prazo.",
             },
             {
                 id: "faq-2",
@@ -146,26 +147,27 @@ export const institucional: ServicoData = {
             {
                 id: "faq-3",
                 question: "Preciso ter domínio e hospedagem antes de começar?",
-                answer: "A hospedagem fica por nossa conta — cuidamos de toda a infraestrutura para o site rodar rápido e seguro. O domínio (o endereço www da sua empresa) é registrado e mantido em seu nome, garantindo que ele seja sempre seu. Se ainda não tiver um, te orientamos no passo a passo.",
+                answer: "A hospedagem fica por nossa conta — cuidamos de toda a infraestrutura para o website rodar rápido e seguro. O domínio (o endereço www da sua empresa) é registrado e mantido em seu nome, garantindo que ele seja sempre seu. Se ainda não tiver um, te orientamos no passo a passo.",
             },
             {
                 id: "faq-4",
-                question: "Meu site vai aparecer no Google?",
-                answer: "Sim. Desenvolvemos o site com SEO desde a primeira linha de código: estrutura otimizada, carregamento rápido e boas práticas que ajudam o Google a entender e ranquear suas páginas. Vale lembrar que aparecer bem nas buscas é um trabalho contínuo, e deixamos a base pronta para isso.",
+                question: "Meu website vai aparecer no Google?",
+                answer: "Sim. Desenvolvemos o website com SEO desde a primeira linha de código: estrutura otimizada, carregamento rápido e boas práticas que ajudam o Google a entender e ranquear suas páginas. Vale lembrar que aparecer bem nas buscas é um trabalho contínuo, e deixamos a base pronta para isso.",
             },
             {
                 id: "faq-5",
-                question: "Já tenho um site. Vocês refazem ou migram o atual?",
-                answer: "Avaliamos caso a caso. Analisamos seu site atual e, no briefing, indicamos se vale a pena migrar o conteúdo existente ou reconstruir do zero para eliminar problemas de fundação. A recomendação é sempre a que traz o melhor resultado para o seu negócio, não a mais trabalhosa.",
+                question:
+                    "Já tenho um website. Vocês refazem ou migram o atual?",
+                answer: "Avaliamos caso a caso. Analisamos seu website atual e, no briefing, indicamos se vale a pena migrar o conteúdo existente ou reconstruir do zero para eliminar problemas de fundação. A recomendação é sempre a que traz o melhor resultado para o seu negócio, não a mais trabalhosa.",
             },
             {
                 id: "faq-6",
-                question: "Vou poder ver o site antes de ele ficar pronto?",
-                answer: "Sim. Antes de escrever qualquer linha de código, você aprova um protótipo visual do site. Só avançamos para o desenvolvimento com 100% da sua satisfação — assim você sabe exatamente o que vai receber, sem risco de surpresas na entrega.",
+                question: "Vou poder ver o website antes de ele ficar pronto?",
+                answer: "Sim. Antes de escrever qualquer linha de código, você aprova um protótipo visual do website. Só avançamos para o desenvolvimento com 100% da sua satisfação — assim você sabe exatamente o que vai receber, sem risco de surpresas na entrega.",
             },
         ],
     },
     contato: {
-        title: "Seu site institucional está a um passo de sair do papel",
+        title: "Seu website institucional está a um passo de sair do papel",
     },
 }

@@ -143,7 +143,7 @@ const Portfolio = ({
                                                         size="sm"
                                                         className="w-full"
                                                     >
-                                                        Acessar site
+                                                        Acessar website
                                                     </Button>
                                                 </a>
                                             </div>

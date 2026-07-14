@@ -12,44 +12,45 @@ export default function Page() {
     return (
         <LegalPage titulo="Termos de Uso — Wize Inovações e Tecnologia LTDA">
             <p>
-                Seja bem-vindo ao site da Wize Inovações e Tecnologia LTDA
+                Seja bem-vindo ao website da Wize Inovações e Tecnologia LTDA
                 (&quot;WizeCode&quot;, &quot;nós&quot;). Antes de explorar tudo
                 o que temos a oferecer, é importante que você entenda e concorde
-                com as regras que regem o uso do nosso site www.wizecode.com.br
-                e dos serviços digitais disponibilizados nele, incluindo nosso
-                formulário de contato e nosso assistente virtual de briefing.
+                com as regras que regem o uso do nosso website
+                www.wizecode.com.br e dos serviços digitais disponibilizados
+                nele, incluindo nosso formulário de contato e nosso assistente
+                virtual de briefing.
             </p>
             <p>
-                Ao usar nosso site, você concorda em seguir as regras
+                Ao usar nosso website, você concorda em seguir as regras
                 estabelecidas aqui. Caso não concorde com algo, por favor,
                 considere não usar nossos serviços.
             </p>
 
             <h2>1. Aceitando os Termos</h2>
             <p>
-                Ao navegar e usar o site da WizeCode, você concorda
+                Ao navegar e usar o website da WizeCode, você concorda
                 automaticamente com estas regras e condições. Estes termos podem
                 mudar de tempos em tempos; se fizermos alterações
                 significativas, publicaremos as atualizações aqui. Continuar
-                usando o site após essas mudanças significa que você aceita os
-                novos termos.
+                usando o website após essas mudanças significa que você aceita
+                os novos termos.
             </p>
 
-            <h2>2. Como Usar o Nosso Site</h2>
+            <h2>2. Como Usar o Nosso Website</h2>
             <p>
-                Nosso site é aberto para navegação sem necessidade de cadastro
-                ou criação de conta. Algumas funcionalidades — como o formulário
-                de contato e o assistente virtual de briefing — pedem que você
-                forneça voluntariamente algumas informações (por exemplo, nome,
-                e-mail e telefone) para que possamos responder à sua
-                solicitação. Pedimos que essas informações sejam verdadeiras e
-                que qualquer conteúdo que você compartilhar conosco seja enviado
-                de forma respeitosa e dentro da lei.
+                Nosso website é aberto para navegação sem necessidade de
+                cadastro ou criação de conta. Algumas funcionalidades — como o
+                formulário de contato e o assistente virtual de briefing — pedem
+                que você forneça voluntariamente algumas informações (por
+                exemplo, nome, e-mail e telefone) para que possamos responder à
+                sua solicitação. Pedimos que essas informações sejam verdadeiras
+                e que qualquer conteúdo que você compartilhar conosco seja
+                enviado de forma respeitosa e dentro da lei.
             </p>
 
             <h2>3. Assistente Virtual de Briefing (&quot;Wizard&quot;)</h2>
             <p>
-                Disponibilizamos em nosso site um assistente virtual, chamado
+                Disponibilizamos em nosso website um assistente virtual, chamado
                 Wizard, cujo objetivo é conduzir uma conversa para entender o
                 projeto que você tem em mente e organizar essas informações em
                 um briefing para nossa equipe comercial. Ao usar o Wizard, você
@@ -103,8 +104,8 @@ export default function Page() {
 
             <h2>4. Direitos de Conteúdo</h2>
             <p>
-                O conteúdo disponível no site da WizeCode, incluindo, mas não se
-                limitando a, textos, imagens, ilustrações, ícones, design e
+                O conteúdo disponível no website da WizeCode, incluindo, mas não
+                se limitando a, textos, imagens, ilustrações, ícones, design e
                 código-fonte, constitui propriedade intelectual protegida pela
                 legislação nacional e por tratados internacionais sobre direitos
                 autorais e propriedade industrial. Isso engloba tanto materiais
@@ -112,7 +113,7 @@ export default function Page() {
                 licença de terceiros.
             </p>
             <p>
-                Ao acessar nosso site, você recebe uma licença limitada, não
+                Ao acessar nosso website, você recebe uma licença limitada, não
                 exclusiva e revogável para visualizar e usar o conteúdo para
                 fins pessoais e não comerciais. Qualquer reprodução,
                 distribuição, transmissão ou modificação do conteúdo, sem
@@ -121,10 +122,10 @@ export default function Page() {
 
             <h2>5. Cookies e Tecnologias de Rastreamento</h2>
             <p>
-                Utilizamos ferramentas de análise de uso do site e de proteção
-                contra abusos automatizados (bots). Os detalhes sobre quais
-                dados são coletados, com quais finalidades e por meio de quais
-                fornecedores estão descritos na nossa{" "}
+                Utilizamos ferramentas de análise de uso do website e de
+                proteção contra abusos automatizados (bots). Os detalhes sobre
+                quais dados são coletados, com quais finalidades e por meio de
+                quais fornecedores estão descritos na nossa{" "}
                 <Link href="/politica-de-privacidade">
                     Política de Privacidade
                 </Link>
@@ -133,9 +134,10 @@ export default function Page() {
 
             <h2>6. Explorando Links Externos</h2>
             <p>
-                Nosso site pode incluir links para sites externos que podem ser
-                do seu interesse. Não temos controle sobre esses sites e não
-                somos responsáveis pelo seu conteúdo ou políticas.
+                Nosso website pode incluir links para websites externos que
+                podem ser do seu interesse. Não temos controle sobre esses
+                websites e não somos responsáveis pelo seu conteúdo ou
+                políticas.
             </p>
 
             <h2>7. Mudanças e Atualizações</h2>
@@ -147,8 +149,8 @@ export default function Page() {
                 de contato que você nos forneceu.
             </p>
             <p>
-                Continuar a acessar o site após essas mudanças indica que você
-                concorda com os novos termos.
+                Continuar a acessar o website após essas mudanças indica que
+                você concorda com os novos termos.
             </p>
 
             <h2>Dúvidas ou Comentários?</h2>

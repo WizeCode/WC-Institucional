@@ -15,14 +15,14 @@ export default function Page() {
                 (&quot;WizeCode&quot;), inscrita no CNPJ 65.184.059/0001-22, com
                 sede na Av. Quinze, N° 950, Apto 302, Bairro Centro,
                 Ituiutaba-MG, CEP 38.300-134. Esta Política de Privacidade
-                aplica-se a todas as interações realizadas em nosso site
+                aplica-se a todas as interações realizadas em nosso website
                 www.wizecode.com.br e nos serviços digitais nele
                 disponibilizados: navegação geral, formulário de contato e
                 assistente virtual de briefing (&quot;Wizard&quot;).
             </p>
             <p>
-                Ao acessar e utilizar nosso site, você reconhece e concorda com
-                as práticas descritas nesta política.
+                Ao acessar e utilizar nosso website, você reconhece e concorda
+                com as práticas descritas nesta política.
             </p>
 
             <h2>1. Definições</h2>
@@ -49,29 +49,29 @@ export default function Page() {
             <h2>2. Como coletamos seus dados e por quê</h2>
             <p>
                 Diferente de um modelo genérico, detalhamos abaixo cada fluxo
-                real de dados do nosso site.
+                real de dados do nosso website.
             </p>
 
-            <h3>2.1 Navegação no site (análise de uso)</h3>
+            <h3>2.1 Navegação no website (análise de uso)</h3>
             <p>
                 Utilizamos a ferramenta <strong>PostHog</strong> para entender
-                como o site é usado: páginas visitadas, cliques e interações de
-                navegação. Essa análise é feita com um identificador de sessão
-                temporário, armazenado apenas na memória do seu navegador (não
-                persiste entre sessões nem é salvo como cookie de longo prazo),
-                e <strong>sem coleta do seu endereço IP</strong>. Também
+                como o website é usado: páginas visitadas, cliques e interações
+                de navegação. Essa análise é feita com um identificador de
+                sessão temporário, armazenado apenas na memória do seu navegador
+                (não persiste entre sessões nem é salvo como cookie de longo
+                prazo), e <strong>sem coleta do seu endereço IP</strong>. Também
                 utilizamos gravação de sessão com mascaramento automático de
                 todos os campos preenchidos (como formulários), de modo que o
                 conteúdo digitado não é capturado.
             </p>
             <ul>
                 <li>
-                    <strong>Finalidade:</strong> entender o uso do site,
+                    <strong>Finalidade:</strong> entender o uso do website,
                     identificar problemas de navegação e melhorar a experiência.
                 </li>
                 <li>
                     <strong>Base legal:</strong> legítimo interesse da WizeCode
-                    em manter e aprimorar seu site (art. 7º, IX, LGPD). Você
+                    em manter e aprimorar seu website (art. 7º, IX, LGPD). Você
                     pode se opor a esse tratamento a qualquer momento — ver
                     seção 7.
                 </li>
@@ -178,14 +178,14 @@ export default function Page() {
 
             <h3>2.5 Hospedagem e desempenho técnico</h3>
             <p>
-                Nosso site é hospedado na Vercel, que coleta métricas técnicas
-                agregadas de desempenho (como tempo de carregamento das
+                Nosso website é hospedado na Vercel, que coleta métricas
+                técnicas agregadas de desempenho (como tempo de carregamento das
                 páginas).
             </p>
             <ul>
                 <li>
                     <strong>Finalidade:</strong> monitorar e melhorar o
-                    desempenho técnico do site.
+                    desempenho técnico do website.
                 </li>
                 <li>
                     <strong>Base legal:</strong> legítimo interesse (art. 7º,
@@ -195,7 +195,7 @@ export default function Page() {
 
             <h2>3. Cookies</h2>
             <p>
-                Hoje, nosso site não utiliza cookies não essenciais. A
+                Hoje, nosso website não utiliza cookies não essenciais. A
                 ferramenta de análise de navegação (PostHog) está configurada
                 para não gravar identificadores no seu dispositivo — os dados de
                 uso ficam associados apenas a uma sessão temporária, mantida
@@ -216,7 +216,7 @@ export default function Page() {
             <ul>
                 <li>
                     <strong>
-                        Fornecedores que nos auxiliam na operação do site
+                        Fornecedores que nos auxiliam na operação do website
                     </strong>
                     , atuando em nosso nome e sob nossas instruções: PostHog
                     (análise de navegação), Cloudflare (proteção contra bots),
@@ -242,10 +242,10 @@ export default function Page() {
             </ul>
             <p>Não vendemos seus dados pessoais a terceiros.</p>
 
-            <h2>5. Links para Outros Sites</h2>
+            <h2>5. Links para Outros Websites</h2>
             <p>
-                Nosso site pode incluir links para sites externos. Ao clicar
-                neles, você sairá do nosso domínio e passará a seguir as
+                Nosso website pode incluir links para websites externos. Ao
+                clicar neles, você sairá do nosso domínio e passará a seguir as
                 políticas de privacidade desses terceiros, pelas quais não somos
                 responsáveis. Recomendamos a leitura atenta dessas políticas.
             </p>
@@ -341,8 +341,8 @@ export default function Page() {
             <h2>11. Alterações nesta Política</h2>
             <p>
                 Esta Política de Privacidade pode ser atualizada periodicamente.
-                A versão mais atual será sempre publicada em nosso site, com a
-                data da última revisão. Encorajamos você a revisá-la
+                A versão mais atual será sempre publicada em nosso website, com
+                a data da última revisão. Encorajamos você a revisá-la
                 regularmente.
             </p>
 
