@@ -31,7 +31,7 @@ import { icons } from "@/lib/icons"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { usePostHog } from "posthog-js/react"
+import { track } from "@/lib/analytics"
 import { ShineBorder } from "@/components/ui/shine-border"
 
 interface MenuItem {
@@ -114,7 +114,6 @@ const Header = ({
     className,
 }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false)
-    const posthog = usePostHog()
 
     useEffect(() => {
         const handleResize = () => {
@@ -176,7 +175,7 @@ const Header = ({
                                 size="lg"
                                 variant="outline"
                                 onClick={() =>
-                                    posthog.capture("cta_wiz_clicked", {
+                                    track("cta_wiz_clicked", {
                                         source: "header",
                                     })
                                 }
@@ -189,7 +188,7 @@ const Header = ({
                             asChild
                             size="lg"
                             onClick={() =>
-                                posthog.capture("cta_contact_clicked", {
+                                track("cta_contact_clicked", {
                                     source: "header",
                                 })
                             }
@@ -293,7 +292,7 @@ const Header = ({
                                                     size="lg"
                                                     variant="outline"
                                                     onClick={() => {
-                                                        posthog.capture(
+                                                        track(
                                                             "cta_wiz_clicked",
                                                             {
                                                                 source: "header_mobile",
@@ -312,7 +311,7 @@ const Header = ({
                                                 asChild
                                                 size="lg"
                                                 onClick={() => {
-                                                    posthog.capture(
+                                                    track(
                                                         "cta_contact_clicked",
                                                         {
                                                             source: "header_mobile",

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { usePostHog } from "posthog-js/react"
+import { track } from "@/lib/analytics"
 import Link from "next/link"
 import { TurnstileBox } from "@/components/providers/turnstile-box"
 import {
@@ -43,8 +43,6 @@ function maskWhatsapp(value: string): string {
 }
 
 export function TrabalheConoscoForm() {
-    const posthog = usePostHog()
-
     const {
         register,
         handleSubmit,
@@ -109,7 +107,7 @@ export function TrabalheConoscoForm() {
             return
         }
 
-        posthog?.capture("talent_pool_form_submitted", {
+        track("talent_pool_form_submitted", {
             area: data.area,
             modalidade: data.modalidade,
             disponibilidade: data.disponibilidade,
@@ -425,7 +423,7 @@ export function TrabalheConoscoForm() {
                     />
                     <Label
                         htmlFor="consentimento"
-                        className="text-sm leading-snug font-normal"
+                        className="block text-sm leading-snug font-normal"
                     >
                         Li e concordo com a{" "}
                         <Link
