@@ -1291,7 +1291,7 @@ export const PromptInputSelectTrigger = ({
 }: PromptInputSelectTriggerProps) => (
     <SelectTrigger
         className={cn(
-            "border-none bg-transparent font-medium text-muted-foreground shadow-none transition-colors",
+            "border-none bg-transparent text-sm font-medium text-muted-foreground shadow-none transition-colors",
             "hover:bg-accent hover:text-foreground aria-expanded:bg-accent aria-expanded:text-foreground",
             className
         )}
@@ -1314,7 +1314,7 @@ export const PromptInputSelectItem = ({
     className,
     ...props
 }: PromptInputSelectItemProps) => (
-    <SelectItem className={cn(className)} {...props} />
+    <SelectItem className={cn("text-sm", className)} {...props} />
 )
 
 export type PromptInputSelectValueProps = ComponentProps<typeof SelectValue>
