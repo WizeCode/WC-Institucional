@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Section } from "@/components/layout/section"
-import { Hero } from "@/components/layout/hero"
+import { Hero } from "@/components/sections/hero"
 import { BentoGrid, type BentoItem } from "@/components/sections/bento-grid"
 import { Dores } from "@/components/sections/dores"
 import { Timeline, type TimelineStep } from "@/components/sections/timeline"

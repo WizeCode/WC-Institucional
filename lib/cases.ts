@@ -14,7 +14,7 @@ export const cases = [
         service: "Institucional",
         year: "2025",
         description:
-            "Site institucional desenvolvido em WordPress para uma empresa de educação, com foco em apresentação de cursos, captação de leads e identidade visual alinhada ao posicionamento da marca.",
+            "Website institucional desenvolvido em WordPress para uma empresa de educação, com foco em apresentação de cursos, captação de leads e identidade visual alinhada ao posicionamento da marca.",
         image: "/images/cases/propagandista.svg",
         href: "https://www.propagandistadeprimeira.com.br",
     },
@@ -25,7 +25,7 @@ export const cases = [
         service: "Institucional",
         year: "2026",
         description:
-            "Site institucional desenvolvido em WordPress para uma empresa de engenharia, com foco em apresentação de serviços, portfólio de projetos e otimização para SEO e performance.",
+            "Website institucional desenvolvido em WordPress para uma empresa de engenharia, com foco em apresentação de serviços, portfólio de projetos e otimização para SEO e performance.",
         image: "/images/cases/derivada.svg",
         href: "https://www.derivadaengenharia.com",
     },
@@ -36,7 +36,7 @@ export const cases = [
         service: "Institucional",
         year: "2026",
         description:
-            "Site institucional desenvolvido em WordPress para uma produtora audiovisual, com foco em apresentação de portfólio, serviços e integração com redes sociais.",
+            "Website institucional desenvolvido em WordPress para uma produtora audiovisual, com foco em apresentação de portfólio, serviços e integração com redes sociais.",
         image: "/images/cases/colmeia.svg",
         href: "https://www.produtoracolmeia.com.br",
     },
@@ -47,7 +47,7 @@ export const cases = [
         service: "Institucional",
         year: "2024",
         description:
-            "Site institucional desenvolvido em WordPress para uma marca de semijoias, com foco em apresentação de produtos, catálogo editável, otimização para SEO e performance.",
+            "Website institucional desenvolvido em WordPress para uma marca de semijoias, com foco em apresentação de produtos, catálogo editável, otimização para SEO e performance.",
         image: "/images/cases/jadevine.svg",
         href: "https://www.jadevine.com.br",
     },

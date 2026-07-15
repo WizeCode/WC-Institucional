@@ -30,7 +30,7 @@ const LegalPage = ({ titulo, children }: LegalPageProps) => {
                         // Links
                         "[&_a]:font-medium [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a]:transition-colors hover:[&_a]:text-accent/80",
                         // Blockquotes
-                        "[&_blockquote]:my-4 [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-4 [&_blockquote]:italic",
+                        "[&_blockquote]:my-4 [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-4 [&_blockquote]:italic"
                     )}
                 >
                     {children}

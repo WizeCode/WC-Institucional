@@ -164,7 +164,7 @@ export const home = {
             {
                 id: "faq-1",
                 question: "Quanto tempo leva para desenvolver um projeto?",
-                answer: "Depende do escopo. Um site institucional costuma ficar pronto em 3 a 6 semanas. Plataformas, sistemas e aplicativos mais complexos podem levar de 2 a 6 meses. Durante o briefing, a gente já consegue dar uma estimativa realista para o seu caso.",
+                answer: "Depende do escopo. Um website institucional costuma ficar pronto em 3 a 6 semanas. Plataformas, sistemas e aplicativos mais complexos podem levar de 2 a 6 meses. Durante o briefing, a gente já consegue dar uma estimativa realista para o seu caso.",
             },
             {
                 id: "faq-2",
@@ -174,7 +174,7 @@ export const home = {
             {
                 id: "faq-3",
                 question:
-                    "Quem cuida do conteúdo do site — textos, fotos e vídeos?",
+                    "Quem cuida do conteúdo do website — textos, fotos e vídeos?",
                 answer: "O ideal é que o conteúdo venha da sua empresa, já que ninguém conhece o negócio melhor do que você. Mas entendemos que nem todo cliente tem isso pronto: podemos te orientar sobre o que preparar e, em casos específicos, indicar parceiros para essa parte.",
             },
             {

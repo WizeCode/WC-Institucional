@@ -1,32 +1,33 @@
 // Import CSS
-import "./globals.css";
-import { Geom } from "next/font/google";
-import type { Metadata } from "next";
+import "./globals.css"
+import { Geom } from "next/font/google"
+import type { Metadata } from "next"
 
 // Import Components
-import { ThemeProvider } from "@/components/theme-provider";
-import { PostHogProvider } from "@/components/providers/posthog-provider";
-import { UtmProvider } from "@/components/providers/utm-provider";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { ThemeProvider } from "@/components/theme-provider"
+import { PostHogProvider } from "@/components/providers/posthog-provider"
+import { UtmProvider } from "@/components/providers/utm-provider"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 // Import Libs
-import { cn } from "@/lib/utils";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { JsonLd } from "@/components/seo/json-ld";
-import { organizationSchema, websiteSchema } from "@/lib/structured-data";
+import { cn } from "@/lib/utils"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { JsonLd } from "@/components/seo/json-ld"
+import { organizationSchema, websiteSchema } from "@/lib/structured-data"
 
 const geom = Geom({
     subsets: ["latin"],
     display: "swap",
     variable: "--font-geom",
     fallback: ["system-ui", "sans-serif"],
-});
+})
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://www.wizecode.com.br"),
     title: {
-        default: "WizeCode — Tecnologia inteligente, do planejamento à performance",
+        default:
+            "WizeCode — Tecnologia inteligente, do planejamento à performance",
         template: "%s | WizeCode",
     },
     description:
@@ -73,8 +74,16 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: "/ico/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-            { url: "/ico/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+            {
+                url: "/ico/favicon-16x16.png",
+                sizes: "16x16",
+                type: "image/png",
+            },
+            {
+                url: "/ico/favicon-32x32.png",
+                sizes: "32x32",
+                type: "image/png",
+            },
             { url: "/ico/favicon.ico" },
         ],
         apple: [{ url: "/ico/apple-touch-icon.png" }],
@@ -90,7 +99,7 @@ export const metadata: Metadata = {
             "max-snippet": -1,
         },
     },
-};
+}
 
 export default function RootLayout({
     children,
@@ -98,7 +107,11 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="pt-BR" className={cn("antialiased", geom.variable)} suppressHydrationWarning>
+        <html
+            lang="pt-BR"
+            className={cn("antialiased", geom.variable)}
+            suppressHydrationWarning
+        >
             <body cz-shortcut-listen="true">
                 <PostHogProvider>
                     <UtmProvider>
@@ -116,5 +129,5 @@ export default function RootLayout({
                 <SpeedInsights />
             </body>
         </html>
-    );
-};
+    )
+}

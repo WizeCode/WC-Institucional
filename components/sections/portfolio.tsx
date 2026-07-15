@@ -46,7 +46,10 @@ const Portfolio = ({
         <div className="w-full">
             <div className="mb-16 flex flex-col items-center justify-between gap-10 text-center md:flex-row md:items-end md:text-start">
                 <div className="flex flex-col gap-2">
-                    <Badge className="mx-auto mb-4 md:mx-0" variant={badgeVariant}>
+                    <Badge
+                        className="mx-auto mb-4 md:mx-0"
+                        variant={badgeVariant}
+                    >
                         {badge}
                     </Badge>
                     <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
@@ -68,7 +71,7 @@ const Portfolio = ({
             </div>
 
             <div className="relative w-full">
-                <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-32 bg-linear-to-l from-background to-transparent sm:w-64" />
+                <div className="pointer-events-none absolute top-0 -right-px z-10 h-full w-12 bg-linear-to-l from-background/70 to-transparent sm:w-24" />
                 <Carousel opts={{ align: "start" }} className="w-full">
                     <CarouselContent className="-ml-4 items-stretch pr-8">
                         {projects.map((project) => (
@@ -137,10 +140,10 @@ const Portfolio = ({
                                                     target="_blank"
                                                 >
                                                     <Button
-                                                        size="sm"
+                                                        size="lg"
                                                         className="w-full"
                                                     >
-                                                        Acessar site
+                                                        Acessar website
                                                     </Button>
                                                 </a>
                                             </div>

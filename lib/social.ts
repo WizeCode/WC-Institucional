@@ -20,7 +20,8 @@ interface ContactChannel {
     href: string
 }
 
-const whatsappMessage = "Olá! Gostaria de saber mais sobre os serviços da WizeCode."
+const whatsappMessage =
+    "Olá! Gostaria de saber mais sobre os serviços da WizeCode."
 
 const siteContact = {
     whatsapp: {

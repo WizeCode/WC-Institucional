@@ -1,6 +1,6 @@
 import React from "react"
 
-interface FormLayoutProps {
+interface FormPageProps {
     title: React.ReactNode
     description: React.ReactNode
     aside?: React.ReactNode
@@ -14,7 +14,7 @@ interface FormLayoutProps {
  * fora, na página. O formulário entra por `children`; `aside` é um slot opcional
  * abaixo do texto (ex: a lista de canais de contato).
  */
-const FormLayout = ({ title, description, aside, children }: FormLayoutProps) => {
+const FormPage = ({ title, description, aside, children }: FormPageProps) => {
     return (
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-20">
             <div className="mb-8 flex flex-1 flex-col gap-2 text-start">
@@ -33,4 +33,4 @@ const FormLayout = ({ title, description, aside, children }: FormLayoutProps) =>
     )
 }
 
-export { FormLayout }
+export { FormPage }

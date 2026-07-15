@@ -20,8 +20,8 @@ const EmConstrucao = ({
     titulo,
     descricao = (
         <>
-            Estamos construindo esta página com o mesmo cuidado que dedicamos aos
-            projetos dos nossos clientes –{" "}
+            Estamos construindo esta página com o mesmo cuidado que dedicamos
+            aos projetos dos nossos clientes –{" "}
             <em>ela ficará pronta muito em breve.</em>
         </>
     ),
@@ -29,11 +29,12 @@ const EmConstrucao = ({
 }: EmConstrucaoProps) => {
     return (
         <section className="px-8">
-            <div className="container py-12 sm:py-32 mx-auto flex flex-col lg:flex-row items-center w-full gap-10 lg:gap-20">
-                <div className="mx-auto flex flex-col flex-1 items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
+            <div className="container mx-auto flex w-full flex-col items-center gap-10 py-12 sm:py-32 lg:flex-row lg:gap-20">
+                <div className="mx-auto flex flex-1 flex-col items-center text-center md:ml-auto lg:ml-0 lg:max-w-3xl lg:items-start lg:text-left">
                     {badge && <Badge variant="outline">{badge}</Badge>}
                     <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                        {titulo} <span className="text-accent">em construção</span>.
+                        {titulo}{" "}
+                        <span className="text-accent">em construção</span>.
                     </h1>
                     <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
                         {descricao}
@@ -47,9 +48,14 @@ const EmConstrucao = ({
                         </Button>
                     </div>
                 </div>
-                <div className="flex justify-center w-full flex-1 lg:justify-end">
-                    <Terminal className="max-h-120 max-w-xl" startOnView={false}>
-                        <TypingAnimation>$ wizecode build --page</TypingAnimation>
+                <div className="flex w-full flex-1 justify-center lg:justify-end">
+                    <Terminal
+                        className="max-h-120 max-w-xl"
+                        startOnView={false}
+                    >
+                        <TypingAnimation>
+                            $ wizecode build --page
+                        </TypingAnimation>
                         <AnimatedSpan>✔ design aprovado</AnimatedSpan>
                         <AnimatedSpan>✔ conteúdo em produção</AnimatedSpan>
                         <AnimatedSpan className="text-yellow-500">

@@ -31,7 +31,7 @@ const Timeline = ({
     const shouldReduce = useReducedMotion()
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-8">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
                 {badge && (
                     <Badge className="mx-auto" variant={badgeVariant}>
@@ -48,7 +48,7 @@ const Timeline = ({
                 )}
             </div>
 
-            <ol className="mx-auto mt-16 w-full max-w-2xl">
+            <ol className="mx-auto w-full max-w-2xl">
                 {items.map((step, index) => {
                     const Icon = step.icon ? icons[step.icon] : null
                     const isLast = index === items.length - 1
@@ -56,11 +56,16 @@ const Timeline = ({
                         <motion.li
                             key={step.title}
                             className="flex gap-6"
-                            initial={shouldReduce ? false : { opacity: 0, y: 12 }}
+                            initial={
+                                shouldReduce ? false : { opacity: 0, y: 12 }
+                            }
                             whileInView={
                                 shouldReduce ? undefined : { opacity: 1, y: 0 }
                             }
-                            viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+                            viewport={{
+                                once: true,
+                                margin: "0px 0px -80px 0px",
+                            }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
                         >
                             {/* Trilho: nó numerado + linha conectora */}
@@ -74,7 +79,10 @@ const Timeline = ({
                                     )}
                                 >
                                     {Icon ? (
-                                        <Icon className="size-5" aria-hidden="true" />
+                                        <Icon
+                                            className="size-5"
+                                            aria-hidden="true"
+                                        />
                                     ) : (
                                         index + 1
                                     )}
@@ -88,8 +96,10 @@ const Timeline = ({
                             </div>
 
                             {/* Conteúdo */}
-                            <div className={cn("pt-2.5", !isLast && "pb-10")}>
-                                <h3 className="text-xl font-medium">{step.title}</h3>
+                            <div className={cn(!isLast && "pb-10")}>
+                                <h3 className="text-xl font-medium">
+                                    {step.title}
+                                </h3>
                                 {step.description && (
                                     <p className="mt-1 text-muted-foreground">
                                         {step.description}

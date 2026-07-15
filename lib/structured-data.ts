@@ -1,4 +1,4 @@
-const BASE_URL = "https://www.wizecode.com.br";
+const BASE_URL = "https://www.wizecode.com.br"
 
 export const organizationSchema = {
     "@context": "https://schema.org",
@@ -21,11 +21,11 @@ export const organizationSchema = {
         "https://www.linkedin.com/company/wizecode-tech",
         "https://github.com/WizeCode/",
     ],
-};
+}
 
 export const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "WizeCode",
     url: BASE_URL,
-};
+}

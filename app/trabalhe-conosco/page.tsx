@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
-import { FormLayout } from "@/components/layout/form-layout"
+import { FormPage } from "@/components/templates/form-page"
 import { TrabalheConoscoForm } from "@/components/forms/trabalhe-conosco-form"
 
 export const metadata: Metadata = {
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <Section className="py-12">
-            <FormLayout
+            <FormPage
                 title="Faça parte do nosso banco de talentos"
                 description="Ficamos felizes em saber que você tem interesse em crescer com a WizeCode! Cadastre-se e entraremos em contato quando surgir uma oportunidade com o seu perfil."
             >
                 <TrabalheConoscoForm />
-            </FormLayout>
+            </FormPage>
         </Section>
     )
 }

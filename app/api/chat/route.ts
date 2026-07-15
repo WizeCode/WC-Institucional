@@ -18,21 +18,31 @@ export async function POST(request: Request) {
             return new Response("Limite de conversa atingido.", { status: 429 })
         }
 
-        const lastUserMessage = [...messages].reverse().find((m: { role: string }) => m.role === "user")
+        const lastUserMessage = [...messages]
+            .reverse()
+            .find((m: { role: string }) => m.role === "user")
         if (lastUserMessage) {
-            const parts: { type: string; text?: string }[] = Array.isArray(lastUserMessage.parts)
+            const parts: { type: string; text?: string }[] = Array.isArray(
+                lastUserMessage.parts
+            )
                 ? lastUserMessage.parts
                 : []
-            const content: string = typeof lastUserMessage.content === "string"
-                ? lastUserMessage.content
-                : parts.filter((p) => p.type === "text").map((p) => p.text ?? "").join("")
+            const content: string =
+                typeof lastUserMessage.content === "string"
+                    ? lastUserMessage.content
+                    : parts
+                          .filter((p) => p.type === "text")
+                          .map((p) => p.text ?? "")
+                          .join("")
             if (content.length > MAX_USER_MESSAGE_LENGTH) {
                 return new Response("Mensagem muito longa.", { status: 400 })
             }
         }
 
         const result = streamText({
-            model: openrouter(process.env.OPENROUTER_MODEL ?? "deepseek/deepseek-v4-flash"),
+            model: openrouter(
+                process.env.OPENROUTER_MODEL ?? "deepseek/deepseek-v4-flash"
+            ),
             system: systemPrompt,
             messages: await convertToModelMessages(messages),
             maxOutputTokens: MAX_TOKENS_PER_RESPONSE,
@@ -40,7 +50,7 @@ export async function POST(request: Request) {
 
         return result.toTextStreamResponse()
     } catch (error) {
-        console.error("Error in chat route:", error);
+        console.error("Error in chat route:", error)
         return new Response("Internal Server Error", { status: 500 })
     }
 }

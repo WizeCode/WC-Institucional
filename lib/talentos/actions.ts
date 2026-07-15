@@ -8,7 +8,10 @@ export async function enviarCandidatura(formData: FormData) {
     if (process.env.NODE_ENV !== "development") {
         const token = String(formData.get("turnstileToken") ?? "")
         if (!token || !(await verifyTurnstile(token))) {
-            return { success: false, error: "Falha na verificação de segurança." }
+            return {
+                success: false,
+                error: "Falha na verificação de segurança.",
+            }
         }
     }
 

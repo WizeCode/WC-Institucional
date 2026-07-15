@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { usePostHog } from "posthog-js/react"
+import { track } from "@/lib/analytics"
 import Link from "next/link"
 import { TurnstileBox } from "@/components/providers/turnstile-box"
 import {
@@ -43,8 +43,6 @@ function maskWhatsapp(value: string): string {
 }
 
 export function TrabalheConoscoForm() {
-    const posthog = usePostHog()
-
     const {
         register,
         handleSubmit,
@@ -109,7 +107,7 @@ export function TrabalheConoscoForm() {
             return
         }
 
-        posthog?.capture("talent_pool_form_submitted", {
+        track("talent_pool_form_submitted", {
             area: data.area,
             modalidade: data.modalidade,
             disponibilidade: data.disponibilidade,
@@ -258,7 +256,8 @@ export function TrabalheConoscoForm() {
                     />
                     {errors.modalidade && (
                         <p className="text-xs text-destructive">
-                            {errors.modalidade.message ?? "Selecione a modalidade"}
+                            {errors.modalidade.message ??
+                                "Selecione a modalidade"}
                         </p>
                     )}
                 </div>
@@ -306,7 +305,9 @@ export function TrabalheConoscoForm() {
                 <div className="flex-1 space-y-1.5">
                     <Label htmlFor="github">
                         GitHub{" "}
-                        <span className="text-muted-foreground">(opcional)</span>
+                        <span className="text-muted-foreground">
+                            (opcional)
+                        </span>
                     </Label>
                     <Input
                         id="github"
@@ -325,7 +326,9 @@ export function TrabalheConoscoForm() {
                 <div className="flex-1 space-y-1.5">
                     <Label htmlFor="linkedin">
                         LinkedIn{" "}
-                        <span className="text-muted-foreground">(opcional)</span>
+                        <span className="text-muted-foreground">
+                            (opcional)
+                        </span>
                     </Label>
                     <Input
                         id="linkedin"
@@ -382,7 +385,9 @@ export function TrabalheConoscoForm() {
                                 : "truncate text-sm text-muted-foreground"
                         }
                     >
-                        {curriculo ? curriculo.name : "Nenhum arquivo selecionado"}
+                        {curriculo
+                            ? curriculo.name
+                            : "Nenhum arquivo selecionado"}
                     </span>
                     <input
                         key={curriculoKey}
@@ -418,7 +423,7 @@ export function TrabalheConoscoForm() {
                     />
                     <Label
                         htmlFor="consentimento"
-                        className="text-sm font-normal leading-snug"
+                        className="block text-sm leading-snug font-normal"
                     >
                         Li e concordo com a{" "}
                         <Link
@@ -439,12 +444,15 @@ export function TrabalheConoscoForm() {
             </div>
 
             {errors.root && (
-                <p className="text-sm text-destructive">{errors.root.message}</p>
+                <p className="text-sm text-destructive">
+                    {errors.root.message}
+                </p>
             )}
 
             {success && (
                 <p className="text-sm text-green-600">
-                    Candidatura enviada com sucesso! Entraremos em contato em breve.
+                    Candidatura enviada com sucesso! Entraremos em contato em
+                    breve.
                 </p>
             )}
 
