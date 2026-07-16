@@ -4,12 +4,75 @@ import type { Diferencial } from "@/components/sections/diferenciais"
 import { cases } from "@/lib/cases"
 import type { Technology } from "@/components/sections/stack"
 import type { FaqItem } from "@/components/sections/faq"
+import type { TerminalBlock } from "@/components/sections/hero-terminal"
 import { siteContact } from "@/lib/social"
 
 const stackIcon = (file: string) => `/images/stack/${file}.svg`
 
 export const home = {
+    meta: {
+        title: "WizeCode",
+        description:
+            "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
+        canonical: "/",
+    },
+    hero: {
+        badge: "/ Hero",
+        title: "Tecnologia *inteligente*:\ndo planejamento à performance.",
+        description:
+            "Somos especialistas em transformar objetivos de negócio em soluções digitais inteligentes, eficientes e escaláveis – _com a clareza de quem domina cada etapa do processo._",
+        cta: { text: "Fale com nossa equipe", url: "/contato" },
+        terminal: {
+            blocks: [
+                {
+                    command: 'wizecode scan "seu-negócio"',
+                    lines: [
+                        { kind: "error", text: "processos manuais detectados" },
+                        {
+                            kind: "error",
+                            text: "ferramentas e sistemas lentos",
+                        },
+                        {
+                            kind: "error",
+                            text: "presença digital desatualizada",
+                        },
+                    ],
+                },
+                {
+                    command: 'wizecode init "seu-projeto"',
+                    lines: [
+                        { kind: "step", text: "entrevista inicial realizada" },
+                        {
+                            kind: "step",
+                            text: "requisitos funcionais e não-funcionais mapeados",
+                        },
+                        {
+                            kind: "step",
+                            text: "plano de desenvolvimento elaborado",
+                        },
+                        { kind: "detail", text: "stack definida" },
+                        { kind: "detail", text: "cronograma definido" },
+                        {
+                            kind: "step",
+                            text: "design desenvolvido e aprovado",
+                        },
+                        {
+                            kind: "step",
+                            text: "testes de qualidade realizados",
+                        },
+                        { kind: "detail", text: "performance: 98/100" },
+                        { kind: "detail", text: "segurança: máxima" },
+                    ],
+                },
+            ] satisfies TerminalBlock[],
+            result: "projeto publicado e entregue com sucesso!",
+        },
+    },
     servicos: {
+        badge: "/ Serviços",
+        title: "O que a WizeCode *entrega*",
+        description:
+            "Do planejamento à entrega, desenvolvemos soluções digitais sob medida para o seu negócio.",
         services: [
             {
                 id: "Institucional",
@@ -55,6 +118,10 @@ export const home = {
         ] satisfies ServiceItem[],
     },
     diferenciais: {
+        badge: "/ Diferenciais",
+        title: "Mas o que a WizeCode tem de *diferente*?",
+        description:
+            "Enquanto outras software houses entregam promessas, a WizeCode entrega produto.",
         items: [
             {
                 letter: "W",
@@ -87,9 +154,18 @@ export const home = {
         ] satisfies Diferencial[],
     },
     portfolio: {
+        badge: "/ Portfólio",
+        title: "Nosso Portfólio",
+        description:
+            "Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto.",
+        button: { url: "/cases", text: "Ver todos os cases" },
         projects: cases,
     },
     stack: {
+        badge: "/ Stack",
+        title: "Técnologias confiáveis",
+        description:
+            "Stack sólida e confiável, com tecnologias modernas, garantindo a qualidade e performance dos nossos projetos.",
         techRowOne: [
             {
                 id: "nextjs",
@@ -160,6 +236,11 @@ export const home = {
         ] satisfies Technology[],
     },
     faq: {
+        badge: "/ FAQ",
+        title: "Alguma dúvida?",
+        subtitle: "Estamos aqui para ajudar.",
+        description: "Ainda tem dúvidas?",
+        whatsappMessage: "Olá! Tenho uma dúvida sobre a WizeCode.",
         items: [
             {
                 id: "faq-1",
@@ -196,6 +277,9 @@ export const home = {
         ] satisfies FaqItem[],
     },
     contato: {
+        badge: "/ Contato",
+        title: "Vamos construir algo incrível juntos?",
+        description: "Nossa equipe entrará em contato em até 24 horas úteis",
         infoCards: siteContact.channels,
     },
 }

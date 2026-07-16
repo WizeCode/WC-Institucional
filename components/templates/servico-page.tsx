@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 
 import { Section } from "@/components/layout/section"
 import { Hero } from "@/components/sections/hero"
@@ -11,7 +10,7 @@ import { Faq, type FaqItem } from "@/components/sections/faq"
 import { Contato } from "@/components/sections/contato"
 import { Stack, type StackProps } from "@/components/sections/stack"
 import { Particles } from "@/components/ui/particles"
-import { accent } from "@/lib/text"
+import { rich } from "@/lib/text"
 import { siteContact } from "@/lib/social"
 import type { ContatoFormData } from "@/lib/contato/schema"
 
@@ -56,8 +55,6 @@ export interface ServicoData {
     contato: { title: string }
 }
 
-const WHATSAPP_NUMBER = "5534984392633"
-
 export function ServicoPage({ data }: { data: ServicoData }) {
     return (
         <>
@@ -65,7 +62,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
                 <Hero
                     variant="default"
                     badge={data.hero.badge}
-                    title={accent(data.hero.title)}
+                    title={rich(data.hero.title)}
                     description={data.hero.description}
                     cta={{ primary: data.hero.cta }}
                 >
@@ -84,7 +81,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
                 <Dores
                     badge={data.dores.badge}
                     badgeVariant="default"
-                    title={accent(data.dores.title)}
+                    title={rich(data.dores.title)}
                     description={data.dores.description}
                     items={data.dores.items}
                 />
@@ -93,7 +90,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
             <Section>
                 <BentoGrid
                     badge={data.capacidades.badge}
-                    title={accent(data.capacidades.title)}
+                    title={rich(data.capacidades.title)}
                     description={data.capacidades.description}
                     items={data.capacidades.items}
                 />
@@ -103,7 +100,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
                 <Timeline
                     badge={data.processo.badge}
                     badgeVariant="default"
-                    title={accent(data.processo.title)}
+                    title={rich(data.processo.title)}
                     description={data.processo.description}
                     items={data.processo.items}
                 />
@@ -128,27 +125,10 @@ export function ServicoPage({ data }: { data: ServicoData }) {
             <Section className="py-16">
                 <Faq
                     badge="/ FAQ"
-                    title={
-                        <>
-                            Alguma dúvida? <br />{" "}
-                            <span className="font-normal text-muted-foreground">
-                                Estamos aqui para ajudar.
-                            </span>
-                        </>
-                    }
-                    description={
-                        <>
-                            {data.faq.description}{" "}
-                            <Link
-                                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(data.faq.whatsappMessage)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline hover:text-primary"
-                            >
-                                Fale com a gente no WhatsApp.
-                            </Link>
-                        </>
-                    }
+                    title="Alguma dúvida?"
+                    subtitle="Estamos aqui para ajudar."
+                    description={data.faq.description}
+                    whatsappMessage={data.faq.whatsappMessage}
                     items={data.faq.items}
                 />
             </Section>

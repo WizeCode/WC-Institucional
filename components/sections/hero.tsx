@@ -63,7 +63,8 @@ const HeroBody = ({
 }: HeroBodyProps) => (
     <div className={cn(bodyVariants({ align }), className)}>
         {badge && <Badge variant="outline">{badge}</Badge>}
-        <h1 className="my-6 text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
+        {/* pre-line: `\n` no título do `.data.ts` vira quebra de linha. */}
+        <h1 className="my-6 text-2xl font-bold text-pretty whitespace-pre-line lg:text-3xl xl:text-4xl">
             {title}
         </h1>
         {description && (
@@ -112,7 +113,7 @@ interface HeroProps extends HeroContent, VariantProps<typeof heroVariants> {
  * component, not a variant. See `docs/CONVENTIONS.md` §5.
  *
  * ```tsx
- * <Hero badge={data.hero.badge} title={accent(data.hero.title)} cta={…}>
+ * <Hero badge={data.hero.badge} title={rich(data.hero.title)} cta={…}>
  *     <Image src={data.hero.image.src} … />
  * </Hero>
  * ```

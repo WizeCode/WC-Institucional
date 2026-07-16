@@ -20,13 +20,20 @@ interface ContactChannel {
     href: string
 }
 
-const whatsappMessage =
+const WHATSAPP_NUMBER = "5534984392633"
+
+/** Link de WhatsApp com a mensagem já pré-preenchida. */
+function whatsappUrl(message: string): string {
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+}
+
+const defaultMessage =
     "Olá! Gostaria de saber mais sobre os serviços da WizeCode."
 
 const siteContact = {
     whatsapp: {
         display: "+55 (34) 98439-2633",
-        href: `https://wa.me/5534984392633?text=${whatsappMessage}`,
+        href: whatsappUrl(defaultMessage),
     },
     email: "contato@wizecode.com.br",
     channels: [
@@ -35,7 +42,7 @@ const siteContact = {
             icon: "whatsapp",
             label: "WhatsApp",
             value: "+55 (34) 98439-2633",
-            href: `https://wa.me/5534984392633?text=${whatsappMessage}`,
+            href: whatsappUrl(defaultMessage),
         },
         {
             id: "email",
@@ -61,5 +68,5 @@ const siteContact = {
     ] satisfies ContactChannel[],
 }
 
-export { siteContact }
+export { siteContact, whatsappUrl }
 export type { ContactChannel }
