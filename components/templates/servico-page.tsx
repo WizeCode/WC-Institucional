@@ -6,9 +6,13 @@ import { BentoGrid, type BentoItem } from "@/components/sections/bento-grid"
 import { Dores } from "@/components/sections/dores"
 import { Timeline, type TimelineStep } from "@/components/sections/timeline"
 import { Portfolio, type Project } from "@/components/sections/portfolio"
+import { Projetos, type ProjetosProps } from "@/components/sections/projetos"
 import { Faq, type FaqItem } from "@/components/sections/faq"
 import { Contato } from "@/components/sections/contato"
-import { Stack, type StackProps } from "@/components/sections/stack"
+import {
+    StackGroups,
+    type StackGroupsProps,
+} from "@/components/sections/stack-groups"
 import { Particles } from "@/components/ui/particles"
 import { rich } from "@/lib/text"
 import { siteContact } from "@/lib/social"
@@ -17,7 +21,6 @@ import type { ContatoFormData } from "@/lib/contato/schema"
 /** Cabeçalho comum das seções: rótulo, título e descrição. */
 interface SectionHeader {
     badge: string
-    /** Use `*trecho*` para destacar (vira `text-accent`). Ver `lib/text`. */
     title: string
     description: string
 }
@@ -30,11 +33,9 @@ interface SectionHeader {
  * componente. Ver `docs/CONVENTIONS.md`.
  */
 export interface ServicoData {
-    /** Pré-seleciona o serviço no formulário de contato. */
     slug: ContatoFormData["servico"]
     hero: {
         badge: string
-        /** Aceita `*destaque*`. */
         title: string
         description: string
         image: { src: string; alt: string }
@@ -43,12 +44,13 @@ export interface ServicoData {
     dores: SectionHeader & { items: string[] }
     capacidades: SectionHeader & { items: BentoItem[] }
     processo: SectionHeader & { items: TimelineStep[] }
-    portfolio: { projects: Project[] }
-    /** Seção opcional (ex.: Sistemas & Automações). Omitida → não renderiza. */
-    stack?: StackProps
+    /** Cases lançados. Seção opcional: sem projetos → não renderiza. */
+    portfolio?: { projects: Project[] }
+    /** Prova social sem case lançado (ex.: Sistemas). Omitida → não renderiza. */
+    projetos?: SectionHeader & { items: ProjetosProps["items"] }
+    stack?: StackGroupsProps
     faq: {
         description: string
-        /** Texto pré-preenchido no link de WhatsApp do FAQ. */
         whatsappMessage: string
         items: FaqItem[]
     }
@@ -106,19 +108,32 @@ export function ServicoPage({ data }: { data: ServicoData }) {
                 />
             </Section>
 
-            <Section className="sm:py-8">
-                <Portfolio
-                    badge="/ Portfólio"
-                    title="Clientes que aprovam nosso trabalho"
-                    description="Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto."
-                    button={{ url: "/cases", text: "Ver todos os cases" }}
-                    projects={data.portfolio.projects}
-                />
-            </Section>
+            {data.portfolio && (
+                <Section className="sm:py-8">
+                    <Portfolio
+                        badge="/ Portfólio"
+                        title="Clientes que aprovam nosso trabalho"
+                        description="Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto."
+                        button={{ url: "/cases", text: "Ver todos os cases" }}
+                        projects={data.portfolio.projects}
+                    />
+                </Section>
+            )}
+
+            {data.projetos && (
+                <Section className="sm:py-8">
+                    <Projetos
+                        badge={data.projetos.badge}
+                        title={rich(data.projetos.title)}
+                        description={data.projetos.description}
+                        items={data.projetos.items}
+                    />
+                </Section>
+            )}
 
             {data.stack && (
                 <Section>
-                    <Stack {...data.stack} />
+                    <StackGroups {...data.stack} />
                 </Section>
             )}
 
