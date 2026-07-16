@@ -1,11 +1,7 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
 import { Hero } from "@/components/sections/hero"
-import {
-    AnimatedSpan,
-    Terminal,
-    TypingAnimation,
-} from "@/components/ui/terminal"
+import { HeroTerminal } from "@/components/sections/hero-terminal"
 import { Particles } from "@/components/ui/particles"
 import { Contato } from "@/components/sections/contato"
 import { Servicos } from "@/components/sections/servicos"
@@ -13,15 +9,14 @@ import { Portfolio } from "@/components/sections/portfolio"
 import { Stack } from "@/components/sections/stack"
 import { Faq } from "@/components/sections/faq"
 import { Diferenciais } from "@/components/sections/diferenciais"
+import { rich } from "@/lib/text"
 import { home } from "./home.data"
-import Link from "next/link"
 
 export const metadata: Metadata = {
-    title: "WizeCode",
-    description:
-        "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
+    title: home.meta.title,
+    description: home.meta.description,
     alternates: {
-        canonical: "/",
+        canonical: home.meta.canonical,
     },
 }
 
@@ -30,143 +25,48 @@ export default function Page() {
         <>
             <Section className="my-0">
                 <Hero
-                    badge="/ Hero"
-                    title={
-                        <>
-                            Tecnologia{" "}
-                            <span className="text-accent">inteligente</span>:
-                            <br />
-                            do planejamento à performance.
-                        </>
-                    }
-                    description={
-                        <>
-                            Somos especialistas em transformar objetivos de
-                            negócio em soluções digitais inteligentes,
-                            eficientes e escaláveis –{" "}
-                            <em>
-                                com a clareza de quem domina cada etapa do
-                                processo.
-                            </em>
-                        </>
-                    }
-                    cta={{
-                        primary: {
-                            text: "Fale com nossa equipe",
-                            url: "/contato",
-                        },
-                    }}
+                    badge={home.hero.badge}
+                    title={rich(home.hero.title)}
+                    description={rich(home.hero.description)}
+                    cta={{ primary: home.hero.cta }}
                 >
-                    <Terminal
-                        className="max-h-136 max-w-xl"
-                        startOnView={false}
-                    >
-                        <TypingAnimation
-                            className="font-bold"
-                            prefix={<span className="text-accent">$ </span>}
-                        >
-                            {'wizecode scan "seu-negócio"'}
-                        </TypingAnimation>
-                        <AnimatedSpan className="pl-4 text-red-500">
-                            {"⚠︎ processos manuais detectados"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-red-500">
-                            {"⚠︎ ferramentas e sistemas lentos"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-red-500">
-                            {"⚠︎ presença digital desatualizada"}
-                        </AnimatedSpan>
-
-                        <TypingAnimation
-                            className="mt-4 font-bold"
-                            prefix={<span className="text-accent">$ </span>}
-                        >
-                            {'wizecode init "seu-projeto"'}
-                        </TypingAnimation>
-                        <AnimatedSpan className="pl-4 text-foreground">
-                            {"> entrevista inicial realizada"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-foreground">
-                            {
-                                "> requisitos funcionais e não-funcionais mapeados"
-                            }
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-foreground">
-                            {"> plano de desenvolvimento elaborado"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-12 text-muted-foreground">
-                            stack definida
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-12 text-muted-foreground">
-                            cronograma definido
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-foreground">
-                            {"> design desenvolvido e aprovado"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-4 text-foreground">
-                            {"> testes de qualidade realizados"}
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-12 text-muted-foreground">
-                            performance: 98/100
-                        </AnimatedSpan>
-                        <AnimatedSpan className="pl-12 text-muted-foreground">
-                            segurança: máxima
-                        </AnimatedSpan>
-                        <AnimatedSpan className="mt-4 pl-4 font-bold text-emerald-500">
-                            {"✓ projeto publicado e entregue com sucesso!"}
-                        </AnimatedSpan>
-                    </Terminal>
+                    <HeroTerminal {...home.hero.terminal} />
                 </Hero>
             </Section>
 
             <Section variant="soft" className="sm:py-8">
                 <Servicos
-                    badge="/ Serviços"
-                    title={
-                        <>
-                            O que a WizeCode{" "}
-                            <span className="text-accent">entrega</span>
-                        </>
-                    }
-                    description={
-                        <>
-                            Do planejamento à entrega, desenvolvemos soluções
-                            digitais sob medida para o seu negócio.
-                        </>
-                    }
+                    badge={home.servicos.badge}
+                    title={rich(home.servicos.title)}
+                    description={home.servicos.description}
                     services={home.servicos.services}
                 />
             </Section>
 
             <Section>
                 <Diferenciais
-                    badge="/ Diferenciais"
-                    title={
-                        <>
-                            Mas o que a WizeCode tem de{" "}
-                            <span className="text-accent">diferente</span>?
-                        </>
-                    }
-                    description="Enquanto outras software houses entregam promessas, a WizeCode entrega produto."
+                    badge={home.diferenciais.badge}
+                    title={rich(home.diferenciais.title)}
+                    description={home.diferenciais.description}
                     items={home.diferenciais.items}
                 />
             </Section>
 
             <Section className="sm:py-8">
                 <Portfolio
-                    badge="/ Portfólio"
-                    title="Nosso Portfólio"
-                    description="Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto."
-                    button={{ url: "/cases", text: "Ver todos os cases" }}
+                    badge={home.portfolio.badge}
+                    title={home.portfolio.title}
+                    description={home.portfolio.description}
+                    button={home.portfolio.button}
                     projects={home.portfolio.projects}
                 />
             </Section>
 
             <Section>
                 <Stack
-                    badge="/ Stack"
-                    title="Técnologias confiáveis"
-                    description="Stack sólida e confiável, com tecnologias modernas, garantindo a qualidade e performance dos nossos projetos."
+                    badge={home.stack.badge}
+                    title={home.stack.title}
+                    description={home.stack.description}
                     techRowOne={home.stack.techRowOne}
                     techRowTwo={home.stack.techRowTwo}
                     techRowThree={home.stack.techRowThree}
@@ -175,28 +75,11 @@ export default function Page() {
 
             <Section className="py-16">
                 <Faq
-                    badge="/ FAQ"
-                    title={
-                        <>
-                            Alguma dúvida? <br />{" "}
-                            <span className="font-normal text-muted-foreground">
-                                Estamos aqui para ajudar.
-                            </span>
-                        </>
-                    }
-                    description={
-                        <>
-                            Ainda tem dúvidas?{" "}
-                            <Link
-                                href={`https://wa.me/5534984392633?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a WizeCode.")}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline hover:text-primary"
-                            >
-                                Entre em contato conosco.
-                            </Link>
-                        </>
-                    }
+                    badge={home.faq.badge}
+                    title={home.faq.title}
+                    subtitle={home.faq.subtitle}
+                    description={home.faq.description}
+                    whatsappMessage={home.faq.whatsappMessage}
                     items={home.faq.items}
                 />
             </Section>
@@ -215,9 +98,9 @@ export default function Page() {
                 }
             >
                 <Contato
-                    badge="/ Contato"
-                    title="Vamos construir algo incrível juntos?"
-                    description="Nossa equipe entrará em contato em até 24 horas úteis"
+                    badge={home.contato.badge}
+                    title={home.contato.title}
+                    description={home.contato.description}
                     infoCards={home.contato.infoCards}
                 />
             </Section>

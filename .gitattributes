@@ -1,0 +1,14 @@
+# Fim de linha: LF no repositório e no disco, em qualquer sistema.
+#
+# Tem precedência sobre o `core.autocrlf` de cada máquina. Sem isto, o Git no
+# Windows escreve CRLF ao fazer checkout e o Prettier (`endOfLine: "lf"`)
+# reescreve para LF — o `npm run format` sujava o repo inteiro.
+* text=auto eol=lf
+
+# Binários: nunca converter.
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

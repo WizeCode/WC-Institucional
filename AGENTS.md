@@ -19,7 +19,8 @@ Sem testes automatizados: valide com `npm run typecheck`, `npm run lint`,
 - **Dados são serializáveis:** string, número, array, objeto simples. **Nunca JSX
   nem função no `.data.ts`.**
   - Ícone entra por **string**, resolvida pelo registro `lib/icons.ts`.
-  - Destaque em título usa o marcador `*texto*` + helper `accent` (`lib/text.tsx`).
+  - Destaque usa marcador + helper `rich` (`lib/text.tsx`): `*texto*` vira
+    `text-accent`, `_texto_` vira `<em>`. Quebra de linha em título é `\n`.
 - **`page.tsx` é só composição:** importa o `.data.ts`, escolhe componentes,
   injeta props. Deve ler como um índice da página.
 - O **slot de mídia** (`children`: `<Terminal>`, imagem) é composição, fica no
