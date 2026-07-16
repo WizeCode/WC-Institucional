@@ -194,14 +194,18 @@ const Icon = icons[item.icon]
 Adicionar um ícone **novo** custa uma linha em `lib/icons.ts` — não é "mexer no
 componente", é ampliar o catálogo.
 
-**Destaque no título — marcador de texto.** Para não colocar `<span>` nos dados,
-títulos com destaque usam um marcador e o helper `accent` (`lib/text.tsx`) traduz
-na renderização:
+**Destaque no texto — marcadores.** Para não colocar `<span>` nem `<em>` nos
+dados, o texto usa marcadores e o helper `rich` (`lib/text.tsx`) traduz na
+renderização: `*destaque*` vira `text-accent` e `_ênfase_` vira `<em>`.
 
 ```ts
 // data: string pura, CMS-ready
 title: "Tecnologia *inteligente* para o seu negócio"
+description: "Soluções escaláveis – _com a clareza de quem domina o processo._"
 ```
+
+Quebra de linha no título é `\n` no dado — o `h1` do `Hero` usa
+`whitespace-pre-line`.
 
 Os dois são o mesmo padrão: **o dado depende de uma convenção estável (string), não
 de um SDK ou de um elemento React.**
@@ -380,10 +384,11 @@ import { home } from "./home.data"
 <Section className="my-0 sm:py-16">
     <Hero
         badge={home.hero.badge}
-        title={accent(home.hero.title)}
+        title={rich(home.hero.title)}
         cta={home.hero.cta}
     >
-        <Terminal>…</Terminal>   {/* slot de mídia: composição, não dado */}
+        {/* slot de mídia: composição, não dado */}
+        <HeroTerminal {...home.hero.terminal} />
     </Hero>
 </Section>
 
