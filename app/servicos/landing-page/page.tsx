@@ -1,12 +1,14 @@
 import type { Metadata } from "next"
-import { EmConstrucao } from "@/components/templates/em-construcao"
+import { ServicoPage } from "@/components/templates/servico-page"
+import { landingPage } from "./landing-page.data"
 
 export const metadata: Metadata = {
     title: "Landing Page",
-    robots: { index: false, follow: true },
+    description:
+        "A WizeCode cria landing pages de alta conversão para o seu anúncio ou lançamento — rápidas no celular, com rastreamento para tráfego pago e leads direto no seu WhatsApp, e-mail ou CRM.",
     alternates: { canonical: "/servicos/landing-page" },
 }
 
 export default function Page() {
-    return <EmConstrucao titulo="Landing Page" />
+    return <ServicoPage data={landingPage} />
 }
