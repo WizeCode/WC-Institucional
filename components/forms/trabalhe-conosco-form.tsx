@@ -372,7 +372,7 @@ export function TrabalheConoscoForm() {
                         className={buttonVariants({
                             variant: "outline",
                             size: "sm",
-                            className: "cursor-pointer",
+                            className: "cursor-pointer shadow-sm",
                         })}
                     >
                         <Upload />

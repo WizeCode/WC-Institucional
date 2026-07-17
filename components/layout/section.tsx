@@ -18,7 +18,7 @@ const sectionVariants = cva("my-8 px-8 py-8 sm:py-16", {
     variants: {
         variant: {
             default: "",
-            soft: "mx-4 rounded-md bg-foreground/5 px-4 sm:px-8 dark:bg-accent/10",
+            soft: "mx-4 rounded-md border bg-muted px-4 sm:px-8",
             accent: "relative mx-4 rounded-md bg-accent px-4 text-white sm:px-8 dark:bg-accent/10",
         },
     },

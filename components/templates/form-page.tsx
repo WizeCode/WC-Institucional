@@ -4,6 +4,7 @@ interface FormPageProps {
     title: React.ReactNode
     description: React.ReactNode
     aside?: React.ReactNode
+    headingLevel?: "h1" | "h2"
     children: React.ReactNode
 }
 
@@ -14,13 +15,19 @@ interface FormPageProps {
  * fora, na página. O formulário entra por `children`; `aside` é um slot opcional
  * abaixo do texto (ex: a lista de canais de contato).
  */
-const FormPage = ({ title, description, aside, children }: FormPageProps) => {
+const FormPage = ({
+    title,
+    description,
+    aside,
+    headingLevel: Heading = "h1",
+    children,
+}: FormPageProps) => {
     return (
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-20">
+        <div className="flex flex-col lg:flex-row lg:gap-20">
             <div className="mb-8 flex flex-1 flex-col gap-2 text-start">
-                <h1 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
+                <Heading className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
                     {title}
-                </h1>
+                </Heading>
                 <p className="mb-4 text-lg text-muted-foreground lg:text-xl">
                     {description}
                 </p>
