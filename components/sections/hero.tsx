@@ -78,6 +78,9 @@ const HeroBody = ({
                     <Button
                         asChild
                         className="w-full sm:w-auto lg:h-11 lg:px-6 lg:text-base"
+                        onClick={() =>
+                            track("cta_1_clicked", { source: "hero" })
+                        }
                     >
                         <a href={cta.primary.url}>{cta.primary.text}</a>
                     </Button>
@@ -86,8 +89,9 @@ const HeroBody = ({
                     <Button
                         asChild
                         variant="outline"
+                        className="w-full sm:w-auto lg:h-11 lg:px-6 lg:text-base"
                         onClick={() =>
-                            track("cta_contact_clicked", { source: "hero" })
+                            track("cta_2_clicked", { source: "hero" })
                         }
                     >
                         <a href={cta.secondary.url}>{cta.secondary.text}</a>
@@ -143,5 +147,50 @@ const HeroCentered = ({ className, ...content }: HeroCenteredProps) => (
     </div>
 )
 
-export { Hero, HeroCentered, heroVariants }
-export type { HeroProps, HeroCenteredProps }
+interface HeroImageProps extends HeroContent {
+    className?: string
+    /** Background media slot (image). Composition: comes from `page.tsx`. */
+    children: React.ReactNode
+}
+
+/**
+ * Full-bleed hero: a background image with the text overlaid on the left.
+ *
+ * The image is the media slot (`children`) — pass a Next `<Image fill>` from
+ * `page.tsx`. A gradient in the page background color sits between image and
+ * text so the copy stays readable and untouched: on mobile it veils most of the
+ * image, from `lg` it fades left→right revealing the photo beside the text.
+ * Because the scrim uses `bg-background`, light/dark mode just works.
+ *
+ * It adds image + gradient layers to the tree, so it is a component, not a
+ * `Hero` variant. See `docs/CONVENTIONS.md` §5.
+ *
+ * ```tsx
+ * <HeroImage badge={data.hero.badge} title={rich(data.hero.title)} cta={…}>
+ *     <Image src={data.hero.image.src} alt={data.hero.image.alt} fill
+ *         sizes="100vw" priority className="object-cover" />
+ * </HeroImage>
+ * ```
+ */
+const HeroImage = ({ className, children, ...content }: HeroImageProps) => (
+    <div
+        className={cn(
+            "relative flex min-h-130 w-full items-center overflow-hidden rounded-lg lg:min-h-150",
+            className,
+        )}
+    >
+        <div className="absolute inset-0">{children}</div>
+        {/* Scrim in the page background color: keeps the text readable and
+            untouched, and adapts to light/dark on its own. Horizontal reveal
+            only from `lg`, where the text is left-aligned. */}
+        <div className="absolute inset-0 bg-linear-to-t from-background via-background/85 to-background/50 lg:bg-linear-to-r lg:via-background/80 lg:to-transparent" />
+        <HeroBody
+            {...content}
+            align="start"
+            className="relative px-6 py-12 lg:px-12"
+        />
+    </div>
+)
+
+export { Hero, HeroCentered, HeroImage, heroVariants }
+export type { HeroProps, HeroCenteredProps, HeroImageProps }

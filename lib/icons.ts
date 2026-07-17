@@ -1,16 +1,23 @@
 import {
+    Bot,
     Brain,
+    CalendarClock,
     Gauge,
+    GraduationCap,
     HeartHandshake,
     LayoutTemplate,
     Layers,
     Mail,
+    MessagesSquare,
     MousePointerClick,
     Palette,
     PencilRuler,
     Search,
+    ShieldCheck,
     Sparkles,
     TrendingUp,
+    Users,
+    Wallet,
     Zap,
 } from "lucide-react"
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
@@ -44,6 +51,14 @@ export const icons = {
     gauge: Gauge,
     pencilRuler: PencilRuler,
     trendingUp: TrendingUp,
+    // Trabalhe conosco
+    wallet: Wallet,
+    shieldCheck: ShieldCheck,
+    calendarClock: CalendarClock,
+    graduationCap: GraduationCap,
+    messagesSquare: MessagesSquare,
+    bot: Bot,
+    users: Users,
 } as const
 
 export type IconName = keyof typeof icons
