@@ -6,22 +6,22 @@ import { icons, type IconName } from "@/lib/icons"
 import { motion } from "motion/react"
 import React, { useSyncExternalStore } from "react"
 
-interface Diferencial {
+interface Value {
     letter: string
     title: string
     description: string
     icon: IconName
 }
 
-interface DiferenciaisProps {
+interface ValuesProps {
     title: React.ReactNode
     description: string
     badge: string
     badgeVariant?: BadgeVariant
-    items: Diferencial[]
+    items: Value[]
 }
 
-const DiferencialCard = ({ letter, title, description, icon }: Diferencial) => {
+const ValueCard = ({ letter, title, description, icon }: Value) => {
     const Icon = icons[icon]
     const hasPointer = useSyncExternalStore(
         () => () => {},
@@ -47,13 +47,13 @@ const DiferencialCard = ({ letter, title, description, icon }: Diferencial) => {
     )
 }
 
-const Diferenciais = ({
+const Values = ({
     title,
     description,
     badge,
     badgeVariant = "outline",
     items,
-}: DiferenciaisProps) => {
+}: ValuesProps) => {
     return (
         <div className="flex flex-col gap-8 lg:gap-16">
             <div className="flex flex-1 flex-col justify-center gap-2 text-center">
@@ -75,7 +75,7 @@ const Diferenciais = ({
                         whileHover={{ y: -6 }}
                         transition={{ duration: 0.1, ease: "easeInOut" }}
                     >
-                        <DiferencialCard {...item} />
+                        <ValueCard {...item} />
                     </motion.div>
                 ))}
             </div>
@@ -83,5 +83,5 @@ const Diferenciais = ({
     )
 }
 
-export { Diferenciais }
-export type { Diferencial }
+export { Values }
+export type { Value }

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
  * Grade de benefícios: cards de ícone + título + descrição, um deles podendo
  * ganhar destaque (`highlight`) para ancorar a leitura.
  *
- * Não é variante de `Diferenciais`: lá o `letter` é estrutural — o card é
+ * Não é variante de `Values`: lá o `letter` é estrutural — o card é
  * desenhado em volta dele e o ícone vive no `Pointer` do cursor. Trocar letra
  * por ícone renderiza outra árvore, e árvore diferente é componente novo.
  * Ver `AGENTS.md`.

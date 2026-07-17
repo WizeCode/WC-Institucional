@@ -39,7 +39,7 @@ interface InfoCard {
     href?: string
 }
 
-interface ContatoProps {
+interface ContactProps {
     title: string
     description: string
     badge: string
@@ -48,14 +48,14 @@ interface ContatoProps {
     servicoPadrao?: ContatoFormData["servico"]
 }
 
-const Contato = ({
+const Contact = ({
     title,
     description,
     badge,
     badgeVariant = "default",
     infoCards,
     servicoPadrao,
-}: ContatoProps) => {
+}: ContactProps) => {
     return (
         <>
             <div className="mb-8 flex flex-col gap-2 text-center">
@@ -122,5 +122,5 @@ const Contato = ({
     )
 }
 
-export { Contato }
+export { Contact }
 export type { InfoCard }

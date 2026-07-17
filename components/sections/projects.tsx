@@ -9,27 +9,27 @@ import { Badge, type BadgeVariant } from "@/components/ui/badge"
  * `data.projetos` é omitido, a seção não renderiza.
  */
 
-interface ProjetoItem {
+interface ProjectItem {
     title: string
     segment: string
     description: string
 }
 
-interface ProjetosProps {
+interface ProjectsProps {
     badge?: string
     badgeVariant?: BadgeVariant
     title: React.ReactNode
     description: React.ReactNode
-    items: ProjetoItem[]
+    items: ProjectItem[]
 }
 
-const Projetos = ({
+const Projects = ({
     badge,
     badgeVariant = "outline",
     title,
     description,
     items,
-}: ProjetosProps) => {
+}: ProjectsProps) => {
     return (
         <div className="flex flex-col">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
@@ -69,5 +69,5 @@ const Projetos = ({
     )
 }
 
-export { Projetos }
-export type { ProjetoItem, ProjetosProps }
+export { Projects }
+export type { ProjectItem, ProjectsProps }

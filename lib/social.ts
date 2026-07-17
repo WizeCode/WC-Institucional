@@ -7,7 +7,7 @@ import type { IconName } from "./icons"
  * no rodapé — e já divergiam entre si (ex: URL do Instagram). Aqui elas moram
  * num lugar só: mudou o número/rede, muda em um ponto.
  *
- * `channels` é consumido por quem renderiza a lista de canais (a seção Contato
+ * `channels` é consumido por quem renderiza a lista de canais (a seção Contact
  * da home e a página de contato). Os ícones são referenciados por string
  * (`IconName`), traduzidos pelo registro central em `lib/icons.ts`.
  */

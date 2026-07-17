@@ -25,7 +25,7 @@ interface ServiceItem {
     }
 }
 
-interface ServicosProps {
+interface ServicesProps {
     badge: string
     badgeVariant?: BadgeVariant
     title: React.ReactNode
@@ -33,13 +33,13 @@ interface ServicosProps {
     services: ServiceItem[]
 }
 
-const Servicos = ({
+const Services = ({
     badge,
     badgeVariant = "default",
     title,
     description,
     services,
-}: ServicosProps) => {
+}: ServicesProps) => {
     const [activeId, setActiveId] = useState(services[0].id)
     const activeService = services.find((s) => s.id === activeId)
 
@@ -118,5 +118,5 @@ const Servicos = ({
     )
 }
 
-export { Servicos }
+export { Services }
 export type { ServiceItem }

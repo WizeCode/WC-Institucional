@@ -3,12 +3,12 @@ import { Section } from "@/components/layout/section"
 import { Hero } from "@/components/sections/hero"
 import { HeroTerminal } from "@/components/sections/hero-terminal"
 import { Particles } from "@/components/ui/particles"
-import { Contato } from "@/components/sections/contato"
-import { Servicos } from "@/components/sections/servicos"
+import { Contact } from "@/components/sections/contact"
+import { Services } from "@/components/sections/services"
 import { Portfolio } from "@/components/sections/portfolio"
 import { Stack } from "@/components/sections/stack"
 import { Faq } from "@/components/sections/faq"
-import { Diferenciais } from "@/components/sections/diferenciais"
+import { Values } from "@/components/sections/values"
 import { rich } from "@/lib/text"
 import { home } from "./home.data"
 
@@ -35,7 +35,7 @@ export default function Page() {
             </Section>
 
             <Section variant="soft" className="sm:py-8">
-                <Servicos
+                <Services
                     badge={home.servicos.badge}
                     title={rich(home.servicos.title)}
                     description={home.servicos.description}
@@ -44,7 +44,7 @@ export default function Page() {
             </Section>
 
             <Section>
-                <Diferenciais
+                <Values
                     badge={home.diferenciais.badge}
                     title={rich(home.diferenciais.title)}
                     description={home.diferenciais.description}
@@ -97,7 +97,7 @@ export default function Page() {
                     />
                 }
             >
-                <Contato
+                <Contact
                     badge={home.contato.badge}
                     title={home.contato.title}
                     description={home.contato.description}

@@ -2,7 +2,7 @@ import React from "react"
 import { X } from "lucide-react"
 import { Badge, type BadgeVariant } from "@/components/ui/badge"
 
-interface DoresProps {
+interface PainPointsProps {
     badge?: string
     badgeVariant?: BadgeVariant
     title: React.ReactNode
@@ -10,13 +10,13 @@ interface DoresProps {
     items: string[]
 }
 
-const Dores = ({
+const PainPoints = ({
     badge,
     badgeVariant = "outline",
     title,
     description,
     items,
-}: DoresProps) => {
+}: PainPointsProps) => {
     return (
         <div className="flex flex-col gap-4">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
@@ -52,5 +52,5 @@ const Dores = ({
     )
 }
 
-export { Dores }
-export type { DoresProps }
+export { PainPoints }
+export type { PainPointsProps }

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
  *
  * ```tsx
  * <Section variant="accent" backdrop={<Particles />}>
- *     <Contato … />
+ *     <Contact … />
  * </Section>
  * ```
  */
