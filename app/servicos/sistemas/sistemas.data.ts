@@ -204,7 +204,11 @@ export const sistemas: ServicoData = {
             {
                 name: "Backend & CMS",
                 items: [
-                    { id: "nodejs", name: "Node.js", logo: stackIcon("nodejs") },
+                    {
+                        id: "nodejs",
+                        name: "Node.js",
+                        logo: stackIcon("nodejs"),
+                    },
                     { id: "nest", name: "Nest.JS", logo: stackIcon("nestjs") },
                     { id: "python", name: "Python", logo: stackIcon("python") },
                     {
@@ -292,7 +296,8 @@ export const sistemas: ServicoData = {
             },
             {
                 id: "faq-2",
-                question: "Por que começar por um MVP em vez do sistema completo?",
+                question:
+                    "Por que começar por um MVP em vez do sistema completo?",
                 answer: "Porque valida a ideia com menos tempo e dinheiro. O MVP é uma primeira versão funcional, com o essencial no ar, que você testa com usuários reais. A partir do que aprende, evoluímos em ciclos de Scrum, construindo o que de fato importa, sem gastar meses num recurso que ninguém vai usar.",
             },
             {
@@ -302,7 +307,8 @@ export const sistemas: ServicoData = {
             },
             {
                 id: "faq-4",
-                question: "Como funciona o investimento em um projeto de sistema?",
+                question:
+                    "Como funciona o investimento em um projeto de sistema?",
                 answer: "Depois da entrevista de requisitos, montamos uma proposta com escopo e valores claros, sem surpresa. Como trabalhamos por ciclos, dá para começar pelo MVP e evoluir conforme a prioridade e o orçamento, em vez de travar tudo num único contrato gigante.",
             },
             {

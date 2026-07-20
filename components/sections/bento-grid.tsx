@@ -38,7 +38,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
         return (
             <div
                 className={cn(
-                    "flex h-70 flex-col-reverse justify-between gap-2 rounded-lg bg-muted p-8 transition-transform duration-300 hover:-translate-y-3 md:gap-4 lg:grid lg:grid-cols-2 shadow-md",
+                    "flex h-70 flex-col-reverse justify-between gap-2 rounded-lg bg-muted p-8 shadow-md transition-transform duration-300 hover:-translate-y-3 md:gap-4 lg:grid lg:grid-cols-2",
                     item.className
                 )}
             >
@@ -62,7 +62,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
         return (
             <div
                 className={cn(
-                    "flex flex-col justify-between gap-6 rounded-lg bg-muted p-8 transition-transform duration-300 hover:-translate-y-3 shadow-md",
+                    "flex flex-col justify-between gap-6 rounded-lg bg-muted p-8 shadow-md transition-transform duration-300 hover:-translate-y-3",
                     item.className
                 )}
             >
@@ -87,7 +87,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
     return (
         <div
             className={cn(
-                "flex h-70 flex-col justify-between gap-2 rounded-lg bg-muted p-8 transition-transform duration-300 hover:-translate-y-3 shadow-md",
+                "flex h-70 flex-col justify-between gap-2 rounded-lg bg-muted p-8 shadow-md transition-transform duration-300 hover:-translate-y-3",
                 item.className
             )}
         >

@@ -129,7 +129,8 @@ export const landingPage: ServicoData = {
             },
             {
                 id: "faq-4",
-                question: "Dá para conectar com meu anúncio do Meta ou do Google?",
+                question:
+                    "Dá para conectar com meu anúncio do Meta ou do Google?",
                 answer: "Sim, essa é a ideia. Configuramos o pixel e os eventos de conversão para que a sua campanha do Meta Ads ou Google Ads saiba exatamente quantas pessoas viraram lead na página. Assim você mede o custo por resultado e otimiza o anúncio com base em número real, não em achismo.",
             },
             {
@@ -139,7 +140,8 @@ export const landingPage: ServicoData = {
             },
             {
                 id: "faq-6",
-                question: "Preciso ter um site pronto para ter uma landing page?",
+                question:
+                    "Preciso ter um site pronto para ter uma landing page?",
                 answer: "Não. A landing page funciona sozinha, no seu próprio endereço, sem depender de um site institucional. Se você já tem um site, ela convive com ele numa boa; se não tem, a landing pode ser o seu primeiro passo no digital, focada em converter o tráfego que você já traz.",
             },
         ],

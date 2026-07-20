@@ -15,6 +15,8 @@ import {
     Search,
     ShieldCheck,
     Sparkles,
+    Target,
+    Telescope,
     TrendingUp,
     Users,
     Wallet,
@@ -31,12 +33,12 @@ import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
  * Para disponibilizar um ícone novo, adicione uma linha aqui.
  */
 export const icons = {
-    // Diferenciais (home)
+    // Values (home)
     brain: Brain,
     layers: Layers,
     sparkles: Sparkles,
     empathy: HeartHandshake,
-    // Contato / redes
+    // Contact / redes
     mail: Mail,
     whatsapp: FaWhatsapp,
     instagram: FaInstagram,
@@ -59,6 +61,9 @@ export const icons = {
     messagesSquare: MessagesSquare,
     bot: Bot,
     users: Users,
+    // A Wize
+    target: Target,
+    telescope: Telescope,
 } as const
 
 export type IconName = keyof typeof icons

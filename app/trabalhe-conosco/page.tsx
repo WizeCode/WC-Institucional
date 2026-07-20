@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Section } from "@/components/layout/section"
 import { HeroImage } from "@/components/sections/hero"
 import { BentoGrid } from "@/components/sections/bento-grid"
-import { Benefits } from "@/components/sections/benefits"
+import { FeatureGrid } from "@/components/sections/feature-grid"
 import { StackGroups } from "@/components/sections/stack-groups"
 import { Timeline } from "@/components/sections/timeline"
 import { FormPage } from "@/components/templates/form-page"
@@ -49,7 +49,7 @@ export default function Page() {
             </Section>
 
             <Section variant="soft">
-                <Benefits
+                <FeatureGrid
                     badge={data.beneficios.badge}
                     title={rich(data.beneficios.title)}
                     description={data.beneficios.description}

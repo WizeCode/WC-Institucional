@@ -3,12 +3,12 @@ import Image from "next/image"
 import { Section } from "@/components/layout/section"
 import { Hero } from "@/components/sections/hero"
 import { BentoGrid, type BentoItem } from "@/components/sections/bento-grid"
-import { Dores } from "@/components/sections/dores"
+import { PainPoints } from "@/components/sections/pain-points"
 import { Timeline, type TimelineStep } from "@/components/sections/timeline"
 import { Portfolio, type Project } from "@/components/sections/portfolio"
-import { Projetos, type ProjetosProps } from "@/components/sections/projetos"
+import { Projects, type ProjectsProps } from "@/components/sections/projects"
 import { Faq, type FaqItem } from "@/components/sections/faq"
-import { Contato } from "@/components/sections/contato"
+import { Contact } from "@/components/sections/contact"
 import {
     StackGroups,
     type StackGroupsProps,
@@ -47,7 +47,7 @@ export interface ServicoData {
     /** Cases lançados. Seção opcional: sem projetos → não renderiza. */
     portfolio?: { projects: Project[] }
     /** Prova social sem case lançado (ex.: Sistemas). Omitida → não renderiza. */
-    projetos?: SectionHeader & { items: ProjetosProps["items"] }
+    projetos?: SectionHeader & { items: ProjectsProps["items"] }
     stack?: StackGroupsProps
     faq: {
         description: string
@@ -80,7 +80,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
             </Section>
 
             <Section variant="accent">
-                <Dores
+                <PainPoints
                     badge={data.dores.badge}
                     badgeVariant="default"
                     title={rich(data.dores.title)}
@@ -122,7 +122,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
 
             {data.projetos && (
                 <Section className="sm:py-8">
-                    <Projetos
+                    <Projects
                         badge={data.projetos.badge}
                         title={rich(data.projetos.title)}
                         description={data.projetos.description}
@@ -161,7 +161,7 @@ export function ServicoPage({ data }: { data: ServicoData }) {
                     />
                 }
             >
-                <Contato
+                <Contact
                     badge="/ Contato"
                     title={data.contato.title}
                     description="Preencha o formulário e nossa equipe entrará em contato em até 24 horas úteis"

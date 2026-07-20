@@ -1,6 +1,6 @@
 import { services as serviceCatalog } from "@/lib/services"
-import type { ServiceItem } from "@/components/sections/servicos"
-import type { Diferencial } from "@/components/sections/diferenciais"
+import type { ServiceItem } from "@/components/sections/services"
+import type { Value } from "@/components/sections/values"
 import { cases } from "@/lib/cases"
 import type { Technology } from "@/components/sections/stack"
 import type { FaqItem } from "@/components/sections/faq"
@@ -151,7 +151,7 @@ export const home = {
                 description:
                     "Comunicação transparente e empática que traduz autoridade técnica em clareza, garantindo que você se sinta seguro e no controle em cada etapa.",
             },
-        ] satisfies Diferencial[],
+        ] satisfies Value[],
     },
     portfolio: {
         badge: "/ Portfólio",
