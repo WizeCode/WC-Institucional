@@ -1,4 +1,4 @@
-import type { Benefit } from "@/components/sections/benefits"
+import type { Feature } from "@/components/sections/feature-grid"
 import type { BentoItem } from "@/components/sections/bento-grid"
 import type { StackGroup } from "@/components/sections/stack-groups"
 import type { TimelineStep } from "@/components/sections/timeline"
@@ -120,7 +120,7 @@ export const trabalheConosco = {
                 description:
                     "Você trabalha em sistema de cliente que vai para produção. Portfólio de verdade, não CRUD de faculdade.",
             },
-        ] satisfies Benefit[],
+        ] satisfies Feature[],
     },
 
     stack: {
@@ -285,7 +285,7 @@ export const trabalheConosco = {
         }
     }
     cultura: SectionHeader & { items: BentoItem[] }
-    beneficios: SectionHeader & { items: Benefit[] }
+    beneficios: SectionHeader & { items: Feature[] }
     stack: SectionHeader & { groups: StackGroup[] }
     processo: SectionHeader & { items: TimelineStep[] }
     form: { title: string; description: string }

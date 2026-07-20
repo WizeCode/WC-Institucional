@@ -176,7 +176,7 @@ const HeroImage = ({ className, children, ...content }: HeroImageProps) => (
     <div
         className={cn(
             "relative flex min-h-130 w-full items-center overflow-hidden rounded-lg lg:min-h-150",
-            className,
+            className
         )}
     >
         <div className="absolute inset-0">{children}</div>
