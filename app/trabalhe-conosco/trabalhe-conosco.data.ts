@@ -19,7 +19,7 @@ export const trabalheConosco = {
         description:
             "Você atua em projetos de desenvolvimento com remuneração por entrega. O trabalho é remoto, sem controle de ponto, e cada etapa passa pela revisão da equipe para garantir qualidade e evolução técnica.",
         image: {
-            src: "/images/home/sistemas2.webp",
+            src: "/images/workwithus/Heroo.jpg",
             alt: "Equipe da WizeCode desenvolvendo um projeto",
         },
         cta: {
@@ -31,20 +31,15 @@ export const trabalheConosco = {
     cultura: {
         badge: "/ Cultura",
         title: "Como trabalhamos no dia a dia",
-        /* Talvez alterar esse: a descrição da seção ficou muito específica
-           e repete a ideia do primeiro card. Se quiser uma abertura mais institucional,
-           vale usar uma frase mais ampla sobre a cultura de trabalho. */
         description:
             "Não existe ponto nem reunião de status para provar que você trabalhou. O combinado é entrega e prazo. Como você organiza o seu dia fica com você, como deve ser.",
         items: [
             {
                 title: "Ninguém te cobra horário",
-                /* Talvez alterar esse: aqui a versão está mais agressiva do que o restante da página.
-                   Funciona se essa for a voz da marca, mas pode soar menos institucional. */
                 description:
                     "Não existe ponto nem reunião de status para provar que você trabalhou. Combinamos a entrega e o prazo; como você organiza o seu dia é problema seu — e é assim que deve ser.",
                 image: {
-                    src: "/images/home/automacoes2.png",
+                    src: "/images/workwithus/horario.jpg",
                     alt: "Trabalho remoto organizado por entregas",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -73,7 +68,7 @@ export const trabalheConosco = {
                 description:
                     "Usamos IA no fluxo para acelerar o desenvolvimento. A régua é uma só: você precisa entender o que entregou e saber explicar cada decisão.",
                 image: {
-                    src: "/images/home/landing-page.webp",
+                    src: "/images/workwithus/IA liberada.jpg",
                     alt: "Uso de IA no fluxo de desenvolvimento",
                 },
                 layout: "split",
@@ -110,8 +105,6 @@ export const trabalheConosco = {
             {
                 icon: "graduationCap",
                 title: "Capacitação ao longo da parceria",
-                /* Talvez alterar esse: a segunda frase repete a primeira em outra forma.
-                   Não está errada, mas perdeu força por redundância. */
                 description:
                     "Conforme a parceria evolui, entram cursos de capacitação. Quem cresce com a gente, também se desenvolve com a gente.",
             },
@@ -263,8 +256,6 @@ export const trabalheConosco = {
             },
             {
                 title: "Você entra no banco de talentos",
-                /* Talvez alterar esse: esse bloco estava com título e descrição desalinhados.
-                   Agora ficou coerente com o conteúdo da etapa. */
                 description:
                     "Se aprovado, seu perfil entra no nosso banco de talentos. Não é uma pasta esquecida, é a base que consultamos quando surge um projeto compatível.",
             },
@@ -279,8 +270,6 @@ export const trabalheConosco = {
 
     form: {
         title: "Vamos começar?",
-        /* Talvez alterar esse: “Cadastre se” estava incorreto.
-           Troquei por uma construção correta sem usar hífen. */
         description:
             "Não temos vaga aberta neste momento, e é justamente por isso que queremos conhecer seu perfil antes. Cadastre seu perfil e falamos com você quando surgir um projeto alinhado ao seu momento.",
     },

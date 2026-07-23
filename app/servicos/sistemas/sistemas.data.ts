@@ -9,7 +9,7 @@ export const sistemas: ServicoData = {
         badge: "/ Sistemas sob medida",
         title: "O *software* que o seu negócio precisa.",
         description:
-            "Ferramenta de prateleira força você a moldar o seu negócio a ela. A gente faz o contrário: construímos o sistema em volta do seu processo — web app, e-commerce, plataforma ou aplicativo — pronto para crescer junto com você.",
+            "Ferramenta de prateleira força você a moldar o seu negócio a ela. A gente faz o contrário: construímos o sistema em volta do seu processo, web app, e-commerce, plataforma ou aplicativo, pronto para crescer junto com você.",
         image: {
             src: "/images/home/sistemas2.webp",
             alt: "Sistema sob medida desenvolvido pela WizeCode",
@@ -39,9 +39,9 @@ export const sistemas: ServicoData = {
             {
                 title: "Sob medida de verdade",
                 description:
-                    "Cada função pensada para o seu processo real — nada de moldar o negócio a um template genérico.",
+                    "Cada função pensada para o seu processo real, nada de moldar o negócio a um template genérico.",
                 image: {
-                    src: "/images/home/sistemas2.webp",
+                    src: "/images/services/sistemas/graph.png",
                     alt: "Sistema sob medida para o processo do cliente",
                 },
                 className: "md:col-span-2 lg:row-span-2",

@@ -9,7 +9,7 @@ export const automacoes: ServicoData = {
         badge: "/ Automações",
         title: "Pare de fazer *na mão* o que um robô faz sozinho.",
         description:
-            "Toda tarefa repetitiva é hora de gente boa indo embora. A gente automatiza o trabalho manual — coleta de dados, respostas, relatórios, integrações — para o seu time focar no que só ele faz.",
+            "Toda tarefa repetitiva é hora de gente boa indo embora. A gente automatiza o trabalho manual, coleta de dados, respostas, relatórios, integrações, para o seu time focar no que só ele faz.",
         image: {
             src: "/images/home/automacoes2.png",
             alt: "Automação de processos desenvolvida pela WizeCode",
@@ -56,7 +56,7 @@ export const automacoes: ServicoData = {
                 icon: "brain",
                 title: "IA que lê e decide",
                 description:
-                    "Modelos que interpretam texto, analisam e respondem — não só apertam botão.",
+                    "Modelos que interpretam texto, analisam e respondem, não só apertam botão.",
             },
             {
                 icon: "gauge",
@@ -230,7 +230,7 @@ export const automacoes: ServicoData = {
             {
                 id: "faq-2",
                 question: "Preciso trocar os sistemas que já uso?",
-                answer: "Não. A ideia da automação é justamente conectar o que você já tem — WhatsApp, e-mail, planilhas, seu sistema atual — em vez de substituir tudo. A gente integra as ferramentas existentes num fluxo só.",
+                answer: "Não. A ideia da automação é justamente conectar o que você já tem, WhatsApp, e-mail, planilhas, seu sistema atual, em vez de substituir tudo. A gente integra as ferramentas existentes num fluxo só.",
             },
             {
                 id: "faq-3",

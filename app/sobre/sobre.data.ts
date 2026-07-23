@@ -7,7 +7,7 @@ export const sobre = {
         badge: "/ A Wize",
         title: "Somos a Wize*Code*: tecnologia com intenção.",
         description:
-            "Existimos para viabilizar o sucesso digital de pequenos, médios e grandes negócios — com soluções seguras, personalizadas e inteligentes, e a clareza de quem se faz entender em cada etapa.",
+            "Existimos para viabilizar o sucesso digital de pequenos, médios e grandes negócios, com soluções seguras, personalizadas e inteligentes, com a clareza de quem entende cada etapa.",
         image: {
             src: "/images/sobre/equipe.JPG",
             alt: "Equipe da WizeCode desenvolvendo um projeto",
@@ -17,9 +17,9 @@ export const sobre = {
         badge: "/ Sobre nós",
         title: "Nascemos para entregar *produto*, não promessa.",
         paragraphs: [
-            "A WizeCode Inovações e Tecnologia é uma software house especializada em websites, aplicativos, automações e SaaS. Dominamos todo o ciclo de vida do software — do planejamento à performance em produção — para transformar objetivos de negócio em produto pronto para operar e crescer.",
-            "Nossa história começou na prática: um projeto acadêmico na UFU, o datacana.org, que tornou acessível um grande volume de dados de pesquisa. O resultado virou vontade de empreender — primeiro como Kourly Digital, atendendo negócios do Triângulo Mineiro, até amadurecer na WizeCode.",
-            "Não vendemos horas nem promessa. Atuamos como parceiro tecnológico que traduz autoridade técnica em clareza, mantendo o cliente seguro e no controle em cada etapa — desde a personalização sob medida até o total contentamento com a entrega.",
+            "A WizeCode Inovações e Tecnologia é uma software house especializada em websites, aplicativos, automações e SaaS. Dominamos todo o ciclo de vida do software, do planejamento à performance em produção, para transformar objetivos de negócio em produto pronto para operar e crescer.",
+            "Nossa história começou na prática: um projeto acadêmico na UFU, o datacana.org, que tornou acessível um grande volume de dados de pesquisa. O resultado virou vontade de empreender, primeiro como Kourly Digital, atendendo negócios do Triângulo Mineiro, até amadurecer na WizeCode.",
+            "Não vendemos horas nem promessa. Atuamos como parceiro tecnológico que traduz autoridade técnica em clareza, mantendo o cliente seguro e no controle em cada etapa, desde a personalização sob medida até o total contentamento com a entrega.",
         ],
     },
     proposito: {
@@ -88,8 +88,8 @@ export const sobre = {
         badge: "/ Nota dos fundadores",
         title: "Uma palavra de quem *começou*.",
         paragraphs: [
-            'A WizeCode não começou numa mesa de reunião. Começou entre pessoas que já confiavam umas nas outras muito antes de existir uma empresa — família e amigos de longa data que resolveram parar de tratar "ter algo nosso" como ideia e torná-lo real.',
-            "O que nos une vem de antes do primeiro projeto: anos de convivência, laços que a gente não escolheu por conveniência, e a mesma vontade teimosa de crescer juntos. É essa harmonia — não um método no papel — que sustenta o trabalho quando ele aperta.",
+            'A WizeCode não começou numa mesa de reunião. Começou entre pessoas que já confiavam umas nas outras muito antes de existir uma empresa, família e amigos de longa data que resolveram parar de tratar "ter algo nosso" como ideia e torná-lo real.',
+            "O que nos une vem de antes do primeiro projeto: anos de convivência, laços que a gente não escolheu por conveniência, e a mesma vontade teimosa de crescer juntos. É essa harmonia, não um método no papel, que sustenta o trabalho quando ele aperta.",
             "Por trás de cada linha de código tem gente que escolheu estar aqui, lado a lado. É o nosso maior orgulho.",
         ],
         signature: "— Pedro, Gustavo, Felipe e Rafael",
@@ -119,7 +119,7 @@ export const sobre = {
                 title: "Zeal",
                 icon: "sparkles",
                 description:
-                    "Conduzimos cada projeto sob medida, com o máximo empenho, organização e atenção aos detalhes — nossos esforços só se encerram com o total contentamento do cliente.",
+                    "Conduzimos cada projeto sob medida, com o máximo empenho, organização e atenção aos detalhes, nossos esforços só se encerram com o total contentamento do cliente.",
             },
             {
                 letter: "E",
@@ -134,6 +134,6 @@ export const sobre = {
         badge: "/ Contato",
         title: "Bora trocar uma ideia?",
         description:
-            "Conte o que você tem em mente. Quem lê e responde é a nossa equipe — em até 24 horas úteis.",
+            "Conte o que você tem em mente. Quem lê e responde é a nossa equipe, em até 24 horas úteis.",
     },
 }

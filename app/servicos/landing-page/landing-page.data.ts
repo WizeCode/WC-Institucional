@@ -23,7 +23,7 @@ export const landingPage: ServicoData = {
             "A página até é bonita, mas você não faz ideia de quantos cliques viraram lead",
             "O lead preenche o formulário e a informação some num e-mail que ninguém abre",
             "Você quer testar uma oferta nova, mas depende do site inteiro pra colocar uma página no ar",
-            "No computador funciona, mas no celular — de onde vem o anúncio — a página fica quebrada",
+            "No computador funciona, mas no celular, de onde vem o anúncio, a página fica quebrada",
             "É uma página só cheia de menu e link, quando devia ter um caminho só até o botão",
         ],
     },
@@ -38,7 +38,7 @@ export const landingPage: ServicoData = {
                 description:
                     "Sem menu, sem link que dispersa: um caminho direto da oferta até o botão. Cada elemento existe para levar ao próximo passo.",
                 image: {
-                    src: "/images/home/landing-page.webp",
+                    src: "/images/services/landingpages/vendas.jpg",
                     alt: "Landing page focada em conversão",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -59,7 +59,7 @@ export const landingPage: ServicoData = {
                 icon: "zap",
                 title: "O lead cai no lugar certo",
                 description:
-                    "O formulário joga o contato direto no WhatsApp, e-mail ou planilha da sua equipe — sem digitação manual, sem lead esquecido.",
+                    "O formulário joga o contato direto no WhatsApp, e-mail ou planilha da sua equipe, sem digitação manual, sem lead esquecido.",
             },
             {
                 icon: "sparkles",
@@ -67,7 +67,7 @@ export const landingPage: ServicoData = {
                 description:
                     "É uma página, não um site inteiro. Dá pra subir rápido, testar a oferta e ajustar sem esperar um projeto grande terminar.",
                 image: {
-                    src: "/images/home/sistemas2.webp",
+                    src: "/images/services/landingpages/steps.jpg",
                     alt: "Landing page publicada rapidamente para validar uma oferta",
                 },
                 layout: "split",
@@ -120,7 +120,7 @@ export const landingPage: ServicoData = {
             {
                 id: "faq-2",
                 question: "Vocês escrevem o texto da página?",
-                answer: "O texto que convence — a oferta, os argumentos, o preço — é seu ou de quem cuida do seu marketing, porque ninguém conhece a sua oferta melhor que você. A gente entra na estrutura: organiza esse conteúdo no fluxo que leva à conversão, cuida do design, da velocidade e de tudo que faz a página funcionar. Se você chegar sem o texto pronto, orientamos o que cada parte precisa ter.",
+                answer: "O texto que convence, a oferta, os argumentos, o preço, é seu ou de quem cuida do seu marketing, porque ninguém conhece a sua oferta melhor que você. A gente entra na estrutura: organiza esse conteúdo no fluxo que leva à conversão, cuida do design, da velocidade e de tudo que faz a página funcionar. Se você chegar sem o texto pronto, orientamos o que cada parte precisa ter.",
             },
             {
                 id: "faq-3",

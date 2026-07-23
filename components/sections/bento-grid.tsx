@@ -70,7 +70,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
                     {iconEl}
                     {textBlock}
                 </div>
-                <div className="relative mx-auto h-full w-full">
+                <div className="relative mx-auto aspect-video w-full lg:aspect-auto lg:h-full">
                     <Image
                         src={item.image.src}
                         alt={item.image.alt}
