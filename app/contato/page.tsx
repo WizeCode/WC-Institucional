@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
-import { FormLayout } from "@/components/layout/form-layout"
-import { ContactChannels } from "@/components/layout/contact-channels"
+import { FormPage } from "@/components/templates/form-page"
+import { ContactChannels } from "@/components/sections/contact-channels"
 import { ContatoForm } from "@/components/forms/contato-form"
 import { siteContact } from "@/lib/social"
 
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <Section className="py-12 sm:py-16">
-            <FormLayout
+        <Section className="py-12">
+            <FormPage
                 title="Entre em contato"
                 description="Nossa equipe responderá em até 24 horas úteis."
                 aside={<ContactChannels channels={siteContact.channels} />}
             >
                 <ContatoForm />
-            </FormLayout>
+            </FormPage>
         </Section>
     )
 }

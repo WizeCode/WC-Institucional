@@ -22,7 +22,11 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-export function ContatoForm() {
+interface ContatoFormProps {
+    servicoPadrao?: ContatoFormData["servico"]
+}
+
+export function ContatoForm({ servicoPadrao }: ContatoFormProps = {}) {
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
     // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
     const [turnstileKey, setTurnstileKey] = useState(0)
@@ -40,6 +44,7 @@ export function ContatoForm() {
             empresa: "",
             email: "",
             telefone: "",
+            servico: servicoPadrao,
             descricao: "",
         },
     })
@@ -59,10 +64,10 @@ export function ContatoForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex h-full w-full flex-col justify-between gap-4 px-6 py-10"
+            className="flex h-full w-full flex-col justify-between gap-6 px-6 py-10"
         >
-            <div className="flex flex-col gap-4 xl:flex-row">
-                <div className="flex-1 space-y-1.5">
+            <div className="flex flex-col gap-6 xl:flex-row">
+                <div className="flex-1 space-y-2.5">
                     <Label htmlFor="nome">Nome completo</Label>
                     <Input
                         id="nome"
@@ -77,7 +82,7 @@ export function ContatoForm() {
                     )}
                 </div>
 
-                <div className="flex-1 space-y-1.5">
+                <div className="flex-1 space-y-2.5">
                     <Label htmlFor="empresa">
                         Empresa{" "}
                         <span className="text-muted-foreground">
@@ -98,8 +103,8 @@ export function ContatoForm() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-4 xl:flex-row">
-                <div className="flex-1 space-y-1.5">
+            <div className="flex flex-col gap-6 xl:flex-row">
+                <div className="flex-1 space-y-2.5">
                     <Label htmlFor="email">E-mail</Label>
                     <Input
                         id="email"
@@ -115,7 +120,7 @@ export function ContatoForm() {
                     )}
                 </div>
 
-                <div className="flex-1 space-y-1.5">
+                <div className="flex-1 space-y-2.5">
                     <Label htmlFor="telefone">Telefone / WhatsApp</Label>
                     <Input
                         id="telefone"
@@ -132,7 +137,7 @@ export function ContatoForm() {
                 </div>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-2.5">
                 <Label htmlFor="servico">Tipo de serviço</Label>
                 <Controller
                     name="servico"
@@ -170,7 +175,7 @@ export function ContatoForm() {
                 )}
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-2.5">
                 <Label htmlFor="descricao">Descrição da demanda</Label>
                 <Textarea
                     id="descricao"
@@ -198,15 +203,19 @@ export function ContatoForm() {
                 </p>
             )}
 
-            <TurnstileBox key={turnstileKey} onToken={setTurnstileToken} />
+            {/* Agrupados: como filho direto do form, o Turnstile colapsado ainda
+                somaria um gap-6 de cada lado. */}
+            <div className="flex flex-col">
+                <TurnstileBox key={turnstileKey} onToken={setTurnstileToken} />
 
-            <Button
-                type="submit"
-                disabled={isSubmitting || !turnstileToken}
-                className="mx-auto w-full sm:self-end"
-            >
-                {isSubmitting ? "Enviando..." : "Enviar mensagem"}
-            </Button>
+                <Button
+                    type="submit"
+                    disabled={isSubmitting || !turnstileToken}
+                    className="mx-auto w-full sm:self-end"
+                >
+                    {isSubmitting ? "Enviando..." : "Enviar mensagem"}
+                </Button>
+            </div>
         </form>
     )
 }

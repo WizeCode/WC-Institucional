@@ -1,42 +1,42 @@
-"use client";
+"use client"
 
-import { Download } from "lucide-react";
+import { Download } from "lucide-react"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 import {
     ContextMenu,
     ContextMenuContent,
     ContextMenuItem,
     ContextMenuTrigger,
-} from "@/components/ui/context-menu";
-import Image from "next/image";
+} from "@/components/ui/context-menu"
+import Image from "next/image"
 
 interface LogoProps extends React.HTMLAttributes<HTMLAnchorElement> {
-    url: string;
-    className?: string;
-    children: React.ReactNode;
+    url: string
+    className?: string
+    children: React.ReactNode
 }
 
 interface LogoImageProps {
-    src: string;
-    alt: string;
-    className?: string;
+    src: string
+    alt: string
+    className?: string
 }
 
 interface LogoTextProps extends React.HTMLAttributes<HTMLSpanElement> {
-    children: React.ReactNode;
-    className?: string;
+    children: React.ReactNode
+    className?: string
 }
 
 interface LogoBrandDownloadProps {
-    children: React.ReactNode;
+    children: React.ReactNode
     files: Array<{
-        name: string;
-        path: string;
-        format: "svg" | "png" | "jpg" | "jpeg" | "webp";
-    }>;
-    className?: string;
+        name: string
+        path: string
+        format: "svg" | "png" | "jpg" | "jpeg" | "webp"
+    }>
+    className?: string
 }
 
 const LogoBrandDownload = ({
@@ -46,22 +46,22 @@ const LogoBrandDownload = ({
 }: LogoBrandDownloadProps) => {
     const handleDownload = async (file: LogoBrandDownloadProps["files"][0]) => {
         try {
-            const response = await fetch(file.path);
-            if (!response.ok) throw new Error(`Failed to fetch ${file.name}`);
+            const response = await fetch(file.path)
+            if (!response.ok) throw new Error(`Failed to fetch ${file.name}`)
 
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = file.name;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
+            const blob = await response.blob()
+            const url = window.URL.createObjectURL(blob)
+            const link = document.createElement("a")
+            link.href = url
+            link.download = file.name
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            window.URL.revokeObjectURL(url)
         } catch (error) {
-            console.error("Failed to download file:", error);
+            console.error("Failed to download file:", error)
         }
-    };
+    }
 
     return (
         <ContextMenu>
@@ -81,8 +81,8 @@ const LogoBrandDownload = ({
                 ))}
             </ContextMenuContent>
         </ContextMenu>
-    );
-};
+    )
+}
 
 const Logo = ({ url, className, children, ...props }: LogoProps) => {
     return (
@@ -93,8 +93,8 @@ const Logo = ({ url, className, children, ...props }: LogoProps) => {
         >
             {children}
         </a>
-    );
-};
+    )
+}
 
 const LogoImage = ({ src, alt, className }: LogoImageProps) => (
     <Image
@@ -106,7 +106,7 @@ const LogoImage = ({ src, alt, className }: LogoImageProps) => (
         style={{ width: "auto" }}
         className={cn("block h-8", className)}
     />
-);
+)
 
 const LogoImageMobile = ({ src, alt, className }: LogoImageProps) => (
     <Image
@@ -118,7 +118,7 @@ const LogoImageMobile = ({ src, alt, className }: LogoImageProps) => (
         style={{ width: "auto" }}
         className={cn("flex h-8 md:hidden", className)}
     />
-);
+)
 
 const LogoImageDesktop = ({ src, alt, className }: LogoImageProps) => (
     <Image
@@ -130,7 +130,7 @@ const LogoImageDesktop = ({ src, alt, className }: LogoImageProps) => (
         style={{ width: "auto" }}
         className={cn("hidden h-8 md:flex", className)}
     />
-);
+)
 
 const LogoText = ({ children, className, ...props }: LogoTextProps) => (
     <span
@@ -139,31 +139,31 @@ const LogoText = ({ children, className, ...props }: LogoTextProps) => (
     >
         {children}
     </span>
-);
+)
 
 const LogoTextMobile = ({ children, className, ...props }: LogoTextProps) => (
     <span
         className={cn(
             "text-lg font-semibold tracking-tighter md:hidden",
-            className,
+            className
         )}
         {...props}
     >
         {children}
     </span>
-);
+)
 
 const LogoTextDesktop = ({ children, className, ...props }: LogoTextProps) => (
     <span
         className={cn(
             "hidden text-lg font-semibold tracking-tighter md:flex",
-            className,
+            className
         )}
         {...props}
     >
         {children}
     </span>
-);
+)
 
 export {
     Logo,
@@ -174,4 +174,4 @@ export {
     LogoText,
     LogoTextDesktop,
     LogoTextMobile,
-};
+}

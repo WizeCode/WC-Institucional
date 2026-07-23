@@ -1,0 +1,43 @@
+{
+    "Next.js Page (metadata + Page)": {
+        "scope": "typescriptreact",
+        "prefix": "wcpage",
+        "body": [
+            "import type { Metadata } from \"next\";",
+            "",
+            "export const metadata: Metadata = {",
+            "    title: \"${1:Título da Página}\",",
+            "    description: \"${2:Descrição para SEO}\",",
+            "    alternates: { canonical: \"/${3:rota}\" },",
+            "};",
+            "",
+            "export default function Page() {",
+            "    return (",
+            "        <>",
+            "            $0",
+            "        </>",
+            "    );",
+            "}"
+        ],
+        "description": "Página Next.js (App Router) com metadata e função Page no padrão WC"
+    },
+    "Next.js Page — Em Construção": {
+        "scope": "typescriptreact",
+        "prefix": "wcpage-wip",
+        "body": [
+            "import type { Metadata } from \"next\";",
+            "import { EmConstrucao } from \"@/components/layout/em-construcao\";",
+            "",
+            "export const metadata: Metadata = {",
+            "    title: \"${1:Título da Página}\",",
+            "    robots: { index: false, follow: true },",
+            "    alternates: { canonical: \"/${2:rota}\" },",
+            "};",
+            "",
+            "export default function Page() {",
+            "    return <EmConstrucao titulo=\"${1:Título da Página}\" />;",
+            "}"
+        ],
+        "description": "Página Next.js placeholder usando EmConstrucao (padrão WC)"
+    }
+}

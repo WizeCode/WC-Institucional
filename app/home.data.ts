@@ -1,15 +1,78 @@
 import { services as serviceCatalog } from "@/lib/services"
-import type { ServiceItem } from "@/components/sections/servicos"
-import type { Diferencial } from "@/components/sections/diferenciais"
-import type { Project } from "@/components/sections/portfolio"
+import type { ServiceItem } from "@/components/sections/services"
+import type { Value } from "@/components/sections/values"
+import { cases } from "@/lib/cases"
 import type { Technology } from "@/components/sections/stack"
 import type { FaqItem } from "@/components/sections/faq"
+import type { TerminalBlock } from "@/components/sections/hero-terminal"
 import { siteContact } from "@/lib/social"
 
 const stackIcon = (file: string) => `/images/stack/${file}.svg`
 
 export const home = {
+    meta: {
+        title: "WizeCode",
+        description:
+            "Transformamos objetivos de negócio em soluções digitais inteligentes: websites, e-commerce, apps mobile, plataformas e automação. Conheça a WizeCode.",
+        canonical: "/",
+    },
+    hero: {
+        badge: "/ Hero",
+        title: "Tecnologia *inteligente*:\ndo planejamento à performance.",
+        description:
+            "Somos especialistas em transformar objetivos de negócio em soluções digitais inteligentes, eficientes e escaláveis – _com a clareza de quem domina cada etapa do processo._",
+        cta: { text: "Fale com nossa equipe", url: "/contato" },
+        terminal: {
+            blocks: [
+                {
+                    command: 'wizecode scan "seu-negócio"',
+                    lines: [
+                        { kind: "error", text: "processos manuais detectados" },
+                        {
+                            kind: "error",
+                            text: "ferramentas e sistemas lentos",
+                        },
+                        {
+                            kind: "error",
+                            text: "presença digital desatualizada",
+                        },
+                    ],
+                },
+                {
+                    command: 'wizecode init "seu-projeto"',
+                    lines: [
+                        { kind: "step", text: "entrevista inicial realizada" },
+                        {
+                            kind: "step",
+                            text: "requisitos funcionais e não-funcionais mapeados",
+                        },
+                        {
+                            kind: "step",
+                            text: "plano de desenvolvimento elaborado",
+                        },
+                        { kind: "detail", text: "stack definida" },
+                        { kind: "detail", text: "cronograma definido" },
+                        {
+                            kind: "step",
+                            text: "design desenvolvido e aprovado",
+                        },
+                        {
+                            kind: "step",
+                            text: "testes de qualidade realizados",
+                        },
+                        { kind: "detail", text: "performance: 98/100" },
+                        { kind: "detail", text: "segurança: máxima" },
+                    ],
+                },
+            ] satisfies TerminalBlock[],
+            result: "projeto publicado e entregue com sucesso!",
+        },
+    },
     servicos: {
+        badge: "/ Serviços",
+        title: "O que a WizeCode *entrega*",
+        description:
+            "Do planejamento à entrega, desenvolvemos soluções digitais sob medida para o seu negócio.",
         services: [
             {
                 id: "Institucional",
@@ -55,13 +118,17 @@ export const home = {
         ] satisfies ServiceItem[],
     },
     diferenciais: {
+        badge: "/ Diferenciais",
+        title: "Mas o que a WizeCode tem de *diferente*?",
+        description:
+            "Enquanto outras software houses entregam promessas, a WizeCode entrega produto.",
         items: [
             {
                 letter: "W",
                 title: "Wisdom",
                 icon: "brain",
                 description:
-                    "Tecnologias que garantem escalabilidade, segurança e alta performance — seu investimento à prova de obsolescência.",
+                    "Tecnologias que garantem escalabilidade, segurança e alta performance, seu investimento à prova de obsolescência.",
             },
             {
                 letter: "I",
@@ -75,7 +142,7 @@ export const home = {
                 title: "Zeal",
                 icon: "sparkles",
                 description:
-                    "Interfaces e arquiteturas sob medida, com personalização até a satisfação total — cada pixel pensado para unir estética moderna à funcionalidade técnica.",
+                    "Interfaces e arquiteturas sob medida, com personalização até a satisfação total, cada pixel pensado para unir estética moderna à funcionalidade técnica.",
             },
             {
                 letter: "E",
@@ -84,57 +151,21 @@ export const home = {
                 description:
                     "Comunicação transparente e empática que traduz autoridade técnica em clareza, garantindo que você se sinta seguro e no controle em cada etapa.",
             },
-        ] satisfies Diferencial[],
+        ] satisfies Value[],
     },
     portfolio: {
-        projects: [
-            {
-                id: "1",
-                title: "Propagandista de Primeira",
-                category: "Educação",
-                service: "Institucional",
-                year: "2025",
-                description:
-                    "Site institucional desenvolvido em WordPress para uma empresa de educação, com foco em apresentação de cursos, captação de leads e identidade visual alinhada ao posicionamento da marca.",
-                image: "/images/cases/propagandista.svg",
-                href: "https://www.propagandistadeprimeira.com.br",
-            },
-            {
-                id: "2",
-                title: "Derivada Serviços Elétricos",
-                category: "Engenharia",
-                service: "Institucional",
-                year: "2026",
-                description:
-                    "Site institucional desenvolvido em WordPress para uma empresa de engenharia, com foco em apresentação de serviços, portfólio de projetos e otimização para SEO e performance.",
-                image: "/images/cases/derivada.svg",
-                href: "https://www.derivadaengenharia.com",
-            },
-            {
-                id: "3",
-                title: "Produtora Colmeia",
-                category: "Audiovisual",
-                service: "Institucional",
-                year: "2026",
-                description:
-                    "Site institucional desenvolvido em WordPress para uma produtora audiovisual, com foco em apresentação de portfólio, serviços e integração com redes sociais.",
-                image: "/images/cases/colmeia.svg",
-                href: "https://www.produtoracolmeia.com.br",
-            },
-            {
-                id: "4",
-                title: "Jadevine",
-                category: "Semijoias",
-                service: "Institucional",
-                year: "2024",
-                description:
-                    "Site institucional desenvolvido em WordPress para uma marca de semijoias, com foco em apresentação de produtos, catálogo editável, otimização para SEO e performance.",
-                image: "/images/cases/jadevine.svg",
-                href: "https://www.jadevine.com.br",
-            },
-        ] satisfies Project[],
+        badge: "/ Portfólio",
+        title: "Nosso Portfólio",
+        description:
+            "Cases de sucesso que refletem nossa expertise e compromisso com a excelência em cada projeto.",
+        button: { url: "/cases", text: "Ver todos os cases" },
+        projects: cases,
     },
     stack: {
+        badge: "/ Stack",
+        title: "Técnologias confiáveis",
+        description:
+            "Stack sólida e confiável, com tecnologias modernas, garantindo a qualidade e performance dos nossos projetos.",
         techRowOne: [
             {
                 id: "nextjs",
@@ -205,32 +236,37 @@ export const home = {
         ] satisfies Technology[],
     },
     faq: {
+        badge: "/ FAQ",
+        title: "Alguma dúvida?",
+        subtitle: "Estamos aqui para ajudar.",
+        description: "Ainda tem dúvidas?",
+        whatsappMessage: "Olá! Tenho uma dúvida sobre a WizeCode.",
         items: [
             {
                 id: "faq-1",
                 question: "Quanto tempo leva para desenvolver um projeto?",
-                answer: "Depende do escopo. Um site institucional costuma ficar pronto em 3 a 6 semanas. Plataformas, sistemas e aplicativos mais complexos podem levar de 2 a 6 meses. Durante o briefing, a gente já consegue dar uma estimativa realista para o seu caso.",
+                answer: "Depende do escopo. Um website institucional costuma ficar pronto em 3 a 6 semanas. Plataformas, sistemas e aplicativos mais complexos podem levar de 2 a 6 meses. Durante o briefing, a gente já consegue dar uma estimativa realista para o seu caso.",
             },
             {
                 id: "faq-2",
                 question: "Qual é o investimento para contratar a WizeCode?",
-                answer: "Cada projeto é único, então não trabalhamos com tabelas fixas. O investimento é definido com base no escopo, complexidade e prazo. Nossa proposta é sempre personalizada — e você não tem nenhum compromisso antes de aprová-la.",
+                answer: "Cada projeto é único, então não trabalhamos com tabelas fixas. O investimento é definido com base no escopo, complexidade e prazo. Nossa proposta é sempre personalizada, e você não tem nenhum compromisso antes de aprová-la.",
             },
             {
                 id: "faq-3",
                 question:
-                    "Quem cuida do conteúdo do site — textos, fotos e vídeos?",
+                    "Quem cuida do conteúdo do website, textos, fotos e vídeos?",
                 answer: "O ideal é que o conteúdo venha da sua empresa, já que ninguém conhece o negócio melhor do que você. Mas entendemos que nem todo cliente tem isso pronto: podemos te orientar sobre o que preparar e, em casos específicos, indicar parceiros para essa parte.",
             },
             {
                 id: "faq-4",
                 question: "A WizeCode desenvolve para qualquer segmento?",
-                answer: "Sim. Já atuamos em educação, saúde, varejo, serviços e outros. O que importa é que exista um problema real para resolver — e nós encontramos a solução tecnológica mais adequada para ele.",
+                answer: "Sim. Já atuamos em educação, saúde, varejo, serviços e outros. O que importa é que exista um problema real para resolver, e nós encontramos a solução tecnológica mais adequada para ele.",
             },
             {
                 id: "faq-5",
                 question: "Vocês fazem manutenção e suporte após a entrega?",
-                answer: "Sim. A entrega do projeto não é o fim da nossa relação — é o começo. Oferecemos planos de manutenção e suporte técnico para garantir que tudo continue funcionando, evoluindo e performando bem.",
+                answer: "Sim. A entrega do projeto não é o fim da nossa relação, é o começo. Oferecemos planos de manutenção e suporte técnico para garantir que tudo continue funcionando, evoluindo e performando bem.",
             },
             {
                 id: "faq-6",
@@ -241,6 +277,9 @@ export const home = {
         ] satisfies FaqItem[],
     },
     contato: {
+        badge: "/ Contato",
+        title: "Vamos construir algo incrível juntos?",
+        description: "Nossa equipe entrará em contato em até 24 horas úteis",
         infoCards: siteContact.channels,
     },
 }

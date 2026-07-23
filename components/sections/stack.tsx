@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge, type BadgeVariant } from "@/components/ui/badge"
 import {
     Marquee,
     MarqueeContent,
@@ -18,9 +18,10 @@ interface Technology {
 }
 
 interface StackProps {
-    heading: string
+    title: string
     description: string
-    badgeText: string
+    badge: string
+    badgeVariant?: BadgeVariant
     techRowOne: Technology[]
     techRowTwo: Technology[]
     techRowThree: Technology[]
@@ -42,9 +43,10 @@ const TechMarqueeItem = ({ tech }: { tech: Technology }) => (
 )
 
 const Stack = ({
-    heading,
+    title,
     description,
-    badgeText,
+    badge,
+    badgeVariant = "outline",
     techRowOne,
     techRowTwo,
     techRowThree,
@@ -52,11 +54,11 @@ const Stack = ({
     return (
         <>
             <div className="flex flex-col gap-2 text-center">
-                <Badge className="mx-auto mb-4" variant="outline">
-                    {badgeText}
+                <Badge className="mx-auto mb-4" variant={badgeVariant}>
+                    {badge}
                 </Badge>
                 <h2 className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                    {heading}
+                    {title}
                 </h2>
                 <p className="mb-4 text-lg text-muted-foreground lg:text-xl">
                     {description}
@@ -96,4 +98,4 @@ const Stack = ({
 }
 
 export { Stack }
-export type { Technology }
+export type { Technology, StackProps }

@@ -1,12 +1,14 @@
 interface JsonLdProps {
-    schema: Record<string, unknown> | Record<string, unknown>[];
+    schema: Record<string, unknown> | Record<string, unknown>[]
 }
 
 export function JsonLd({ schema }: JsonLdProps) {
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+            }}
         />
-    );
+    )
 }

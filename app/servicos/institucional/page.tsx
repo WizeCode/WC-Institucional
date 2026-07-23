@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
-import { EmConstrucao } from "@/components/layout/em-construcao";
+import type { Metadata } from "next"
+import { ServicoPage } from "@/components/templates/servico-page"
+import { institucional } from "./institucional.data"
 
 export const metadata: Metadata = {
     title: "Website Institucional",
-    robots: { index: false, follow: true },
+    description:
+        "A WizeCode oferece serviços de desenvolvimento de websites institucionais, criando uma presença online profissional e impactante para empresas de todos os setores.",
     alternates: { canonical: "/servicos/institucional" },
-};
+}
 
 export default function Page() {
-    return <EmConstrucao titulo="Website Institucional" />;
+    return <ServicoPage data={institucional} />
 }

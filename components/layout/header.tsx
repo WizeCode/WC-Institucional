@@ -1,17 +1,13 @@
 "use client"
 
-import {
-    Menu,
-    Sun,
-    Moon,
-} from "lucide-react";
+import { Menu, Sun, Moon } from "lucide-react"
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -19,64 +15,64 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu"
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import { useThemeToggle } from "@/components/theme-provider";
-import { services } from "@/lib/services";
-import { icons } from "@/lib/icons";
+} from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
+import { useThemeToggle } from "@/components/theme-provider"
+import { services } from "@/lib/services"
+import { icons } from "@/lib/icons"
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePostHog } from "posthog-js/react";
-import { ShineBorder } from "@/components/ui/shine-border";
+import Image from "next/image"
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { track } from "@/lib/analytics"
+import { ShineBorder } from "@/components/ui/shine-border"
 
 interface MenuItem {
-    title: string;
-    url: string;
-    description?: string;
-    icon?: React.ReactNode;
-    items?: MenuItem[];
-    dropdownLabel?: string;
-    dropdownDescription?: string;
-};
+    title: string
+    url: string
+    description?: string
+    icon?: React.ReactNode
+    items?: MenuItem[]
+    dropdownLabel?: string
+    dropdownDescription?: string
+}
 
 interface CtaButton {
-    title: string;
-    url: string;
-};
+    title: string
+    url: string
+}
 
 interface NavbarProps {
-    className?: string;
+    className?: string
     logo?: {
-        url: string;
-        srcLight: string;
-        srcDark: string;
-        alt: string;
-        title: string | React.ReactNode;
-        className?: string;
+        url: string
+        srcLight: string
+        srcDark: string
+        alt: string
+        title: string | React.ReactNode
+        className?: string
     }
-    menu?: MenuItem[];
-    ctaWiz?: CtaButton;
-    ctaContact?: CtaButton;
-};
+    menu?: MenuItem[]
+    ctaWiz?: CtaButton
+    ctaContact?: CtaButton
+}
 
 const serviceMenuItems: MenuItem[] = Object.values(services).map((service) => {
-    const Icon = icons[service.icon];
+    const Icon = icons[service.icon]
     return {
         title: service.label,
         description: service.shortDescription,
         icon: <Icon className="size-6 shrink-0" />,
         url: service.href,
-    };
-});
+    }
+})
 
 const Header = ({
     logo = {
@@ -85,7 +81,9 @@ const Header = ({
         srcDark: "/logos/logo_light.svg",
         alt: "Logo WizeCode",
         title: (
-            <>Wize<span className="text-brand">Code</span></>
+            <>
+                Wize<span className="text-brand">Code</span>
+            </>
         ),
     },
     menu = [
@@ -97,14 +95,15 @@ const Header = ({
             title: "Serviços",
             url: "#",
             dropdownLabel: "SOLUÇÕES DIGITAIS",
-            dropdownDescription: "Tudo que o seu negócio precisa para crescer no digital.",
+            dropdownDescription:
+                "Tudo que o seu negócio precisa para crescer no digital.",
             items: serviceMenuItems,
         },
         {
             title: "Cases",
             url: "/cases",
         },
-        
+
         {
             title: "Trabalhe Conosco",
             url: "/trabalhe-conosco",
@@ -114,33 +113,37 @@ const Header = ({
     ctaContact = { title: "Entre em contato", url: "/contato" },
     className,
 }: NavbarProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const posthog = usePostHog();
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 1024) {
-                setIsOpen(false);
+                setIsOpen(false)
             }
-        };
+        }
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [isOpen]);
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [isOpen])
 
     return (
-        <header className={cn("py-6 px-4 shadow-sm", className)}>
+        <header className={cn("px-4 py-6 shadow-sm", className)}>
             <div className="container mx-auto">
-                <nav className="hidden justify-between items-center lg:flex">
+                <nav className="hidden items-center justify-between lg:flex">
                     <div className="flex items-center gap-8">
-                        <Link className="flex items-center gap-2" href={logo.url}>
-                            <Image className="block dark:hidden"
+                        <Link
+                            className="flex items-center gap-2"
+                            href={logo.url}
+                        >
+                            <Image
+                                className="block dark:hidden"
                                 src={logo.srcLight}
                                 alt={logo.alt}
                                 width={48}
                                 height={48}
                             />
-                            <Image className="hidden dark:block"
+                            <Image
+                                className="hidden dark:block"
                                 src={logo.srcDark}
                                 alt={logo.alt}
                                 width={48}
@@ -163,17 +166,33 @@ const Header = ({
 
                     <div className="flex items-center gap-2">
                         <div className="group relative rounded-lg">
-                            <ShineBorder className="opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                            <ShineBorder
+                                className="opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                                 shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                             />
-                            <Button asChild size="lg" variant="outline" onClick={() => posthog.capture("cta_wiz_clicked", { source: "header" })}>
-                                <Link href={ctaWiz.url}>
-                                    {ctaWiz.title}
-                                </Link>
+                            <Button
+                                asChild
+                                size="lg"
+                                variant="outline"
+                                onClick={() =>
+                                    track("cta_wiz_clicked", {
+                                        source: "header",
+                                    })
+                                }
+                            >
+                                <Link href={ctaWiz.url}>{ctaWiz.title}</Link>
                             </Button>
                         </div>
 
-                        <Button asChild size="lg" onClick={() => posthog.capture("cta_contact_clicked", { source: "header" })}>
+                        <Button
+                            asChild
+                            size="lg"
+                            onClick={() =>
+                                track("cta_contact_clicked", {
+                                    source: "header",
+                                })
+                            }
+                        >
                             <Link href={ctaContact.url}>
                                 {ctaContact.title}
                             </Link>
@@ -184,15 +203,20 @@ const Header = ({
                 </nav>
 
                 <div className="block lg:hidden">
-                    <div className="flex justify-between items-center">
-                        <Link href={logo.url} className="flex items-center gap-2">
-                            <Image className="block dark:hidden"
+                    <div className="flex items-center justify-between">
+                        <Link
+                            href={logo.url}
+                            className="flex items-center gap-2"
+                        >
+                            <Image
+                                className="block dark:hidden"
                                 src={logo.srcLight}
                                 alt={logo.alt}
                                 width={48}
                                 height={48}
                             />
-                            <Image className="hidden dark:block"
+                            <Image
+                                className="hidden dark:block"
                                 src={logo.srcDark}
                                 alt={logo.alt}
                                 width={48}
@@ -205,7 +229,10 @@ const Header = ({
 
                             <Sheet open={isOpen} onOpenChange={setIsOpen}>
                                 <SheetTrigger asChild>
-                                    <Menu size={20} className="cursor-pointer" />
+                                    <Menu
+                                        size={20}
+                                        className="cursor-pointer"
+                                    />
                                 </SheetTrigger>
 
                                 <SheetContent
@@ -214,14 +241,19 @@ const Header = ({
                                 >
                                     <SheetHeader>
                                         <SheetTitle>
-                                            <Link href={logo.url} className="flex items-center gap-2">
-                                                <Image className="block dark:hidden"
+                                            <Link
+                                                href={logo.url}
+                                                className="flex items-center gap-2"
+                                            >
+                                                <Image
+                                                    className="block dark:hidden"
                                                     src={logo.srcLight}
                                                     alt={logo.alt}
                                                     width={48}
                                                     height={48}
                                                 />
-                                                <Image className="hidden dark:block"
+                                                <Image
+                                                    className="hidden dark:block"
                                                     src={logo.srcDark}
                                                     alt={logo.alt}
                                                     width={48}
@@ -232,28 +264,62 @@ const Header = ({
                                     </SheetHeader>
 
                                     <div className="flex flex-col gap-8 p-4 pt-0">
-                                        <Accordion className="flex flex-col gap-4 w-full"
+                                        <Accordion
+                                            className="flex w-full flex-col gap-4"
                                             type="single"
                                             collapsible
                                         >
                                             {menu.map((item) =>
-                                                renderMobileMenuItem(item, () => setIsOpen(false))
+                                                renderMobileMenuItem(item, () =>
+                                                    setIsOpen(false)
+                                                )
                                             )}
                                         </Accordion>
 
                                         <div className="flex flex-col gap-2">
                                             <div className="group relative rounded-lg">
-                                                <ShineBorder className="transition-opacity duration-200 opacity-100"
-                                                    shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                                                <ShineBorder
+                                                    className="opacity-100 transition-opacity duration-200"
+                                                    shineColor={[
+                                                        "#A07CFE",
+                                                        "#FE8FB5",
+                                                        "#FFBE7B",
+                                                    ]}
                                                 />
-                                                <Button className="w-full" asChild size="lg" variant="outline" onClick={() => { posthog.capture("cta_wiz_clicked", { source: "header_mobile" }); setIsOpen(false); }}>
+                                                <Button
+                                                    className="w-full"
+                                                    asChild
+                                                    size="lg"
+                                                    variant="outline"
+                                                    onClick={() => {
+                                                        track(
+                                                            "cta_wiz_clicked",
+                                                            {
+                                                                source: "header_mobile",
+                                                            }
+                                                        )
+                                                        setIsOpen(false)
+                                                    }}
+                                                >
                                                     <Link href={ctaWiz.url}>
                                                         {ctaWiz.title}
                                                     </Link>
                                                 </Button>
                                             </div>
 
-                                            <Button asChild size="lg" onClick={() => { posthog.capture("cta_contact_clicked", { source: "header_mobile" }); setIsOpen(false); }}>
+                                            <Button
+                                                asChild
+                                                size="lg"
+                                                onClick={() => {
+                                                    track(
+                                                        "cta_contact_clicked",
+                                                        {
+                                                            source: "header_mobile",
+                                                        }
+                                                    )
+                                                    setIsOpen(false)
+                                                }}
+                                            >
                                                 <Link href={ctaContact.url}>
                                                     {ctaContact.title}
                                                 </Link>
@@ -267,21 +333,21 @@ const Header = ({
                 </div>
             </div>
         </header>
-    );
-};
+    )
+}
 
 const renderMenuItem = (item: MenuItem) => {
     if (item.items) {
         return (
             <NavigationMenuItem key={item.title}>
-                <NavigationMenuTrigger className="font-medium text-[14px] px-4 py-2">
+                <NavigationMenuTrigger className="px-4 py-2 text-[14px] font-medium">
                     {item.title}
                 </NavigationMenuTrigger>
 
                 <NavigationMenuContent>
                     <div className="w-190 p-4">
                         {(item.dropdownLabel || item.dropdownDescription) && (
-                            <div className="flex flex-col gap-1 mb-4">
+                            <div className="mb-4 flex flex-col gap-1">
                                 {item.dropdownLabel && (
                                     <h3 className="text-[12px] font-semibold tracking-widest text-muted-foreground uppercase">
                                         {item.dropdownLabel}
@@ -305,24 +371,25 @@ const renderMenuItem = (item: MenuItem) => {
                     </div>
                 </NavigationMenuContent>
             </NavigationMenuItem>
-        );
+        )
     }
 
     return (
         <NavigationMenuItem key={item.title}>
             <NavigationMenuLink
-                className="group bg-background inline-flex justify-center items-center font-medium text-[14px] px-4 py-2 rounded-md transition-colors hover:bg-muted"
+                className="group inline-flex items-center justify-center rounded-md bg-background px-4 py-2 text-[14px] font-medium transition-colors hover:bg-muted"
                 href={item.url}
             >
                 {item.title}
             </NavigationMenuLink>
         </NavigationMenuItem>
-    );
-};
+    )
+}
 
 const DropdownCard = ({ item }: { item: MenuItem }) => {
     return (
-        <Link className="flex flex-col items-start gap-3 rounded-lg p-3 transition-colors hover:bg-muted outline-none select-none focus-visible:ring-2 focus-visible:ring-ring"
+        <Link
+            className="flex flex-col items-start gap-3 rounded-lg p-3 transition-colors outline-none select-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
             href={item.url}
         >
             {item.icon && (
@@ -332,52 +399,69 @@ const DropdownCard = ({ item }: { item: MenuItem }) => {
             )}
 
             <div>
-                <div className="text-[14px] font-semibold">
-                    {item.title}
-                </div>
+                <div className="text-[14px] font-semibold">{item.title}</div>
 
                 {item.description && (
-                    <p className="text-muted-foreground text-[12px] mt-0.5">
+                    <p className="mt-0.5 text-[12px] text-muted-foreground">
                         {item.description}
                     </p>
                 )}
             </div>
         </Link>
-    );
-};
+    )
+}
 
 const renderMobileMenuItem = (item: MenuItem, onNavigate: () => void) => {
     if (item.items) {
         return (
-            <AccordionItem className="border-none" key={item.title} value={item.title}>
-                <AccordionTrigger className="text-[14px] py-0 font-semibold hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
+            <AccordionItem
+                className="border-none"
+                key={item.title}
+                value={item.title}
+            >
+                <AccordionTrigger className="py-0 text-[14px] font-semibold hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
                     {item.title}
                 </AccordionTrigger>
 
                 <AccordionContent className="mt-4">
                     <div className="flex flex-col gap-1">
                         {item.items.map((subItem) => (
-                            <MobileSubItem key={subItem.title} item={subItem} onNavigate={onNavigate} />
+                            <MobileSubItem
+                                key={subItem.title}
+                                item={subItem}
+                                onNavigate={onNavigate}
+                            />
                         ))}
                     </div>
                 </AccordionContent>
             </AccordionItem>
-        );
+        )
     }
 
     return (
-        <Link key={item.title} href={item.url} className="text-[14px] font-semibold" onClick={onNavigate}>
+        <Link
+            key={item.title}
+            href={item.url}
+            className="text-[14px] font-semibold"
+            onClick={onNavigate}
+        >
             {item.title}
         </Link>
-    );
-};
+    )
+}
 
-const MobileSubItem = ({ item, onNavigate }: { item: MenuItem; onNavigate: () => void }) => {
+const MobileSubItem = ({
+    item,
+    onNavigate,
+}: {
+    item: MenuItem
+    onNavigate: () => void
+}) => {
     return (
         <Link
             href={item.url}
             onClick={onNavigate}
-            className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-muted no-underline!"
+            className="flex items-center gap-3 rounded-lg p-2 no-underline! transition-colors hover:bg-muted"
         >
             {item.icon && (
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -386,11 +470,11 @@ const MobileSubItem = ({ item, onNavigate }: { item: MenuItem; onNavigate: () =>
             )}
             <span className="text-[14px] font-medium">{item.title}</span>
         </Link>
-    );
-};
+    )
+}
 
 const ThemeToggle = () => {
-    const { toggle } = useThemeToggle();
+    const { toggle } = useThemeToggle()
 
     return (
         <Button
@@ -399,11 +483,11 @@ const ThemeToggle = () => {
             variant="ghost"
             onClick={toggle}
         >
-            <Sun className="size-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute size-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+            <Moon className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
             <span className="sr-only">Alternar tema</span>
         </Button>
-    );
-};
+    )
+}
 
-export { Header };
+export { Header }

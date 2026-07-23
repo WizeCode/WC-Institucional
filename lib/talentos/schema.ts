@@ -30,7 +30,8 @@ export const CURRICULO_ACCEPT = "application/pdf"
 export function validarCurriculo(file: File | undefined | null): string | null {
     if (!file) return "Anexe seu currículo em PDF"
     if (file.type !== CURRICULO_ACCEPT) return "O currículo deve ser um PDF"
-    if (file.size > CURRICULO_MAX_SIZE) return "O currículo deve ter no máximo 5MB"
+    if (file.size > CURRICULO_MAX_SIZE)
+        return "O currículo deve ter no máximo 5MB"
     return null
 }
 
