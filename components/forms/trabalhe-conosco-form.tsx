@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useForm, Controller } from "react-hook-form"
+import { useForm, Controller, type FieldErrors } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { track } from "@/lib/analytics"
 import Link from "next/link"
@@ -31,7 +31,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-/** Formata progressivamente um WhatsApp brasileiro: (11) 99999-9999. */
 function maskWhatsapp(value: string): string {
     const d = value.replace(/\D/g, "").slice(0, 11)
     if (d.length === 0) return ""
@@ -40,6 +39,15 @@ function maskWhatsapp(value: string): string {
     if (d.length <= 10)
         return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`
     return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
+}
+
+function utmEventProps() {
+    const utm = getStoredUtm()
+    return {
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+    }
 }
 
 export function TrabalheConoscoForm() {
@@ -66,25 +74,33 @@ export function TrabalheConoscoForm() {
     const [curriculo, setCurriculo] = useState<File | null>(null)
     const [curriculoError, setCurriculoError] = useState<string | null>(null)
     const [success, setSuccess] = useState(false)
-    // Muda a key para remontar (limpar) o input de arquivo após o envio.
     const [curriculoKey, setCurriculoKey] = useState(0)
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
-    // Tokens são de uso único: remonta o widget para obter um novo a cada envio.
     const [turnstileKey, setTurnstileKey] = useState(0)
 
-    // UTMs lidos da atribuição first-touch salva em sessionStorage pelo
-    // UtmProvider (capturada no layout raiz, sobrevive a navegação entre
-    // páginas). Inicializador lazy: sem hydration mismatch, o valor só entra
-    // no payload, nunca é renderizado.
-    const [utm] = useState(() => getStoredUtm())
-
     async function onSubmit(data: TalentoFormData) {
+        const utm = getStoredUtm()
+        const eventProps = {
+            area: data.area,
+            modalidade: data.modalidade,
+            disponibilidade: data.disponibilidade,
+            utm_source: utm.utm_source,
+            utm_medium: utm.utm_medium,
+            utm_campaign: utm.utm_campaign,
+        }
+
         const fileError = validarCurriculo(curriculo)
         if (fileError) {
             setCurriculoError(fileError)
+            track("talent_pool_form_validation_failed", {
+                ...eventProps,
+                fields: "curriculo",
+            })
             return
         }
         setCurriculoError(null)
+
+        track("talent_pool_form_submit_attempted", eventProps)
 
         const fd = new FormData()
         Object.entries(data).forEach(([key, value]) =>
@@ -98,20 +114,19 @@ export function TrabalheConoscoForm() {
 
         const result = await enviarCandidatura(fd)
 
-        // O token foi consumido pelo servidor, valendo ou não.
         setTurnstileToken(null)
         setTurnstileKey((k) => k + 1)
 
         if (!result.success) {
+            track("talent_pool_form_submit_failed", {
+                ...eventProps,
+                reason: result.error,
+            })
             setError("root", { message: result.error })
             return
         }
 
-        track("talent_pool_form_submitted", {
-            area: data.area,
-            modalidade: data.modalidade,
-            disponibilidade: data.disponibilidade,
-        })
+        track("talent_pool_form_submitted", eventProps)
 
         setSuccess(true)
         reset()
@@ -119,9 +134,16 @@ export function TrabalheConoscoForm() {
         setCurriculoKey((k) => k + 1)
     }
 
+    function onInvalid(formErrors: FieldErrors<TalentoFormData>) {
+        track("talent_pool_form_validation_failed", {
+            ...utmEventProps(),
+            fields: Object.keys(formErrors).join(","),
+        })
+    }
+
     return (
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit, onInvalid)}
             className="flex h-full w-full flex-col justify-between gap-4 px-6 py-10"
         >
             <div className="flex flex-col gap-4 xl:flex-row">
