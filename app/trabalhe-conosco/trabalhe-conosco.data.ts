@@ -15,7 +15,7 @@ interface SectionHeader {
 export const trabalheConosco = {
     hero: {
         badge: "/ Banco de talentos",
-        title: "Uma forma real de gerar renda com projetos de tecnologia.",
+        title: "Uma forma real de gerar *renda* com projetos de tecnologia.",
         description:
             "Você atua em projetos de desenvolvimento com remuneração por entrega. O trabalho é remoto, sem controle de ponto, e cada etapa passa pela revisão da equipe para garantir qualidade e evolução técnica.",
         image: {
@@ -30,7 +30,7 @@ export const trabalheConosco = {
 
     cultura: {
         badge: "/ Cultura",
-        title: "Como trabalhamos no dia a dia",
+        title: "Como *trabalhamos* no dia a dia",
         description:
             "Não existe ponto nem reunião de status para provar que você trabalhou. O combinado é entrega e prazo. Como você organiza o seu dia fica com você, como deve ser.",
         items: [
@@ -54,7 +54,7 @@ export const trabalheConosco = {
                 icon: "messagesSquare",
                 title: "Comunicação direta",
                 description:
-                    "Travou ou vai atrasar? Avise. Problema comunicado cedo é mais fácil de resolver.", /* ... Talvez alterar esse */
+                    "Travou ou vai atrasar? Avise. Problema comunicado cedo é mais fácil de resolver.",
             },
             {
                 icon: "users",
@@ -78,7 +78,7 @@ export const trabalheConosco = {
     },
 
     beneficios: {
-        badge: "/ O que você ganha",
+        badge: "/ Beneficios",
         title: "O que *oferecemos* hoje",
         description:
             "Preferimos ser diretos sobre onde estamos hoje a te vender uma expectativa que não vamos cumprir.",

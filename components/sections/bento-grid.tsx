@@ -50,7 +50,7 @@ const BentoCell = ({ item }: { item: BentoItem }) => {
                         alt={item.image.alt}
                         fill
                         sizes="(min-width: 1024px) 33vw, 100vw"
-                        className="rounded-lg object-cover"
+                        className="rounded-lg object-cover object-top"
                     />
                 </div>
             </div>

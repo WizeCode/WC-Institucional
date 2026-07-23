@@ -41,7 +41,7 @@ export const sistemas: ServicoData = {
                 description:
                     "Cada função pensada para o seu processo real, nada de moldar o negócio a um template genérico.",
                 image: {
-                    src: "/images/services/sistemas/graph.png",
+                    src: "/images/services/sistemas/test.jpg",
                     alt: "Sistema sob medida para o processo do cliente",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -53,10 +53,10 @@ export const sistemas: ServicoData = {
                     "Base sólida que aguenta o movimento crescer sem travar.",
             },
             {
-                icon: "zap",
-                title: "Integrações que conversam",
+                icon: "iterationCw",
+                title: "Evolui em ciclos",
                 description:
-                    "Pagamentos, WhatsApp, ERPs e planilhas trabalhando num lugar só.",
+                    "Entregamos em sprints e seguimos evoluindo: o sistema cresce junto com o negócio.",
             },
             {
                 icon: "sparkles",
@@ -65,13 +65,13 @@ export const sistemas: ServicoData = {
                     "Um MVP funcional para testar com usuários reais antes de investir no sistema inteiro.",
             },
             {
-                icon: "trendingUp",
-                title: "Evolui em ciclos",
+                icon: "zap",
+                title: "Integrações que conversam",
                 description:
-                    "Entregamos em sprints e seguimos evoluindo: o sistema cresce junto com o negócio.",
+                    "Pagamentos, WhatsApp, ERPs e planilhas trabalhando num lugar só.",
                 image: {
-                    src: "/images/home/automacoes2.png",
-                    alt: "Sistema que evolui em ciclos de desenvolvimento",
+                    src: "/images/services/sistemas/integracaoo.jpg",
+                    alt: "Integrações de sistemas e automações que conversam entre si",
                 },
                 layout: "split",
                 className: "lg:col-span-2",

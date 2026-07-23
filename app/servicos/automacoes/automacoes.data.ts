@@ -41,7 +41,7 @@ export const automacoes: ServicoData = {
                 description:
                     "A automação roda 24 horas por dia, no mesmo ritmo e sem o erro de quem faz na pressa.",
                 image: {
-                    src: "/images/home/automacoes2.png",
+                    src: "/images/services/automacao/workflows.png",
                     alt: "Automação que roda sem intervenção manual",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -70,7 +70,7 @@ export const automacoes: ServicoData = {
                 description:
                     "Automatizamos uma dor primeiro, provamos o resultado e expandimos a partir dela.",
                 image: {
-                    src: "/images/home/sistemas2.webp",
+                    src: "/images/services/automacao/whatsss.png",
                     alt: "Automação que evolui a partir de um primeiro fluxo",
                 },
                 layout: "split",
