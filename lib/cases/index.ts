@@ -1,14 +1,22 @@
-import type { Project } from "@/components/sections/portfolio"
+import type { CaseData, CaseSummary } from "./types"
+import { exemplo } from "./exemplo"
+
+export type {
+    CaseData,
+    CaseSummary,
+    CaseMetric,
+    CaseTestimonial,
+} from "./types"
 
 /**
- * Fonte única de todos os cases da WizeCode.
- * Cada página consome daqui: a home mostra todos; as páginas de serviço
- * filtram por `service` (ex: `cases.filter(c => c.service === "Institucional")`).
- * Ao adicionar um case novo, basta incluí-lo aqui.
+ * Fonte única dos cases. `cases` são os resumos que alimentam os cards (home,
+ * páginas de serviço, grid do hub); `caseData` guarda o conteúdo das páginas de
+ * detalhe, só para os cases que já têm página pronta.
  */
-export const cases = [
+export const cases: CaseSummary[] = [
     {
         id: "1",
+        slug: "propagandista-de-primeira",
         title: "Propagandista de Primeira",
         category: "Educação",
         service: "Institucional",
@@ -20,6 +28,7 @@ export const cases = [
     },
     {
         id: "2",
+        slug: "derivada-servicos-eletricos",
         title: "Derivada Serviços Elétricos",
         category: "Engenharia",
         service: "Institucional",
@@ -31,6 +40,7 @@ export const cases = [
     },
     {
         id: "3",
+        slug: "produtora-colmeia",
         title: "Produtora Colmeia",
         category: "Audiovisual",
         service: "Institucional",
@@ -42,6 +52,7 @@ export const cases = [
     },
     {
         id: "4",
+        slug: "jadevine",
         title: "Jadevine",
         category: "Semijoias",
         service: "Institucional",
@@ -51,4 +62,27 @@ export const cases = [
         image: "/images/cases/jadevine.svg",
         href: "https://www.jadevine.com.br",
     },
-] satisfies Project[]
+    {
+        id: "5",
+        slug: exemplo.slug,
+        title: "Acme Contabilidade",
+        category: "Contabilidade",
+        service: "Institucional",
+        year: "2025",
+        description:
+            "Case de demonstração: reposicionamento digital de um escritório de contabilidade tradicional com website institucional focado em credibilidade e captação de leads.",
+        image: exemplo.hero.cover.src,
+    },
+]
+
+const caseData: Record<string, CaseData> = {
+    [exemplo.slug]: exemplo,
+}
+
+export function getCase(slug: string): CaseData | undefined {
+    return caseData[slug]
+}
+
+export function caseSlugs(): string[] {
+    return Object.keys(caseData)
+}
