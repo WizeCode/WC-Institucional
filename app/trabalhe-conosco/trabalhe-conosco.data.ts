@@ -15,11 +15,11 @@ interface SectionHeader {
 export const trabalheConosco = {
     hero: {
         badge: "/ Banco de talentos",
-        title: "Uma renda extra *sem o risco* que todo freela conhece.",
+        title: "Uma forma real de gerar *renda* com projetos de tecnologia.",
         description:
-            "Você entrega, você recebe — mesmo se o cliente não aprovar o projeto. Sem controle de ponto, 100% remoto e com a equipe revisando seu código para você sair melhor do que entrou.",
+            "Você atua em projetos de desenvolvimento com remuneração por entrega. O trabalho é remoto, sem controle de ponto, e cada etapa passa pela revisão da equipe para garantir qualidade e evolução técnica.",
         image: {
-            src: "/images/home/sistemas2.webp",
+            src: "/images/workwithus/Heroo.jpg",
             alt: "Equipe da WizeCode desenvolvendo um projeto",
         },
         cta: {
@@ -30,16 +30,16 @@ export const trabalheConosco = {
 
     cultura: {
         badge: "/ Cultura",
-        title: "Como a gente *trabalha* de verdade",
+        title: "Como *trabalhamos* no dia a dia",
         description:
-            "Sem discurso de parede. É isso que você encontra no dia a dia de um projeto com a WizeCode.",
+            "Não existe ponto nem reunião de status para provar que você trabalhou. O combinado é entrega e prazo. Como você organiza o seu dia fica com você, como deve ser.",
         items: [
             {
                 title: "Ninguém te cobra horário",
                 description:
                     "Não existe ponto nem reunião de status para provar que você trabalhou. Combinamos a entrega e o prazo; como você organiza o seu dia é problema seu — e é assim que deve ser.",
                 image: {
-                    src: "/images/home/automacoes2.png",
+                    src: "/images/workwithus/horario.jpg",
                     alt: "Trabalho remoto organizado por entregas",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -54,11 +54,11 @@ export const trabalheConosco = {
                 icon: "messagesSquare",
                 title: "Comunicação direta",
                 description:
-                    "Travou ou vai atrasar? Fala. Problema avisado cedo é problema pequeno.",
+                    "Travou ou vai atrasar? Avise. Problema comunicado cedo é mais fácil de resolver.",
             },
             {
                 icon: "users",
-                title: "Revisão que ensina",
+                title: "Revisão que te faz evoluir",
                 description:
                     "Todo trabalho passa pela equipe. É onde você aprende de verdade.",
             },
@@ -66,9 +66,9 @@ export const trabalheConosco = {
                 icon: "bot",
                 title: "IA liberada, muleta não",
                 description:
-                    "Usamos IA no fluxo e temos skills do Claude que ajudam no desenvolvimento. A régua é uma só: você precisa entender o que entregou e saber explicar.",
+                    "Usamos IA no fluxo para acelerar o desenvolvimento. A régua é uma só: você precisa entender o que entregou e saber explicar cada decisão.",
                 image: {
-                    src: "/images/home/landing-page.webp",
+                    src: "/images/workwithus/IA liberada.jpg",
                     alt: "Uso de IA no fluxo de desenvolvimento",
                 },
                 layout: "split",
@@ -78,8 +78,8 @@ export const trabalheConosco = {
     },
 
     beneficios: {
-        badge: "/ O que você ganha",
-        title: "O que a gente *oferece* hoje",
+        badge: "/ Beneficios",
+        title: "O que *oferecemos* hoje",
         description:
             "Preferimos ser diretos sobre onde estamos hoje a te vender uma expectativa que não vamos cumprir.",
         items: [
@@ -87,7 +87,7 @@ export const trabalheConosco = {
                 icon: "wallet",
                 title: "Pagamento garantido",
                 description:
-                    "Fez o serviço, recebe. Se o cliente não aprovar o projeto, o problema é nosso — não seu. Você não carrega o risco comercial da WizeCode.",
+                    "Fez o serviço, recebe. Se o cliente não aprovar o projeto, o risco é da WizeCode, não seu.",
                 highlight: true,
             },
             {
@@ -100,25 +100,25 @@ export const trabalheConosco = {
                 icon: "zap",
                 title: "Escopo fechado antes de começar",
                 description:
-                    "Nosso fluxo define o que precisa ser feito antes de você pôr a mão. Nada de escopo que cresce sem fim no meio do caminho.",
+                    "Nosso fluxo define o que precisa ser feito antes do início da execução. Sem escopo crescendo sem controle no meio do caminho.",
             },
             {
                 icon: "graduationCap",
-                title: "Capacitação conforme o vínculo",
+                title: "Capacitação ao longo da parceria",
                 description:
-                    "Conforme o trabalho junto evolui, entram cursos de capacitação. Quem fica, cresce com a gente.",
+                    "Conforme a parceria evolui, entram cursos de capacitação. Quem cresce com a gente, também se desenvolve com a gente.",
             },
             {
                 icon: "trendingUp",
                 title: "Estágio é o nosso próximo passo",
                 description:
-                    "Ainda não conseguimos ofertar, e não vamos fingir que sim. Mas é um desejo grande nosso e estamos trabalhando duro para viabilizar: quem já está construindo junto com a gente entra na frente quando abrir.",
+                    "Ainda não conseguimos oferecer estágio, e não vamos fingir que sim. Mas esse é um próximo passo importante para nós. Quando isso acontecer, quem já estiver construindo com a gente sai na frente.",
             },
             {
                 icon: "brain",
                 title: "Projeto real, não exercício",
                 description:
-                    "Você trabalha em sistema de cliente que vai para produção. Portfólio de verdade, não CRUD de faculdade.",
+                    "Você trabalha em sistema de cliente que vai para produção. É portfólio real, construído em projeto de verdade.",
             },
         ] satisfies Feature[],
     },
@@ -127,7 +127,7 @@ export const trabalheConosco = {
         badge: "/ Stack",
         title: "Com o que você vai trabalhar",
         description:
-            "A stack dos nossos projetos de desenvolvimento. Não precisa dominar tudo — precisa saber aprender.",
+            "Esta é a stack usada nos nossos projetos de desenvolvimento. Você não precisa dominar tudo, mas precisa saber aprender rápido.",
         groups: [
             {
                 name: "Frontend",
@@ -234,33 +234,33 @@ export const trabalheConosco = {
 
     processo: {
         badge: "/ Processo seletivo",
-        title: "O que acontece *depois* que você se cadastra",
+        title: "O que acontece *depois* do seu cadastro",
         description:
-            "Sem buraco negro: você sabe exatamente em que pé está e o que vem a seguir.",
+            "Nada de processo sem retorno. Você sabe em que etapa está e o que vem a seguir.",
         items: [
             {
                 title: "Você se cadastra",
                 description:
-                    "Preenche o formulário aqui embaixo com seu currículo e um resumo do que você já fez.",
+                    "Você preenche o formulário com seu currículo e um resumo do que já construiu.",
             },
             {
                 title: "Analisamos seu currículo",
                 description:
-                    "A equipe lê o seu perfil. Olhamos o que você construiu, não só onde você estudou.",
+                    "A equipe analisa o seu perfil. A gente olha o que você construiu, não só onde estudou.",
             },
             {
                 title: "Conversamos",
                 description:
-                    "Uma entrevista para nos conhecermos: como você pensa, como você comunica, o que te interessa.",
+                    "Fazemos uma conversa para entender como você pensa, como se comunica e no que quer crescer.",
                 highlight: true,
             },
             {
                 title: "Você entra no banco de talentos",
                 description:
-                    "Aprovado, seu perfil fica em prontidão com a gente. Não é uma pasta esquecida — é a lista que a gente abre quando entra projeto.",
+                    "Se aprovado, seu perfil entra no nosso banco de talentos. Não é uma pasta esquecida, é a base que consultamos quando surge um projeto compatível.",
             },
             {
-                title: "Chamamos quando entra projeto",
+                title: "Chamamos quando surgir um projeto",
                 description:
                     "Surgiu um projeto compatível, entramos em contato e checamos a sua disponibilidade. Você aceita se fizer sentido naquele momento.",
                 highlight: true,
@@ -269,9 +269,9 @@ export const trabalheConosco = {
     },
 
     form: {
-        title: "Bora começar?",
+        title: "Vamos começar?",
         description:
-            "Não temos vaga aberta agora — e é justamente por isso que queremos te conhecer antes. Cadastre seu perfil e falamos com você quando surgir um projeto com a sua cara.",
+            "Não temos vaga aberta neste momento, e é justamente por isso que queremos conhecer seu perfil antes. Cadastre seu perfil e falamos com você quando surgir um projeto alinhado ao seu momento.",
     },
 } satisfies {
     hero: {

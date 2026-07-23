@@ -128,7 +128,7 @@ export const home = {
                 title: "Wisdom",
                 icon: "brain",
                 description:
-                    "Tecnologias que garantem escalabilidade, segurança e alta performance — seu investimento à prova de obsolescência.",
+                    "Tecnologias que garantem escalabilidade, segurança e alta performance, seu investimento à prova de obsolescência.",
             },
             {
                 letter: "I",
@@ -142,7 +142,7 @@ export const home = {
                 title: "Zeal",
                 icon: "sparkles",
                 description:
-                    "Interfaces e arquiteturas sob medida, com personalização até a satisfação total — cada pixel pensado para unir estética moderna à funcionalidade técnica.",
+                    "Interfaces e arquiteturas sob medida, com personalização até a satisfação total, cada pixel pensado para unir estética moderna à funcionalidade técnica.",
             },
             {
                 letter: "E",
@@ -250,23 +250,23 @@ export const home = {
             {
                 id: "faq-2",
                 question: "Qual é o investimento para contratar a WizeCode?",
-                answer: "Cada projeto é único, então não trabalhamos com tabelas fixas. O investimento é definido com base no escopo, complexidade e prazo. Nossa proposta é sempre personalizada — e você não tem nenhum compromisso antes de aprová-la.",
+                answer: "Cada projeto é único, então não trabalhamos com tabelas fixas. O investimento é definido com base no escopo, complexidade e prazo. Nossa proposta é sempre personalizada, e você não tem nenhum compromisso antes de aprová-la.",
             },
             {
                 id: "faq-3",
                 question:
-                    "Quem cuida do conteúdo do website — textos, fotos e vídeos?",
+                    "Quem cuida do conteúdo do website, textos, fotos e vídeos?",
                 answer: "O ideal é que o conteúdo venha da sua empresa, já que ninguém conhece o negócio melhor do que você. Mas entendemos que nem todo cliente tem isso pronto: podemos te orientar sobre o que preparar e, em casos específicos, indicar parceiros para essa parte.",
             },
             {
                 id: "faq-4",
                 question: "A WizeCode desenvolve para qualquer segmento?",
-                answer: "Sim. Já atuamos em educação, saúde, varejo, serviços e outros. O que importa é que exista um problema real para resolver — e nós encontramos a solução tecnológica mais adequada para ele.",
+                answer: "Sim. Já atuamos em educação, saúde, varejo, serviços e outros. O que importa é que exista um problema real para resolver, e nós encontramos a solução tecnológica mais adequada para ele.",
             },
             {
                 id: "faq-5",
                 question: "Vocês fazem manutenção e suporte após a entrega?",
-                answer: "Sim. A entrega do projeto não é o fim da nossa relação — é o começo. Oferecemos planos de manutenção e suporte técnico para garantir que tudo continue funcionando, evoluindo e performando bem.",
+                answer: "Sim. A entrega do projeto não é o fim da nossa relação, é o começo. Oferecemos planos de manutenção e suporte técnico para garantir que tudo continue funcionando, evoluindo e performando bem.",
             },
             {
                 id: "faq-6",

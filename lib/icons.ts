@@ -5,6 +5,7 @@ import {
     Gauge,
     GraduationCap,
     HeartHandshake,
+    IterationCw,
     LayoutTemplate,
     Layers,
     Mail,
@@ -53,6 +54,7 @@ export const icons = {
     gauge: Gauge,
     pencilRuler: PencilRuler,
     trendingUp: TrendingUp,
+    iterationCw: IterationCw,
     // Trabalhe conosco
     wallet: Wallet,
     shieldCheck: ShieldCheck,

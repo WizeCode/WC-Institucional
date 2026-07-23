@@ -18,12 +18,12 @@ export const institucional: ServicoData = {
         badge: "/ Problema",
         title: "Na internet, sua empresa existe de verdade?",
         description:
-            "Se algum destes cenários soa familiar, você está perdendo cliente todos os dias — sem nem perceber.",
+            "Se algum destes cenários soa familiar, você está perdendo cliente todos os dias, sem nem perceber.",
         items: [
-            "Procuram sua empresa no Google e não acham você — só o concorrente",
+            "Procuram sua empresa no Google e não acham você, só o concorrente",
             "Toda a sua presença mora no Instagram: uma vitrine alugada, que muda de regra e pode sumir",
             "Sua empresa é séria, mas sem um website à altura o cliente não percebe isso",
-            "Cliente novo só chega por indicação — nada trabalha por você sozinho",
+            "Cliente novo só chega por indicação, nada trabalha por você sozinho",
             "Um concorrente menor parece maior e mais confiável, só por ter um bom website",
             'Pedem "manda o website de vocês" e você só tem um link do Instagram pra enviar',
         ],
@@ -37,9 +37,9 @@ export const institucional: ServicoData = {
             {
                 title: "Design sob medida",
                 description:
-                    "Cada pixel pensado para traduzir a identidade da sua marca — nada de template genérico.",
+                    "Cada pixel pensado para traduzir a identidade da sua marca, nada de template genérico.",
                 image: {
-                    src: "/images/home/websites.webp",
+                    src: "/images/services/institucional/design.png",
                     alt: "Design de website institucional sob medida",
                 },
                 className: "md:col-span-2 lg:row-span-2",
@@ -54,7 +54,7 @@ export const institucional: ServicoData = {
                 icon: "gauge",
                 title: "Performance real",
                 description:
-                    "Carregamento rápido e nota alta no PageSpeed — velocidade que converte.",
+                    "Carregamento rápido e nota alta no PageSpeed, velocidade que converte.",
             },
             {
                 icon: "pencilRuler",
@@ -68,7 +68,7 @@ export const institucional: ServicoData = {
                 description:
                     "Uma base sólida que acompanha a evolução do seu negócio, sem retrabalho.",
                 image: {
-                    src: "/images/home/sistemas2.webp",
+                    src: "/images/services/institucional/grow.jpg",
                     alt: "Website institucional preparado para escalar",
                 },
                 layout: "split",
@@ -90,7 +90,7 @@ export const institucional: ServicoData = {
             {
                 title: "Proposta comercial",
                 description:
-                    "Escopo e valores — transparência total antes de começar.",
+                    "Escopo e valores, transparência total antes de começar.",
             },
             {
                 title: "Plano de desenvolvimento",
@@ -136,7 +136,7 @@ export const institucional: ServicoData = {
                 id: "faq-1",
                 question:
                     "Quanto tempo leva para meu website institucional ficar no ar?",
-                answer: "Um website institucional costuma ficar pronto em 3 a 6 semanas, dependendo do número de páginas e da complexidade do conteúdo. No briefing já conseguimos te passar uma estimativa realista, e durante o processo você acompanha cada etapa — sem surpresas de prazo.",
+                answer: "Um website institucional costuma ficar pronto em 3 a 6 semanas, dependendo do número de páginas e da complexidade do conteúdo. No briefing já conseguimos te passar uma estimativa realista, e durante o processo você acompanha cada etapa, sem surpresas de prazo.",
             },
             {
                 id: "faq-2",
@@ -147,7 +147,7 @@ export const institucional: ServicoData = {
             {
                 id: "faq-3",
                 question: "Preciso ter domínio e hospedagem antes de começar?",
-                answer: "A hospedagem fica por nossa conta — cuidamos de toda a infraestrutura para o website rodar rápido e seguro. O domínio (o endereço www da sua empresa) é registrado e mantido em seu nome, garantindo que ele seja sempre seu. Se ainda não tiver um, te orientamos no passo a passo.",
+                answer: "A hospedagem fica por nossa conta, cuidamos de toda a infraestrutura para o website rodar rápido e seguro. O domínio (o endereço www da sua empresa) é registrado e mantido em seu nome, garantindo que ele seja sempre seu. Se ainda não tiver um, te orientamos no passo a passo.",
             },
             {
                 id: "faq-4",
@@ -163,7 +163,7 @@ export const institucional: ServicoData = {
             {
                 id: "faq-6",
                 question: "Vou poder ver o website antes de ele ficar pronto?",
-                answer: "Sim. Antes de escrever qualquer linha de código, você aprova um protótipo visual do website. Só avançamos para o desenvolvimento com 100% da sua satisfação — assim você sabe exatamente o que vai receber, sem risco de surpresas na entrega.",
+                answer: "Sim. Antes de escrever qualquer linha de código, você aprova um protótipo visual do website. Só avançamos para o desenvolvimento com 100% da sua satisfação, assim você sabe exatamente o que vai receber, sem risco de surpresas na entrega.",
             },
         ],
     },
