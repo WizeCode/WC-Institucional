@@ -17,10 +17,18 @@ export const modalidadeOptions = [
 ] as const
 
 export const disponibilidadeOptions = [
-    { value: "Até 10h/semana", label: "Até 10h/semana" },
+    { value: "Até 5h/semana", label: "Até 5h/semana" },
+    { value: "5-10h/semana", label: "5-10h/semana" },
     { value: "10-20h/semana", label: "10-20h/semana" },
-    { value: "20-30h/semana", label: "20-30h/semana" },
-    { value: "Full-time", label: "Full-time" },
+    { value: "Acima de 20h/semana", label: "Acima de 20h/semana" },
+    {
+        value: "Variável, a confirmar conforme escopo",
+        label: "Variável, a confirmar conforme escopo",
+    },
+    {
+        value: "Indisponível, mas interessado em futuras oportunidades",
+        label: "Indisponível, mas interessado em futuras oportunidades",
+    },
 ] as const
 
 // Currículo: PDF até 5MB.
@@ -76,7 +84,14 @@ export const talentoSchema = z.object({
     }),
 
     disponibilidade: z.enum(
-        ["Até 10h/semana", "10-20h/semana", "20-30h/semana", "Full-time"],
+        [
+            "Até 5h/semana",
+            "5-10h/semana",
+            "10-20h/semana",
+            "Acima de 20h/semana",
+            "Variável, a confirmar conforme escopo",
+            "Indisponível, mas interessado em futuras oportunidades",
+        ],
         { message: "Selecione a disponibilidade" }
     ),
 
