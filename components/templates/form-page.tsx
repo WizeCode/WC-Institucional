@@ -1,7 +1,8 @@
 import React from "react"
+import { rich } from "@/lib/text"
 
 interface FormPageProps {
-    title: React.ReactNode
+    title: string
     description: React.ReactNode
     aside?: React.ReactNode
     headingLevel?: "h1" | "h2"
@@ -26,7 +27,7 @@ const FormPage = ({
         <div className="flex flex-col lg:flex-row lg:gap-20">
             <div className="mb-8 flex flex-1 flex-col gap-2 text-start">
                 <Heading className="text-2xl font-bold text-pretty lg:text-3xl xl:text-4xl">
-                    {title}
+                    {rich(title)}
                 </Heading>
                 <p className="mb-4 text-lg text-muted-foreground lg:text-xl">
                     {description}
