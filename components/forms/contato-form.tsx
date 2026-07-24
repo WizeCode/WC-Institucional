@@ -151,6 +151,7 @@ export function ContatoForm({ servicoPadrao }: ContatoFormProps = {}) {
                                 id="servico"
                                 className="w-full"
                                 aria-invalid={!!errors.servico}
+                                data-private
                             >
                                 <SelectValue placeholder="Selecione um serviço" />
                             </SelectTrigger>
