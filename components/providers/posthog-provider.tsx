@@ -19,6 +19,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
             ip: false,
             session_recording: {
                 maskAllInputs: true,
+                maskTextSelector: "[data-private]",
             },
         })
     }, [])
