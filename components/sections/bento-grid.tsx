@@ -105,7 +105,7 @@ const BentoGrid = ({
     items,
 }: BentoGridProps) => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-8 lg:gap-12">
             <div className="mx-auto flex max-w-xl flex-col justify-center gap-4 text-center">
                 {badge && (
                     <Badge className="mx-auto" variant={badgeVariant}>

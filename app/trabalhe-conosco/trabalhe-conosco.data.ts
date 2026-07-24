@@ -125,7 +125,7 @@ export const trabalheConosco = {
 
     stack: {
         badge: "/ Stack",
-        title: "Com o que você vai trabalhar",
+        title: "Com *o que* você vai trabalhar",
         description:
             "Esta é a stack usada nos nossos projetos de desenvolvimento. Você não precisa dominar tudo, mas precisa saber aprender rápido.",
         groups: [
@@ -269,7 +269,7 @@ export const trabalheConosco = {
     },
 
     form: {
-        title: "Vamos começar?",
+        title: "*Vamos* começar?",
         description:
             "Não temos vaga aberta neste momento, e é justamente por isso que queremos conhecer seu perfil antes. Cadastre seu perfil e falamos com você quando surgir um projeto alinhado ao seu momento.",
     },

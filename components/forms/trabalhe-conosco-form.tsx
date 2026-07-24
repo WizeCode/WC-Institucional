@@ -221,6 +221,7 @@ export function TrabalheConoscoForm() {
                                     id="area"
                                     className="w-full"
                                     aria-invalid={!!errors.area}
+                                    data-private
                                 >
                                     <SelectValue placeholder="Selecione uma área" />
                                 </SelectTrigger>
@@ -260,6 +261,7 @@ export function TrabalheConoscoForm() {
                                     id="modalidade"
                                     className="w-full"
                                     aria-invalid={!!errors.modalidade}
+                                    data-private
                                 >
                                     <SelectValue placeholder="Selecione a modalidade" />
                                 </SelectTrigger>
@@ -298,6 +300,7 @@ export function TrabalheConoscoForm() {
                                     id="disponibilidade"
                                     className="w-full"
                                     aria-invalid={!!errors.disponibilidade}
+                                    data-private
                                 >
                                     <SelectValue placeholder="Selecione a disponibilidade" />
                                 </SelectTrigger>
@@ -401,6 +404,7 @@ export function TrabalheConoscoForm() {
                         {curriculo ? "Trocar arquivo" : "Selecionar PDF"}
                     </label>
                     <span
+                        data-private
                         className={
                             curriculo
                                 ? "truncate text-sm text-foreground"
