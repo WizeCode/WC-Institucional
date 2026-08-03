@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { TurnstileBox } from "@/components/providers/turnstile-box"
+import { track } from "@/lib/analytics"
 import { sendBriefing } from "@/lib/chat/actions"
 
 export interface BriefingData {
@@ -58,6 +59,10 @@ export function BriefingDialog({
         setLoading(true)
         setError(false)
 
+        track("wizard_briefing_submit_attempted", {
+            classificacao_servico: briefing.classificacao_servico,
+        })
+
         const result = await sendBriefing(
             briefingRaw,
             turnstileToken ?? "",
@@ -76,8 +81,14 @@ export function BriefingDialog({
         setLoading(false)
         if (result?.success) {
             setSent(true)
+            track("wizard_briefing_submitted", {
+                classificacao_servico: briefing.classificacao_servico,
+            })
         } else {
             setError(true)
+            track("wizard_briefing_submit_failed", {
+                classificacao_servico: briefing.classificacao_servico,
+            })
         }
     }
 
