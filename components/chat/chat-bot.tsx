@@ -26,6 +26,7 @@ import {
     type BriefingData,
 } from "@/components/chat/briefing-dialog"
 import { OnboardingDialog } from "@/components/chat/onboarding-dialog"
+import { track } from "@/lib/analytics"
 import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { TurnstileBox } from "@/components/providers/turnstile-box"
 import {
@@ -141,6 +142,11 @@ export function ChatBot() {
             }))
             .filter((m) => m.content)
 
+        track("wizard_briefing_completed", {
+            classificacao_servico: parsed.classificacao_servico,
+            turnos: messages.length,
+        })
+
         startTransition(() => {
             setBriefingData(parsed)
             setBriefingRaw(match[1].trim())
@@ -166,6 +172,8 @@ export function ChatBot() {
             .join("")
 
         if (!ABORT_REGEX.test(text)) return
+
+        track("wizard_aborted", { turnos: messages.length })
         startTransition(() => setAborted(true))
     }, [messages, status, aborted])
 
