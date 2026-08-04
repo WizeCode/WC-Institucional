@@ -39,6 +39,7 @@ function TooltipContent({
     return (
         <TooltipPrimitive.Portal>
             <TooltipPrimitive.Content
+                translate="no"
                 data-slot="tooltip-content"
                 sideOffset={sideOffset}
                 className={cn(
