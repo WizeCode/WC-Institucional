@@ -59,6 +59,7 @@ function SheetContent({
         <SheetPortal>
             <SheetOverlay />
             <SheetPrimitive.Content
+                translate="no"
                 data-slot="sheet-content"
                 data-side={side}
                 className={cn(
