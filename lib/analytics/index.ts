@@ -1,4 +1,4 @@
-import { posthogAnalytics } from "./adapters/posthog"
+import { posthogAnalytics, captureServerException } from "./adapters/posthog"
 import type { Analytics } from "./types"
 
 /**
@@ -10,5 +10,8 @@ export const analytics: Analytics = posthogAnalytics
 /** Shorthand: `track("cta_contact_clicked", { source: "hero" })` */
 export const track: Analytics["track"] = (event, props) =>
     analytics.track(event, props)
+
+/** Reporta exceção server-side (Server Actions) — ver JSDoc no adapter. */
+export { captureServerException }
 
 export type { Analytics, AnalyticsProps } from "./types"
