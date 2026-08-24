@@ -2,6 +2,7 @@
 
 import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { lerEnv } from "@/lib/env"
+import { enviarComFallback } from "@/lib/webhook/enviar-com-fallback"
 
 export async function sendBriefing(
     data: string,
@@ -19,29 +20,28 @@ export async function sendBriefing(
     const secret = lerEnv("N8N_WEBHOOK_SECRET", "briefing")
     if (!secret) return { success: false }
 
-    try {
-        const res = await fetch(`${webhookBase}/briefing`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-webhook-secret": secret,
-            },
-            body: JSON.stringify({
-                briefing: JSON.parse(data),
-                conversa: conversation,
-                contato: contact,
+    const briefing = JSON.parse(data)
+
+    const resultado = await enviarComFallback(
+        () =>
+            fetch(`${webhookBase}/briefing`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-webhook-secret": secret,
+                },
+                body: JSON.stringify({
+                    briefing,
+                    conversa: conversation,
+                    contato: contact,
+                }),
             }),
-        })
-        if (!res.ok) {
-            const detalhe = await res.text().catch(() => "")
-            console.error(
-                `[briefing] webhook n8n respondeu ${res.status}: ${detalhe}`
-            )
-            return { success: false }
+        {
+            contexto: "briefing",
+            distinctId: contact.email,
+            propriedades: { ...contact, briefing, conversa: conversation },
         }
-        return { success: true }
-    } catch (err) {
-        console.error("[briefing] falha ao chamar webhook n8n:", err)
-        return { success: false }
-    }
+    )
+
+    return { success: resultado.success }
 }

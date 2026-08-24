@@ -3,7 +3,7 @@
 import { talentoSchema, validarCurriculo } from "@/lib/talentos/schema"
 import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { lerEnv } from "@/lib/env"
-import { captureServerException } from "@/lib/analytics"
+import { enviarComFallback } from "@/lib/webhook/enviar-com-fallback"
 
 export async function enviarCandidatura(formData: FormData) {
     if (process.env.NODE_ENV !== "development") {
@@ -43,23 +43,6 @@ export async function enviarCandidatura(formData: FormData) {
         utm_medium: String(formData.get("utm_medium") ?? ""),
         utm_campaign: String(formData.get("utm_campaign") ?? ""),
     }
-    
-    async function preservarCandidatura(motivo: string) {
-        return captureServerException(
-            {
-                type: "CandidaturaNaoEntregueError",
-                message: `Candidatura não entregue ao n8n: ${motivo}`,
-            },
-            dados.email,
-            {
-                ...dados,
-                ...utm,
-                curriculo_nome: arquivo.name,
-                curriculo_tamanho: arquivo.size,
-                motivo,
-            }
-        )
-    }
 
     const webhookBase = lerEnv("N8N_WEBHOOK_URL", "talentos")
     const secret = lerEnv("N8N_WEBHOOK_SECRET", "talentos")
@@ -76,28 +59,22 @@ export async function enviarCandidatura(formData: FormData) {
     payload.append("utm_campaign", utm.utm_campaign)
     payload.append("curriculo", arquivo)
 
-    try {
-        const res = await fetch(`${webhookBase}/trabalhe-conosco`, {
-            method: "POST",
-            headers: { "x-webhook-secret": secret },
-            body: payload,
-        })
-        if (!res.ok) {
-            const detalhe = await res.text().catch(() => "")
-            console.error(
-                `[talentos] webhook n8n respondeu ${res.status}: ${detalhe}`
-            )
-            if (await preservarCandidatura(`webhook_${res.status}`)) {
-                return { success: true }
-            }
-            return { success: false, error: "Erro ao enviar. Tente novamente." }
+    return enviarComFallback(
+        () =>
+            fetch(`${webhookBase}/trabalhe-conosco`, {
+                method: "POST",
+                headers: { "x-webhook-secret": secret },
+                body: payload,
+            }),
+        {
+            contexto: "talentos",
+            distinctId: dados.email,
+            propriedades: {
+                ...dados,
+                ...utm,
+                curriculo_nome: arquivo.name,
+                curriculo_tamanho: arquivo.size,
+            },
         }
-        return { success: true }
-    } catch (err) {
-        console.error("[talentos] falha ao chamar webhook n8n:", err)
-        if (await preservarCandidatura("network_error")) {
-            return { success: true }
-        }
-        return { success: false, error: "Erro ao enviar. Tente novamente." }
-    }
+    )
 }
