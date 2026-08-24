@@ -113,17 +113,17 @@ export default function RootLayout({
             suppressHydrationWarning
         >
             <body cz-shortcut-listen="true">
-                <PostHogProvider>
-                    <UtmProvider>
-                        <ThemeProvider>
+                <ThemeProvider>
+                    <PostHogProvider>
+                        <UtmProvider>
                             <Header />
 
                             <main>{children}</main>
 
                             <Footer />
-                        </ThemeProvider>
-                    </UtmProvider>
-                </PostHogProvider>
+                        </UtmProvider>
+                    </PostHogProvider>
+                </ThemeProvider>
 
                 <JsonLd schema={[organizationSchema, websiteSchema]} />
                 <SpeedInsights />

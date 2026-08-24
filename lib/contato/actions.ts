@@ -3,6 +3,7 @@
 import { contatoSchema, type ContatoFormData } from "@/lib/contato/schema"
 import { verifyTurnstile } from "@/lib/turnstile/actions"
 import { lerEnv } from "@/lib/env"
+import { enviarComFallback } from "@/lib/webhook/enviar-com-fallback"
 
 export async function enviarContato(
     data: ContatoFormData,
@@ -26,25 +27,20 @@ export async function enviarContato(
     const secret = lerEnv("N8N_WEBHOOK_SECRET", "contato")
     if (!secret) return { success: false, error: "Serviço indisponível." }
 
-    try {
-        const res = await fetch(`${webhookBase}/contato`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-webhook-secret": secret,
-            },
-            body: JSON.stringify(parsed.data),
-        })
-        if (!res.ok) {
-            const detalhe = await res.text().catch(() => "")
-            console.error(
-                `[contato] webhook n8n respondeu ${res.status}: ${detalhe}`
-            )
-            return { success: false, error: "Erro ao enviar. Tente novamente." }
+    return enviarComFallback(
+        () =>
+            fetch(`${webhookBase}/contato`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-webhook-secret": secret,
+                },
+                body: JSON.stringify(parsed.data),
+            }),
+        {
+            contexto: "contato",
+            distinctId: parsed.data.email,
+            propriedades: parsed.data,
         }
-        return { success: true }
-    } catch (err) {
-        console.error("[contato] falha ao chamar webhook n8n:", err)
-        return { success: false, error: "Erro ao enviar. Tente novamente." }
-    }
+    )
 }
